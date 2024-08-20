@@ -2,13 +2,19 @@
 #include <math.h>
 #include <assert.h>
 
-const int INF_ROOTS = -1;
-const double precision = 0.00001;
+typedef enum __NUM_ROOTS {
+    INF_ROOTS = -1,
+    NO_ROOTS = 0,
+    ONE_ROOT,
+    TWO_ROOTS,
+} NUM_ROOTS;
+
+const double PRECISION = 0.00001;
 
 void GetCoefs(double *a, double *b, double *c);
-int SolveQuadraticEquation (double a, double b, double c, double *x1, double *x2);
-int SolveLinearEquation (double a, double b, double *x);
-void PrintResults (int n_roots, double x1, double x2);
+NUM_ROOTS SolveQuadraticEquation (double a, double b, double c, double *x1, double *x2);
+NUM_ROOTS SolveLinearEquation (double a, double b, double *x);
+void PrintResults (NUM_ROOTS n_roots, double x1, double x2);
 int NonZero (double x);
 
 int main() {
@@ -19,7 +25,7 @@ int main() {
     GetCoefs (&a, &b, &c);
 
     double x1 = 0, x2 = 0;
-    int n_roots = SolveQuadraticEquation (a, b, c, &x1, &x2);
+    NUM_ROOTS n_roots = SolveQuadraticEquation (a, b, c, &x1, &x2);
 
     PrintResults (n_roots, x1, x2);
 
@@ -38,7 +44,7 @@ void GetCoefs(double *a, double *b, double *c) {
 
 }
 
-int SolveQuadraticEquation (double a, double b, double c,
+NUM_ROOTS SolveQuadraticEquation (double a, double b, double c,
                             double *x1, double *x2) {
 
     assert(isfinite(a));
@@ -50,7 +56,7 @@ int SolveQuadraticEquation (double a, double b, double c,
         double D = b*b - 4*a*c;
 
         if (NonZero(D)) {
-            if (D < 0) return 0;
+            if (D < 0) return NO_ROOTS;
 
             double sqrt_D = sqrt(D);
 
@@ -60,7 +66,7 @@ int SolveQuadraticEquation (double a, double b, double c,
             assert(isfinite(*x1));
             assert(isfinite(*x2));
 
-            return 2;
+            return TWO_ROOTS;
         }
 
 
@@ -68,7 +74,7 @@ int SolveQuadraticEquation (double a, double b, double c,
 
         assert(isfinite(*x1));
 
-        return 1;
+        return ONE_ROOT;
     }
 
     return SolveLinearEquation (b, c, x1);
@@ -76,30 +82,30 @@ int SolveQuadraticEquation (double a, double b, double c,
 
 }
 
-int SolveLinearEquation (double a, double b, double *x) {
+NUM_ROOTS SolveLinearEquation (double a, double b, double *x) {
 
     if (NonZero(a)) {
         *x = -b / a;
 
         assert(isfinite(*x));
 
-        return 1;
+        return ONE_ROOT;
     }
 
-    if (NonZero(b)) return 0;
+    if (NonZero(b)) return NO_ROOTS;
     else return INF_ROOTS;
 
 }
 
-void PrintResults (int n_roots, double x1, double x2) {
+void PrintResults (NUM_ROOTS n_roots, double x1, double x2) {
     switch (n_roots) {
-        case 0:         printf("No roots");
+        case NO_ROOTS:  printf("No roots");
                         break;
 
-        case 1:         printf("x = %.5lg", x1);
+        case ONE_ROOT:  printf("x = %.5lg", x1);
                         break;
 
-        case 2:         printf("x1 = %.5lg\n"
+        case TWO_ROOTS: printf("x1 = %.5lg\n"
                                "x2 = %.5lg", x1, x2);
                         break;
 
@@ -110,4 +116,4 @@ void PrintResults (int n_roots, double x1, double x2) {
     }
 }
 
-int NonZero (double x) {return (fabs(x) > precision) ? 1 : 0;}
+int NonZero (double x) {return (fabs(x) > PRECISION) ? 1 : 0;}

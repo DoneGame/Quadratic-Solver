@@ -2,18 +2,26 @@
 #include <math.h>
 #include <assert.h>
 
-const int INF_ROOTS = -1;
-const double precision = 0.00001;
+typedef enum __NUM_ROOTS {
+    INF_ROOTS = -1,
+    NO_ROOTS = 0,
+    ONE_ROOT,
+    TWO_ROOTS,
+} NUM_ROOTS;
 
-int SolveQuadraticEquation (double a, double b, double c, double *x1, double *x2);
-int SolveLinearEquation (double a, double b, double *x);
+const int INF_ROOTS = -1;
+const double PRECISION = 0.00001;
+
+void GetCoefs(double *a, double *b, double *c);
+NUM_ROOTS SolveQuadraticEquation (double a, double b, double c, double *x1, double *x2);
+NUM_ROOTS SolveLinearEquation (double a, double b, double *x);
+void PrintResults (int n_roots, double x1, double x2);
 int NonZero (double x);
 
 int main() {
     double a = 0, b = 0, c = 0;
 
-    printf("# Second order equation solver\n");
-    printf("# a*x^2 + b*x + c = 0\n");
+    printf("# Second power equation solver\n");
 
     GetCoefs (&a, &b, &c);
 
@@ -26,6 +34,7 @@ int main() {
 
 void GetCoefs(double *a, double *b, double *c) {
 
+    printf("# a*x^2 + b*x + c = 0\n");
     printf("# Enter a, b, c: ");
     while (scanf("%lg %lg %lg", a, b, c) != 3) {
         int s = '\0';
@@ -36,7 +45,7 @@ void GetCoefs(double *a, double *b, double *c) {
 
 }
 
-int SolveQuadraticEquation (double a, double b, double c,
+NUM_ROOTS SolveQuadraticEquation (double a, double b, double c,
                             double *x1, double *x2) {
 
     assert(isfinite(a));
@@ -74,7 +83,7 @@ int SolveQuadraticEquation (double a, double b, double c,
 
 }
 
-int SolveLinearEquation (double a, double b, double *x) {
+NUM_ROOTS SolveLinearEquation (double a, double b, double *x) {
 
     if (NonZero(a)) {
         *x = -b / a;
@@ -104,8 +113,8 @@ void PrintResults (int n_roots, double x1, double x2) {
         case INF_ROOTS: printf("Infinite number of roots");
                         break;
 
-        default:        printf("main(): n_roots is incorrect");
+        default:        printf("PrintResults(): n_roots is incorrect");
     }
 }
 
-int NonZero (double x) {return (fabs(x) > precision) ? 1 : 0;}
+int NonZero (double x) {return (fabs(x) > PRECISION) ? 1 : 0;}
