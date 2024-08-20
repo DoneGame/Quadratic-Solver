@@ -6,7 +6,7 @@ typedef enum __NUM_ROOTS {
 } NUM_ROOTS;
 
 void      GetCoefs       (double *a, double *b, double *c);
-int      ClearBuffer    (void);
+void      ClearBuffer    (void);
 NUM_ROOTS SolveEquation  (double a, double b, double c, double *x1, double *x2);
 NUM_ROOTS SolveQuadratic (double a, double b, double c, double *x1, double *x2);
 NUM_ROOTS SolveLinear    (double a, double b, double *x);

@@ -22,24 +22,18 @@ int main() {
 void GetCoefs(double *a, double *b, double *c) {
 
     printf("# a*x^2 + b*x + c = 0\n");
-    printf("# Enter a, b, c: ");
+    printf("# Enter a, b, c (separated by spaces): ");
     while (scanf("%lg %lg %lg", a, b, c) != 3) {
-        while (ClearBuffer()) {
-            if (scanf("%lg %lg %lg", a, b, c) == 3) return;
-        }
+        ClearBuffer();
 
         printf("# Incorrect format. Enter a, b, c: ");
     }
 
 }
 
-int ClearBuffer (void) {
+void ClearBuffer (void) {
     int s = '\0';
-    while ((s = getchar()) != '\n' && s != EOF) {
-        if (s == ' ') return 1;
-    }
-
-    return 0;
+    while ((s = getchar()) != '\n' && s != EOF);
 }
 
 NUM_ROOTS SolveEquation (double a, double b, double c,
@@ -54,11 +48,7 @@ NUM_ROOTS SolveEquation (double a, double b, double c,
         return SolveQuadratic (a, b, c, x1, x2);
     }
 
-
-    NUM_ROOTS n_lin_roots = SolveLinear (b, c, x1);
-    *x2 = *x1;
-
-    return n_lin_roots;
+    return SolveLinear (b, c, x1);
 
 }
 
@@ -83,17 +73,21 @@ NUM_ROOTS SolveQuadratic (double a, double b, double c,
     double D = b*b - 4*a*c;
 
     if (NonZero(D)) {
-        if (D < 0) return NO_ROOTS;
+        if (D < 0) {
+            return NO_ROOTS;
+        }
 
-        double sqrt_D = sqrt(D);
+        else {
+            double sqrt_D = sqrt(D);
 
-        *x1 = (-b + sqrt_D) / (2*a);
-        *x2 = (-b - sqrt_D) / (2*a);
+            *x1 = (-b + sqrt_D) / (2*a);
+            *x2 = (-b - sqrt_D) / (2*a);
 
-        assert(isfinite(*x1));
-        assert(isfinite(*x2));
+            assert(isfinite(*x1));
+            assert(isfinite(*x2));
 
-        return TWO_ROOTS;
+            return TWO_ROOTS;
+        }
     }
 
 
