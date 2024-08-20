@@ -35,7 +35,7 @@ void GetCoefs(double *a, double *b, double *c) {
 
 int ClearBuffer (void) {
     int s = '\0';
-    while ((s = getchar()) != '\n' && s != ' ' && s != EOF) {
+    while ((s = getchar()) != '\n' && s != EOF) {
         if (s == ' ') return 1;
     }
 
