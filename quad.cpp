@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <math.h>
+#include <assert.h>
 
 const int INF_ROOTS = -1;
 const double precision = 0.00001;
@@ -41,12 +42,20 @@ int main() {
 int SolveEquation (double a, double b, double c,
                    double *x1, double *x2) {
 
+    assert(isfinite(a));
+    assert(isfinite(b));
+    assert(isfinite(c));
+    assert(x1 != x2);
+
     if (non_zero(a)) {
         double D = b*b - 4*a*c;
         double sqrt_D = sqrt(D);
 
         *x1 = (-b + sqrt_D) / (2*a);
         *x2 = (-b - sqrt_D) / (2*a);
+
+        assert(isfinite(*x1));
+        assert(isfinite(*x2));
 
         if (D < 0) return 0;
 
@@ -56,6 +65,8 @@ int SolveEquation (double a, double b, double c,
 
     if (non_zero(b)) {
         *x1 = *x2 = -c / b;
+
+        assert(isfinite(*x1));
 
         return 1;
     }
