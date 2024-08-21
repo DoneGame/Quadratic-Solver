@@ -48,11 +48,14 @@ NUM_ROOTS SolveQuadratic (double a, double b, double c,
         else {
             double sqrt_D = sqrt(D);
 
-            *x1 = (-b + sqrt_D) / (2*a);
-            *x2 = (-b - sqrt_D) / (2*a);
+            double sol_1 = (-b + sqrt_D) / (2*a);
+            double sol_2 = (-b - sqrt_D) / (2*a);
 
-            assert(isfinite(*x1));
-            assert(isfinite(*x2));
+            assert(isfinite(sol_1));
+            assert(isfinite(sol_2));
+
+            *x1 = (sol_1 < sol_2) ? sol_1 : sol_2; // min
+            *x2 = (sol_1 > sol_2) ? sol_1 : sol_2; // max
 
             return TWO_ROOTS;
         }

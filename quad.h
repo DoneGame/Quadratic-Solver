@@ -5,5 +5,6 @@
 #include "input.h"
 #include "solver.h"
 #include "output.h"
+#include "tests.h"
 
 #endif
