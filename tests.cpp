@@ -12,7 +12,7 @@ int RunSolverTests (void) {
     printf("# Testing SolveEquation()\n");
 
     int failed = 0;
-    int n = 12;
+    int n = 13;
 
     //                   n    a      b       c   n_roots     x1         x2
     failed += SolverTest(1,   0,     0,      0,  INF_ROOTS,  0,         0);
@@ -27,6 +27,7 @@ int RunSolverTests (void) {
     failed += SolverTest(10, -8,    -55.6,  -5,  TWO_ROOTS, -6.858877, -0.091122);
     failed += SolverTest(11,  0,     2,     -10, ONE_ROOT,   5,         0);
     failed += SolverTest(12,  1,     0,     -25, TWO_ROOTS, -5,         5);
+    failed += SolverTest(13,  1,    -2,      1,  ONE_ROOT,   1,         0);
 
     printf ("# SolveEquation(): Failed %d tests out of %d\n\n", failed, n);
 
