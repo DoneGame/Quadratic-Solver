@@ -2,8 +2,6 @@
 #include <math.h>
 #include <assert.h>
 
-const double PRECISION = 0.00001;
-
 NUM_ROOTS SolveEquation (double a, double b, double c,
                          double *x1, double *x2) {
 

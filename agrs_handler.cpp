@@ -4,6 +4,7 @@
 #include "solver.h"
 #include "output.h"
 #include "testing.h"
+#include "color.h"
 #include <stdio.h>
 #include <string.h>
 
@@ -31,9 +32,19 @@ void HandleArgs (int argc, char *argv[]) {
             RunNonZeroTests();
             RunSolverTests();
         }
+
+        if (StartsWith(arg, "--epsilon") || StartsWith(arg, "--eps")) {
+            YellowText();
+            printf("# Epsilon = %lg\n\n", PRECISION);
+            DefaultText();
+        }
     }
 
-    if (args_status == BAD) printf ("# Incorrect arguments, try again");
+    if (args_status == BAD) {
+        RedText();
+        printf ("# Incorrect arguments, try again");
+        DefaultText();
+    }
 
 }
 
@@ -61,6 +72,7 @@ ARGS_STATUS SolveFromArgs (char *argv[]) {
 int StartsWith (char *a, const char *b)
 {
    if (strncmp(a, b, strlen(b) + 1) == 0) return 1;
+
    return 0;
 }
 
@@ -73,9 +85,10 @@ int IsNumberInStr (char *c) {
 }
 
 void PrintHelp (void) {
-    printf ("# usage: quad.exe [-h | --help] [-t | --test] [-s | --solve <a> <b> <c>]\n\n"
+    printf ("# usage: quad.exe [-s | --solve <a> <b> <c>] [-h | --help] [-t | --test] [--epsilon | --eps]\n\n"
             "  no agrs   Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
             "  solve     Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
             "  test      Testing internal functions\n"
+            "  epsilon   Current parameter of NonZero()\n"
             "\n");
 }

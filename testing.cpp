@@ -1,6 +1,7 @@
 #include "solver.h"
 #include "testing.h"
 #include "tests.h"
+#include "color.h"
 #include <stdio.h>
 
 
@@ -13,7 +14,11 @@ int RunSolverTests (void) {
         failed += (int) SolverTest(tests[i]);
     }
 
+    if (failed == 0) GreenText();
+    else if (failed < num_tests / 2) YellowText();
+    else RedText();
     printf ("# SolveEquation(): Failed %d tests out of %d\n\n", failed, num_tests);
+    DefaultText();
 
     return failed;
 }
@@ -45,10 +50,14 @@ TEST_STATUS SolverTest (struct solver_test test) {
         else status = FAIL;
 
         if (status == FAIL) {
+
+
+            RedText();
             printf ("# SolveEquation(): Test %d failed. Params: a=%lf, b=%lf, c=%lf\n"
                     "Expected: n_roots=%d, x1=%lf, x2=%lf, get: n_roots=%d, x1=%lf, x2=%lf\n",
                     test.test_number, test.a, test.b, test.c, test.n_roots_expected, test.x1_expected, test.x2_expected,
                     n_roots, x1, x2);
+            DefaultText();
         }
 
         return status;
@@ -64,7 +73,11 @@ int RunNonZeroTests (void) {
         failed += (int) NonZeroTest(i + 1, NonZero_in[i], NonZero_out[i]);
     }
 
+    if (failed == 0) GreenText();
+    else if (failed < num_tests / 2) YellowText();
+    else RedText();
     printf ("# NonZero(): Failed %d tests out of %d\n\n", failed, num_tests);
+    DefaultText();
 
     return failed;
 }
@@ -73,9 +86,12 @@ TEST_STATUS NonZeroTest (int test_number, double in, int out) {
     int result = NonZero(in);
 
     if (result != out) {
+
+        RedText();
         printf("# NonZero(): Test %d failed. Params: fp=%lg\n"
                "Expected: out=%d, get: out=%d\n",
                test_number, in, out, result);
+        DefaultText();
 
         return FAIL;
     }
