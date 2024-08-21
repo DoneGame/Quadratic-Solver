@@ -1,4 +1,4 @@
-#include "quad.h"
+#include "output.h"
 #include <stdio.h>
 
 void PrintResults (NUM_ROOTS n_roots, double x1, double x2) {

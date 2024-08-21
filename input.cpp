@@ -1,7 +1,5 @@
-#include "quad.h"
+#include "input.h"
 #include <stdio.h>
-
-void ClearBuffer (void);
 
 void GetCoefs(double *a, double *b, double *c) {
 

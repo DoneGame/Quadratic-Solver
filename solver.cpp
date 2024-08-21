@@ -1,4 +1,4 @@
-#include "quad.h"
+#include "solver.h"
 #include <math.h>
 #include <assert.h>
 
