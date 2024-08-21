@@ -3,21 +3,25 @@
 #include "solver.h"
 #include "output.h"
 #include "testing.h"
+#include "args_handler.h"
 #include <stdio.h>
 
-int main() {
-    RunNonZeroTests();
-    RunSolverTests();
+int main (int argc, char *argv[]) {
+    if (argc > 1) {
+        HandleArgs (argc, argv);
+    }
+    else {
 
-    double a = 0, b = 0, c = 0;
+        double a = 0, b = 0, c = 0;
 
-    printf("# Second power equation solver\n");
+        printf("# Second power equation solver\n");
 
-    GetCoefs (&a, &b, &c);
+        GetCoefs (&a, &b, &c);
 
-    double x1 = 0, x2 = 0;
-    NUM_ROOTS n_roots = SolveEquation (a, b, c, &x1, &x2);
+        double x1 = 0, x2 = 0;
+        NUM_ROOTS n_roots = SolveEquation (a, b, c, &x1, &x2);
 
-    PrintResults (n_roots, x1, x2);
+        PrintResults (n_roots, x1, x2);
 
+    }
 }
