@@ -1,10 +1,13 @@
 #ifndef TESTS_H
 #define TESTS_H
 
+const double NonZero_in[] = {0, 1, 0.001, 0.00000001};
+const int NonZero_out[] = {0, 1, 1, 0};
+
 #include "num_roots.h"
 
 struct solver_test {
-    int n;
+    int test_number;
     double a;
     double b;
     double c;
