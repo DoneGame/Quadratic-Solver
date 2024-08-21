@@ -2,7 +2,7 @@
 #include "input.h"
 #include "solver.h"
 #include "output.h"
-#include "tests.h"
+#include "testing.h"
 #include <stdio.h>
 
 int main() {

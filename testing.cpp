@@ -1,4 +1,5 @@
 #include "solver.h"
+#include "testing.h"
 #include "tests.h"
 #include <stdio.h>
 
@@ -12,44 +13,32 @@ int RunSolverTests (void) {
     printf("# Testing SolveEquation()\n");
 
     int failed = 0;
-    int n = 13;
+    int num_tests = sizeof(tests) / sizeof(tests[0]);
 
-    //                   n    a      b       c   n_roots     x1         x2
-    failed += SolverTest(1,   0,     0,      0,  INF_ROOTS,  0,         0);
-    failed += SolverTest(2,   0,     0,      1,  NO_ROOTS,   0,         0);
-    failed += SolverTest(3,   0,     1,      0,  ONE_ROOT,   0,         0);
-    failed += SolverTest(4,   0,     1,      1,  ONE_ROOT,  -1,         0);
-    failed += SolverTest(5,   1,     0,      0,  ONE_ROOT,   0,         0);
-    failed += SolverTest(6,   1,     0,      1,  NO_ROOTS,   0,         0);
-    failed += SolverTest(7,   1,     1,      0,  TWO_ROOTS, -1,         0);
-    failed += SolverTest(8,   1,     1,      1,  NO_ROOTS,   0,         0);
-    failed += SolverTest(9,   1.28,  5.67,  -10, TWO_ROOTS, -5.781078,  1.351391);
-    failed += SolverTest(10, -8,    -55.6,  -5,  TWO_ROOTS, -6.858877, -0.091122);
-    failed += SolverTest(11,  0,     2,     -10, ONE_ROOT,   5,         0);
-    failed += SolverTest(12,  1,     0,     -25, TWO_ROOTS, -5,         5);
-    failed += SolverTest(13,  1,    -2,      1,  ONE_ROOT,   1,         0);
+    for (int i = 0; i < num_tests; i++) {
+        failed += SolverTest(tests[i]);
+    }
 
-    printf ("# SolveEquation(): Failed %d tests out of %d\n\n", failed, n);
+    printf ("# SolveEquation(): Failed %d tests out of %d\n\n", failed, num_tests);
 
     return failed;
 }
 
-int SolverTest (int n, double a, double b, double c,
-                NUM_ROOTS n_roots_exp, double x1_exp, double x2_exp) {
+int SolverTest (struct solver_test test) {
 
         double x1 = 0, x2 = 0;
-        NUM_ROOTS n_roots = SolveEquation (a, b, c, &x1, &x2);
+        NUM_ROOTS n_roots = SolveEquation (test.a, test.b, test.c, &x1, &x2);
 
         TEST_STATUS status = OK;
-        if (n_roots == n_roots_exp) {
-            switch (n_roots_exp) {
+        if (n_roots == test.n_roots_expected) {
+            switch (n_roots) {
                 case NO_ROOTS:  if (NonZero(x1) || NonZero(x2)) status = FAIL;
                                 break;
 
-                case ONE_ROOT:  if (NonZero(x1 - x1_exp) || NonZero(x2)) status = FAIL;
+                case ONE_ROOT:  if (NonZero(x1 - test.x1_expected) || NonZero(x2)) status = FAIL;
                                 break;
 
-                case TWO_ROOTS: if (NonZero(x1 - x1_exp) || NonZero(x2 - x2_exp)) status = FAIL;
+                case TWO_ROOTS: if (NonZero(x1 - test.x1_expected) || NonZero(x2 - test.x2_expected)) status = FAIL;
                                 break;
 
                 case INF_ROOTS: if (NonZero(x1) || NonZero(x2)) status = FAIL;
@@ -64,7 +53,7 @@ int SolverTest (int n, double a, double b, double c,
         if (status == FAIL) {
             printf ("# SolveEquation(): Test %d failed. Params: a=%lf, b=%lf, c=%lf\n"
                     "Expected: n_roots=%d, x1=%lf, x2=%lf, get: n_roots=%d, x1=%lf, x2=%lf\n",
-                    n, a, b, c, n_roots_exp, x1_exp, x2_exp, n_roots, x1, x2);
+                    test.n, test.a, test.b, test.c, test.n_roots_expected, test.x1_expected, test.x2_expected, n_roots, x1, x2);
         }
 
         return (int) status;
