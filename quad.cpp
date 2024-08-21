@@ -1,4 +1,8 @@
-#include "quad.h"
+#include "num_roots.h"
+#include "input.h"
+#include "solver.h"
+#include "output.h"
+#include "tests.h"
 #include <stdio.h>
 
 int main() {

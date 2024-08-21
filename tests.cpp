@@ -2,6 +2,12 @@
 #include "tests.h"
 #include <stdio.h>
 
+typedef enum __TEST_STATUS {
+    OK = 0,
+    FAIL = 1
+} TEST_STATUS;
+
+
 int RunSolverTests (void) {
     printf("# Testing SolveEquation()\n");
 
@@ -33,34 +39,34 @@ int SolverTest (int n, double a, double b, double c,
         double x1 = 0, x2 = 0;
         NUM_ROOTS n_roots = SolveEquation (a, b, c, &x1, &x2);
 
-        int status = 0; // 0 - OK, 1 - Error
+        TEST_STATUS status = OK;
         if (n_roots == n_roots_exp) {
             switch (n_roots_exp) {
-                case NO_ROOTS:  if (NonZero(x1) || NonZero(x2)) status = 1;
+                case NO_ROOTS:  if (NonZero(x1) || NonZero(x2)) status = FAIL;
                                 break;
 
-                case ONE_ROOT:  if (NonZero(x1 - x1_exp) || NonZero(x2)) status = 1;
+                case ONE_ROOT:  if (NonZero(x1 - x1_exp) || NonZero(x2)) status = FAIL;
                                 break;
 
-                case TWO_ROOTS: if (NonZero(x1 - x1_exp) || NonZero(x2 - x2_exp)) status = 1;
+                case TWO_ROOTS: if (NonZero(x1 - x1_exp) || NonZero(x2 - x2_exp)) status = FAIL;
                                 break;
 
-                case INF_ROOTS: if (NonZero(x1) || NonZero(x2)) status = 1;
+                case INF_ROOTS: if (NonZero(x1) || NonZero(x2)) status = FAIL;
                                 break;
 
                 default:        printf("PrintResults(): n_roots is incorrect");
                                 return 1;
             }
         }
-        else status = 1;
+        else status = FAIL;
 
-        if (status == 1) {
+        if (status == FAIL) {
             printf ("# SolveEquation(): Test %d failed. Params: a=%lf, b=%lf, c=%lf\n"
                     "Expected: n_roots=%d, x1=%lf, x2=%lf, get: n_roots=%d, x1=%lf, x2=%lf\n",
                     n, a, b, c, n_roots_exp, x1_exp, x2_exp, n_roots, x1, x2);
         }
 
-        return status;
+        return (int) status;
 }
 
 const double NonZero_in[4] = {0, 1, 0.001, 0.00000001};
