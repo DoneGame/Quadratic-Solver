@@ -7,14 +7,9 @@
 //-----------------------------------
 //! Solving equation ax^2 + bx + c = 0 with any coefs
 //!
-//! @param [in]  a  first coef
-//! @param [in]  b  second coef
-//! @param [in]  c  third coef
+//! @param [in] coefs all three coefficients
 //!
-//! @param [out] x1 smallest or single root
-//! @param [out] x2 largest root
-//!
-//! @return number of roots
+//! @return solution of equation
 //!
 //! @note x1 = 0, x2 = 0 if equation have no roots or infinite number of roots,
 //!       x2 = 0 if eq. have one root
@@ -40,7 +35,7 @@ struct ROOTS SolveEquation (struct COEFFICIENTS coefs) {
 
 struct ROOTS SolveLinear (struct COEFFICIENTS coefs) {
 
-    struct ROOTS sol = {NO_ROOTS, 0, 0};
+    struct ROOTS sol = {.num_roots = NO_ROOTS, .x1 = 0, .x2 = 0};
 
     if (NonZero(coefs.a)) {
         sol.x1 = -coefs.b / coefs.a;
@@ -60,9 +55,9 @@ struct ROOTS SolveLinear (struct COEFFICIENTS coefs) {
 
 struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
 
-    struct ROOTS sol = {NO_ROOTS, 0, 0};
+    struct ROOTS sol = {.num_roots = NO_ROOTS, .x1 = 0, .x2 = 0};
 
-    double descr = coefs.b*coefs.b - 4*coefs.a*coefs.c;
+    double descr = coefs.b * coefs.b - 4 * coefs.a * coefs.c;
 
     if (NonZero(descr)) {
         if (descr < 0) {
@@ -73,8 +68,8 @@ struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
         else {
             double sqrt_descr = sqrt(descr);
 
-            double root_1 = (-coefs.b + sqrt_descr) / (2*coefs.a);
-            double root_2 = (-coefs.b - sqrt_descr) / (2*coefs.a);
+            double root_1 = (-coefs.b + sqrt_descr) / (2 * coefs.a);
+            double root_2 = (-coefs.b - sqrt_descr) / (2 * coefs.a);
 
             assert(isfinite(root_1));
             assert(isfinite(root_2));
@@ -88,7 +83,7 @@ struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
     }
 
 
-    sol.x1 = -coefs.b / (2*coefs.a);
+    sol.x1 = -coefs.b / (2 * coefs.a);
 
     assert(isfinite(sol.x1));
 
@@ -97,4 +92,4 @@ struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
 
 }
 
-int NonZero (double fp_number) {return (fabs(fp_number) > PRECISION) ? 1 : 0;}
+int NonZero (double fp_number) {return fabs(fp_number) > PRECISION;}
