@@ -11,6 +11,7 @@ OBJ_DIR=objects
 OBJECTS=$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
 
 HEADERS_DIR=include
+HEADERS=$(wildcard $(HEADERS_DIR)/*.h)
 
 EXECUTABLE=quad.exe
 
@@ -20,7 +21,7 @@ all: $(OBJ_DIR) info $(EXECUTABLE)
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp $(HEADERS)
 	@$(CC) -I$(HEADERS_DIR) $(CFLAGS) $< -o $@
 
 $(OBJ_DIR):
