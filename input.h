@@ -1,8 +1,8 @@
 #ifndef INPUT_H
 #define INPUT_H
 
-void GetCoefs        (double *a, double *b, double *c);
-void GetCoefsFromStr (char **start, double *a, double *b, double *c);
-void ClearBuffer     (void);
+struct COEFFICIENTS GetCoefs        (void);
+struct COEFFICIENTS GetCoefsFromStr (char **start);
+void                ClearBuffer     (void);
 
 #endif

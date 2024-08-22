@@ -5,9 +5,9 @@
 
 const double PRECISION = 0.000001;
 
-NUM_ROOTS SolveEquation  (double a, double b, double c, double *x1, double *x2);
-NUM_ROOTS SolveQuadratic (double a, double b, double c, double *x1, double *x2);
-NUM_ROOTS SolveLinear    (double a, double b, double *x);
-int       NonZero        (double fp_number);
+struct ROOTS SolveEquation  (struct COEFFICIENTS coefs);
+struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs);
+struct ROOTS SolveLinear    (struct COEFFICIENTS coefs);
+int          NonZero        (double fp_number);
 
 #endif

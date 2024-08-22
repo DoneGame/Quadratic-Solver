@@ -11,9 +11,9 @@ struct solver_test {
     double a;
     double b;
     double c;
-    NUM_ROOTS n_roots_expected;
-    double x1_expected;
-    double x2_expected;
+    NUM_ROOTS n_roots_exp;
+    double x1_exp;
+    double x2_exp;
 } tests [] = {
 
 //  n    a       b       c      n_roots     x1         x2

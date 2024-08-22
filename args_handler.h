@@ -6,10 +6,10 @@ typedef enum __ARGS {
     BAD = 0
 } ARGS_STATUS;
 
-void HandleArgs (int argc, char *argv[]);
+void        HandleArgs    (int argc, char *argv[]);
 ARGS_STATUS SolveFromArgs (char *argv[]);
-int StartsWith(char *a, const char *b);
-int IsNumberInStr (char *c);
-void PrintHelp (void);
+int         StartsWith    (char *a, const char *b);
+int         IsNumberInStr (char *c);
+void        PrintHelp     (void);
 
 #endif

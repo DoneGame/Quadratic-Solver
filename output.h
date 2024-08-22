@@ -3,6 +3,6 @@
 
 #include "num_roots.h"
 
-void PrintResults (NUM_ROOTS n_roots, double x1, double x2);
+void PrintResults (struct ROOTS solution);
 
 #endif

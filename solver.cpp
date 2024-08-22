@@ -1,4 +1,5 @@
 #include "solver.h"
+#include "solver_structs.h"
 #include <math.h>
 #include <assert.h>
 
@@ -15,73 +16,84 @@
 //!
 //! @return number of roots
 //!
-//! @note Saves value of x1, x2 if equation have no roots or infinite number of roots,
-//!       saves value of x2 if eq. have one root
+//! @note x1 = 0, x2 = 0 if equation have no roots or infinite number of roots,
+//!       x2 = 0 if eq. have one root
 //-----------------------------------
 
-NUM_ROOTS SolveEquation (double a, double b, double c,
-                         double *x1, double *x2) {
+struct ROOTS SolveEquation (struct COEFFICIENTS coefs) {
 
-    assert(isfinite(a));
-    assert(isfinite(b));
-    assert(isfinite(c));
-    assert(x1 != x2);
+    assert(isfinite(coefs.a));
+    assert(isfinite(coefs.b));
+    assert(isfinite(coefs.c));
 
-    if (NonZero(a)) {
-        return SolveQuadratic (a, b, c, x1, x2);
+    if (NonZero(coefs.a)) {
+        return SolveQuadratic (coefs);
     }
 
-    return SolveLinear (b, c, x1);
+    struct COEFFICIENTS lin_coefs = {0, 0, 0};
+    lin_coefs.a = coefs.b;
+    lin_coefs.b = coefs.c;
+
+    return SolveLinear (lin_coefs);
 
 }
 
-NUM_ROOTS SolveLinear (double a, double b, double *x) {
+struct ROOTS SolveLinear (struct COEFFICIENTS coefs) {
 
-    if (NonZero(a)) {
-        *x = -b / a;
+    struct ROOTS sol = {NO_ROOTS, 0, 0};
 
-        assert(isfinite(*x));
+    if (NonZero(coefs.a)) {
+        sol.x1 = -coefs.b / coefs.a;
+        sol.num_roots = ONE_ROOT;
 
-        return ONE_ROOT;
+        assert(isfinite(sol.x1));
+
+        return sol;
     }
 
-    if (NonZero(b)) return NO_ROOTS;
-    else return INF_ROOTS;
+    if (NonZero(coefs.b)) sol.num_roots = NO_ROOTS;
+    else sol.num_roots = INF_ROOTS;
+
+    return sol;
 
 }
 
-NUM_ROOTS SolveQuadratic (double a, double b, double c,
-                          double *x1, double *x2) {
+struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
 
-    double D = b*b - 4*a*c;
+    struct ROOTS sol = {NO_ROOTS, 0, 0};
 
-    if (NonZero(D)) {
-        if (D < 0) {
-            return NO_ROOTS;
+    double descr = coefs.b*coefs.b - 4*coefs.a*coefs.c;
+
+    if (NonZero(descr)) {
+        if (descr < 0) {
+            sol.num_roots = NO_ROOTS;
+            return sol;
         }
 
         else {
-            double sqrt_D = sqrt(D);
+            double sqrt_descr = sqrt(descr);
 
-            double sol1 = (-b + sqrt_D) / (2*a);
-            double sol2 = (-b - sqrt_D) / (2*a);
+            double root_1 = (-coefs.b + sqrt_descr) / (2*coefs.a);
+            double root_2 = (-coefs.b - sqrt_descr) / (2*coefs.a);
 
-            assert(isfinite(sol1));
-            assert(isfinite(sol2));
+            assert(isfinite(root_1));
+            assert(isfinite(root_2));
 
-            *x1 = (sol1 < sol2) ? sol1 : sol2; // min
-            *x2 = (sol1 > sol2) ? sol1 : sol2; // max
+            sol.x1 = (root_1 < root_2) ? root_1 : root_2; // min
+            sol.x2 = (root_1 > root_2) ? root_1 : root_2; // max
 
-            return TWO_ROOTS;
+            sol.num_roots = TWO_ROOTS;
+            return sol;
         }
     }
 
 
-    *x1 = -b / (2*a);
+    sol.x1 = -coefs.b / (2*coefs.a);
 
-    assert(isfinite(*x1));
+    assert(isfinite(sol.x1));
 
-    return ONE_ROOT;
+    sol.num_roots = ONE_ROOT;
+    return sol;
 
 }
 

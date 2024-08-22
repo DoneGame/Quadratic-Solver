@@ -2,6 +2,7 @@
 #include "num_roots.h"
 #include "input.h"
 #include "solver.h"
+#include "solver_structs.h"
 #include "output.h"
 #include "testing.h"
 #include "color.h"
@@ -51,16 +52,14 @@ void HandleArgs (int argc, char *argv[]) {
 ARGS_STATUS SolveFromArgs (char *argv[]) {
     if (IsNumberInStr (argv[0]) && IsNumberInStr (argv[1]) && IsNumberInStr (argv[2])) {
 
-        double a = 0, b = 0, c = 0;
-        GetCoefsFromStr (argv, &a, &b, &c);
+        struct COEFFICIENTS coefs = GetCoefsFromStr (argv);
 
         printf ("# Solving a*x^2 + b*x + c = 0\n");
-        printf ("# Entered: a=%lg, b=%lg, c=%lg\n", a, b, c);
+        printf ("# Entered: a=%lg, b=%lg, c=%lg\n", coefs.a, coefs.b, coefs.c);
 
-        double x1 = 0, x2 = 0;
-        NUM_ROOTS n_roots = SolveEquation (a, b, c, &x1, &x2);
+        struct ROOTS solution = SolveEquation (coefs);
 
-        PrintResults (n_roots, x1, x2);
+        PrintResults (solution);
         printf ("\n");
 
         return GOOD;
@@ -89,6 +88,6 @@ void PrintHelp (void) {
             "  no agrs   Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
             "  solve     Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
             "  test      Testing internal functions\n"
-            "  epsilon   Current parameter of NonZero()\n"
+            "  epsilon   Current parameter for NonZero()\n"
             "\n");
 }

@@ -1,6 +1,7 @@
 #include "solver.h"
 #include "testing.h"
 #include "tests.h"
+#include "solver_structs.h"
 #include "color.h"
 #include <stdio.h>
 
@@ -25,22 +26,26 @@ int RunSolverTests (void) {
 
 TEST_STATUS SolverTest (struct solver_test test) {
 
-        double x1 = 0, x2 = 0;
-        NUM_ROOTS n_roots = SolveEquation (test.a, test.b, test.c, &x1, &x2);
+        struct COEFFICIENTS coefs = {0, 0, 0};
+        coefs.a = test.a;
+        coefs.b = test.b;
+        coefs.c = test.c;
+
+        struct ROOTS sol = SolveEquation (coefs);
 
         TEST_STATUS status = OK;
-        if (n_roots == test.n_roots_expected) {
-            switch (n_roots) {
-                case NO_ROOTS:  if (NonZero(x1) || NonZero(x2)) status = FAIL;
+        if (sol.num_roots == test.n_roots_exp) {
+            switch (sol.num_roots) {
+                case NO_ROOTS:  if (NonZero(sol.x1) || NonZero(sol.x2)) status = FAIL;
                                 break;
 
-                case ONE_ROOT:  if (NonZero(x1 - test.x1_expected) || NonZero(x2)) status = FAIL;
+                case ONE_ROOT:  if (NonZero(sol.x1 - test.x1_exp) || NonZero(sol.x2)) status = FAIL;
                                 break;
 
-                case TWO_ROOTS: if (NonZero(x1 - test.x1_expected) || NonZero(x2 - test.x2_expected)) status = FAIL;
+                case TWO_ROOTS: if (NonZero(sol.x1 - test.x1_exp) || NonZero(sol.x2 - test.x2_exp)) status = FAIL;
                                 break;
 
-                case INF_ROOTS: if (NonZero(x1) || NonZero(x2)) status = FAIL;
+                case INF_ROOTS: if (NonZero(sol.x1) || NonZero(sol.x2)) status = FAIL;
                                 break;
 
                 default:        printf("PrintResults(): n_roots is incorrect");
@@ -55,8 +60,8 @@ TEST_STATUS SolverTest (struct solver_test test) {
             RedText();
             printf ("# SolveEquation(): Test %d failed. Params: a=%lf, b=%lf, c=%lf\n"
                     "Expected: n_roots=%d, x1=%lf, x2=%lf, get: n_roots=%d, x1=%lf, x2=%lf\n",
-                    test.test_number, test.a, test.b, test.c, test.n_roots_expected, test.x1_expected, test.x2_expected,
-                    n_roots, x1, x2);
+                    test.test_number, test.a, test.b, test.c, test.n_roots_exp, test.x1_exp, test.x2_exp,
+                    sol.num_roots, sol.x1, sol.x2);
             DefaultText();
         }
 
