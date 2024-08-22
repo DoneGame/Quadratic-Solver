@@ -18,7 +18,7 @@ int main (int argc, char *argv[]) {
 
         printf("# Second power equation solver\n");
 
-        struct COEFFICIENTS coefficients = GetCoefs ();
+        struct COEFFICIENTS coefficients = GetCoefs();
 
         struct ROOTS solution = SolveEquation (coefficients);
 

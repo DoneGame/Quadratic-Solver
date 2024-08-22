@@ -3,18 +3,6 @@
 #include <math.h>
 #include "my_asserts.h"
 
-
-//-----------------------------------
-//! Solving equation ax^2 + bx + c = 0 with any coefs
-//!
-//! @param [in] coefs all three coefficients
-//!
-//! @return solution of equation
-//!
-//! @note x1 = 0, x2 = 0 if equation have no roots or infinite number of roots,
-//!       x2 = 0 if eq. have one root
-//-----------------------------------
-
 struct ROOTS SolveEquation (struct COEFFICIENTS coefs) {
 
     isfinite_assert(coefs.a);
