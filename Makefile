@@ -6,7 +6,11 @@ LDFLAGS=
 
 SOURCES=main.cpp input.cpp solver.cpp output.cpp testing.cpp agrs_handler.cpp color.cpp
 
-OBJECTS=$(SOURCES:.cpp=.o)
+OBJ_DIR=objects
+OBJECTS_temp=$(SOURCES:.cpp=.o)
+OBJECTS=$(OBJECTS_temp:%=$(OBJ_DIR)/%)
+
+# HEADERS=$(SOURCES:.cpp=.h) tests.h num_roots.h solver_structs.h
 
 EXECUTABLE=quad.exe
 
@@ -16,9 +20,9 @@ all: $(SOURCES) $(EXECUTABLE)
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
-.cpp.o:
-	@$(CC) $(CFLAGS) $< -o $@
+$(OBJ_DIR)/%.o: %.cpp
+	$(CC) $(CFLAGS) $< -o $@
 
 
 clean:
-	rm -rf *.o $(EXECUTABLE)
+	rm -rf $(OBJ_DIR)/*.o $(EXECUTABLE)
