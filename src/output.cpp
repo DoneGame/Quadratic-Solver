@@ -1,6 +1,6 @@
-#include "../include/output.h"
-#include "../include/solver_structs.h"
-#include "../include/color.h"
+#include "output.h"
+#include "solver_structs.h"
+#include "color.h"
 #include <stdio.h>
 
 void PrintResults (struct ROOTS solution) {

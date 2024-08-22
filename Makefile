@@ -12,19 +12,23 @@ OBJECTS_temp=$(SOURCES:.cpp=.o)
 OBJECTS=$(OBJECTS_temp:%=$(OBJ_DIR)/%)
 
 HEADERS_DIR=include
-HEADERS_temp=$(SOURCES:.cpp=.h) num_roots.h tests.h solver_structs.h 
-HEADERS=$(HEADERS_temp:%=$(HEADERS_DIR)/%)
 
 EXECUTABLE=quad.exe
 
-
-all: $(EXECUTABLE)
+all: $(OBJ_DIR) info $(EXECUTABLE)
+	$(info Done)
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
 $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
-	@$(CC) $(CFLAGS) $< -o $@
+	@$(CC) -I$(HEADERS_DIR) $(CFLAGS) $< -o $@
+
+$(OBJ_DIR):
+	mkdir $(OBJ_DIR)
+
+info:
+	$(info Compiling...)
 
 
 clean:

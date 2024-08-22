@@ -1,8 +1,8 @@
-#include "../include/solver.h"
-#include "../include/testing.h"
-#include "../include/tests.h"
-#include "../include/solver_structs.h"
-#include "../include/color.h"
+#include "solver.h"
+#include "testing.h"
+#include "tests.h"
+#include "solver_structs.h"
+#include "color.h"
 #include <stdio.h>
 
 

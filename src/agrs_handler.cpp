@@ -1,11 +1,11 @@
-#include "../include/args_handler.h"
-#include "../include/num_roots.h"
-#include "../include/input.h"
-#include "../include/solver.h"
-#include "../include/solver_structs.h"
-#include "../include/output.h"
-#include "../include/testing.h"
-#include "../include/color.h"
+#include "args_handler.h"
+#include "num_roots.h"
+#include "input.h"
+#include "solver.h"
+#include "solver_structs.h"
+#include "output.h"
+#include "testing.h"
+#include "color.h"
 #include <stdio.h>
 #include <string.h>
 

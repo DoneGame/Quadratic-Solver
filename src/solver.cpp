@@ -1,5 +1,5 @@
-#include "../include/solver.h"
-#include "../include/solver_structs.h"
+#include "solver.h"
+#include "solver_structs.h"
 #include <math.h>
 #include <assert.h>
 
