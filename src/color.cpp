@@ -1,12 +1,16 @@
 #include "color.h"
-#include <TXLib.h>
+#include <stdlib.h>
+#include <stdio.h>
 
-void RedText (void) {txSetConsoleAttr (FOREGROUND_RED | DEFAULT_BACKGROUND);}
+void ColorOn (void) {system(" ");}
 
-void YellowText (void) {txSetConsoleAttr (FOREGROUND_YELLOW | DEFAULT_BACKGROUND);}
 
-void GreenText (void) {txSetConsoleAttr (FOREGROUND_GREEN | DEFAULT_BACKGROUND);}
+void RedText (void) {printf("\x1b[31m");}
 
-void WhiteText (void) {txSetConsoleAttr (FOREGROUND_WHITE | DEFAULT_BACKGROUND);}
+void YellowText (void) {printf("\x1b[33m");}
 
-void DefaultText (void) {txSetConsoleAttr (DEFAULT_COLOR_ATTR);}
+void GreenText (void) {printf("\x1b[32m");}
+
+void WhiteText (void) {printf("\x1b[37m");}
+
+void DefaultText (void) {printf("\x1b[0m");}

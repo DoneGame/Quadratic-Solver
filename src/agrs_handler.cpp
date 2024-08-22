@@ -35,6 +35,8 @@ void HandleArgs (int argc, char *argv[]) {
         }
 
         if (StartsWith(arg, "--epsilon") || StartsWith(arg, "--eps")) {
+            args_status = GOOD;
+
             YellowText();
             printf("# Epsilon = %lg\n\n", PRECISION);
             DefaultText();

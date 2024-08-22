@@ -5,9 +5,12 @@
 #include "output.h"
 #include "testing.h"
 #include "args_handler.h"
+#include "color.h"
 #include <stdio.h>
 
 int main (int argc, char *argv[]) {
+    ColorOn();
+
     if (argc > 1) {
         HandleArgs (argc, argv);
     }

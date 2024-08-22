@@ -1,0 +1,33 @@
+
+--------------------------------------------------
+TXLib соболезнует...
+
+Программа: C:\CodeBlocks_programs\mipt_sp_lsh\quad.exe,
+
+ВНЕЗАПНО: signal (22, 0x00): SIGABRT: Аварийное завершение программы, вызвана функция abort(). 
+
+С помощью функции signal() вы можете сами обработать эту ошибку.
+
+#1: TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400], Instance: 0x006D217C (32-bit), Flags: Cmdre0, Thread: 0x3268 (Main), GetLastError(): 126 (Не найден указанный модуль). 
+
+--------------------------------------------------
+Стек вызовов:
+
+
+
+--------------------------------------------------
+Developed with:
+
+The Dumb Artist Library (TX Library)
+TXLib [Ver: 00173a, Rev: 173, Date: 2024-06-23 22:37:05 +0400]
+Copyright (C) Ded (Ilya Dedinsky, http://txlib.ru) <mail@txlib.ru>
+See license on: http://txlib.ru
+
+TXLib file:	c:\users\дима\downloads\codeblocks\mingw\include\txlib.h
+Compiled:	Aug 22 2024 17:43:39, GNU g++ 4.8.1, std=201103L, MinGW Runtime 3.20, 32-bit, DEBUG
+Started:	Aug 22 2024 17:45:58
+
+Run file:	C:\CodeBlocks_programs\mipt_sp_lsh\quad.exe
+Directory:	C:\CodeBlocks_programs\mipt_sp_lsh
+
+--------------------------------------------------
