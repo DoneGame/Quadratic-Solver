@@ -2,6 +2,23 @@
 #include <math.h>
 #include <assert.h>
 
+
+//-----------------------------------
+//! Solving equation ax^2 + bx + c = 0 with any coefs
+//!
+//! @param [in]  a  first coef
+//! @param [in]  b  second coef
+//! @param [in]  c  third coef
+//!
+//! @param [out] x1 smallest or single root
+//! @param [out] x2 largest root
+//!
+//! @return number of roots
+//!
+//! @note Saves value of x1, x2 if equation have no roots or infinite number of roots,
+//!       saves value of x2 if eq. have one root
+//-----------------------------------
+
 NUM_ROOTS SolveEquation (double a, double b, double c,
                          double *x1, double *x2) {
 
