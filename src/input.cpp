@@ -2,6 +2,7 @@
 #include "solver_structs.h"
 #include "color.h"
 #include <stdio.h>
+#include <stdlib.h>
 
 struct COEFFICIENTS GetCoefs(void) {
     struct COEFFICIENTS coefs = {.a = 0, .b = 0, .c = 0};
@@ -10,7 +11,6 @@ struct COEFFICIENTS GetCoefs(void) {
     printf ("# Enter a, b, c (separated by spaces): ");
 
     while (scanf ("%lg %lg %lg", &coefs.a, &coefs.b, &coefs.c) != 3) {
-
         ClearBuffer();
 
         YellowText();
@@ -19,12 +19,21 @@ struct COEFFICIENTS GetCoefs(void) {
         printf("Enter a, b, c: ");
     }
 
+    printf("\n");
+
     return coefs;
 }
 
 void ClearBuffer (void) {
     int s = '\0';
-    while ((s = getchar()) != '\n' && s != EOF) {};
+    while ((s = getchar()) != '\n') {
+        if (s == EOF) {
+            YellowText();
+            printf("\nEOF: Noting else to read!");
+            DefaultText();
+            exit(1);
+        }
+    };
 }
 
 struct COEFFICIENTS GetCoefsFromStr(char **start) {
