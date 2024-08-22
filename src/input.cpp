@@ -1,9 +1,19 @@
+#include <stdio.h>
+#include <stdlib.h>
 #include "input.h"
 #include "solver_structs.h"
 #include "color.h"
-#include <stdio.h>
-#include <stdlib.h>
 
+/**
+ * @brief Get coefficients from cin
+ *
+ * Search for 3 double numbers in one line,
+ * doesn't pay attention to spaces and tabs,
+ * finishes on EOF
+ *
+ *
+ * @return Struct with 3 coefficients of equation
+ */
 struct COEFFICIENTS GetCoefs(void) {
     struct COEFFICIENTS coefs = {.a = 0, .b = 0, .c = 0};
 
@@ -24,6 +34,13 @@ struct COEFFICIENTS GetCoefs(void) {
     return coefs;
 }
 
+/**
+ * @brief Clears cin buffer
+ *
+ * Clears buffer to end of line,
+ * aborts program if finds EOF
+ *
+ */
 void ClearBuffer (void) {
     int s = '\0';
     while ((s = getchar()) != '\n') {
@@ -36,6 +53,14 @@ void ClearBuffer (void) {
     };
 }
 
+/**
+ * @brief Get coefficients from command line arguments
+ *
+ * Search for number in each of 3 consecutive command line argument
+ *
+ *
+ * @return Struct with 3 coefficients of equation
+ */
 struct COEFFICIENTS GetCoefsFromStr(char **start) {
     struct COEFFICIENTS coefs = {.a = 0, .b = 0, .c = 0};
 

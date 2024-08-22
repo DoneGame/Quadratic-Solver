@@ -1,8 +1,17 @@
+#include <stdio.h>
 #include "output.h"
 #include "solver_structs.h"
 #include "color.h"
-#include <stdio.h>
 
+/**
+ * @brief Solution output
+ *
+ * Prints results of solving equation.
+ * Considers different number of roots and highlights with color.
+ *
+ * @param solution Struct with solution
+ *
+ */
 void PrintResults (struct ROOTS solution) {
     switch (solution.num_roots) {
         case NO_ROOTS:  YellowText();

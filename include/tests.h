@@ -1,20 +1,37 @@
 #ifndef TESTS_H
 #define TESTS_H
 
-const double NonZero_in[] = {0, 1, 0.00001, 0.0000009};
-const int NonZero_out[] = {0, 1, 1, 0};
-
-#include "num_roots.h"
 #include <math.h>
+#include "num_roots.h"
 
+const double NonZero_in[] =  {0, 1, 0.00001, 0.0000009, 0.00001};
+const int    NonZero_out[] = {0, 1, 1,       0,         1      };
+
+/** @struct solver_test
+ *  @brief Test for SolveEquation()
+ *  @var solver_test::n
+ *  Test number
+ *  @var solver_test::a
+ *  First coef
+ *  @var solver_test::b
+ *  Second coef
+ *  @var solver_test::c
+ *  Third coef
+ *  @var solver_test::n_roots_exp
+ *  Expected number of roots
+ *  @var solver_test::x1_exp
+ *  Expected smallest or single root
+ *  @var solver_test::x2_exp
+ *  Expected largest root
+ */
 struct solver_test {
-    int test_number;
-    double a;
-    double b;
-    double c;
+    int       test_number;
+    double    a;
+    double    b;
+    double    c;
     NUM_ROOTS n_roots_exp;
-    double x1_exp;
-    double x2_exp;
+    double    x1_exp;
+    double    x2_exp;
 } tests [] = {
 
 //  n    a       b       c      n_roots     x1         x2

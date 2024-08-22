@@ -3,9 +3,10 @@
 
 #include "num_roots.h"
 
+/// Test result
 typedef enum __TEST_STATUS {
-    OK = 0,
-    FAIL = 1
+    OK   = 0,
+    FAIL = 1,
 } TEST_STATUS;
 
 int RunSolverTests      (void);
