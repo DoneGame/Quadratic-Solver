@@ -3,3 +3,4 @@
 *.exe
 *.h.save
 *.o
+*.exe.log

@@ -5,6 +5,7 @@ const double NonZero_in[] = {0, 1, 0.00001, 0.0000009};
 const int NonZero_out[] = {0, 1, 1, 0};
 
 #include "num_roots.h"
+#include <math.h>
 
 struct solver_test {
     int test_number;

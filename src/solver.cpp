@@ -1,7 +1,7 @@
 #include "solver.h"
 #include "solver_structs.h"
 #include <math.h>
-#include <assert.h>
+#include "my_asserts.h"
 
 
 //-----------------------------------
@@ -17,9 +17,9 @@
 
 struct ROOTS SolveEquation (struct COEFFICIENTS coefs) {
 
-    assert(isfinite(coefs.a));
-    assert(isfinite(coefs.b));
-    assert(isfinite(coefs.c));
+    isfinite_assert(coefs.a);
+    isfinite_assert(coefs.b);
+    isfinite_assert(coefs.c);
 
     if (NonZero(coefs.a)) {
         return SolveQuadratic (coefs);
@@ -41,7 +41,7 @@ struct ROOTS SolveLinear (struct COEFFICIENTS coefs) {
         sol.x1 = -coefs.b / coefs.a;
         sol.num_roots = ONE_ROOT;
 
-        assert(isfinite(sol.x1));
+        isfinite_assert(sol.x1);
 
         return sol;
     }
@@ -71,8 +71,8 @@ struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
             double root_1 = (-coefs.b + sqrt_descr) / (2 * coefs.a);
             double root_2 = (-coefs.b - sqrt_descr) / (2 * coefs.a);
 
-            assert(isfinite(root_1));
-            assert(isfinite(root_2));
+            isfinite_assert(root_1);
+            isfinite_assert(root_2);
 
             sol.x1 = (root_1 < root_2) ? root_1 : root_2; // min
             sol.x2 = (root_1 > root_2) ? root_1 : root_2; // max
@@ -85,7 +85,7 @@ struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
 
     sol.x1 = -coefs.b / (2 * coefs.a);
 
-    assert(isfinite(sol.x1));
+    isfinite_assert(sol.x1);
 
     sol.num_roots = ONE_ROOT;
     return sol;

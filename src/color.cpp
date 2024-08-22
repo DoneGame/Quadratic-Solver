@@ -14,3 +14,8 @@ void GreenText (void) {printf("\x1b[32m");}
 void WhiteText (void) {printf("\x1b[37m");}
 
 void DefaultText (void) {printf("\x1b[0m");}
+
+
+void WhiteBG (void) {printf("\x1b[47m");}
+
+void DefaultBG (void) {printf("\x1b[49m");}

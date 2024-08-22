@@ -8,4 +8,7 @@ void GreenText   (void);
 void WhiteText   (void);
 void DefaultText (void);
 
+void WhiteBG     (void);
+void DefaultBG   (void);
+
 #endif
