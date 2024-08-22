@@ -1,3 +1,8 @@
+/**
+ * @file main.cpp
+ * @brief Main file of program
+ */
+
 #include <stdio.h>
 #include "num_roots.h"
 #include "input.h"

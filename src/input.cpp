@@ -1,3 +1,8 @@
+/**
+ * @file input.cpp
+ * @brief All input functions of program
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include "input.h"

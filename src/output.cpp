@@ -1,3 +1,8 @@
+/**
+ * @file output.cpp
+ * @brief All output functions of program
+ */
+
 #include <stdio.h>
 #include "output.h"
 #include "solver_structs.h"

@@ -1,3 +1,7 @@
+/**
+ * @file solver.h
+ */
+
 #ifndef SOLVER_H
 #define SOLVER_H
 

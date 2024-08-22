@@ -1,3 +1,8 @@
+/**
+ * @file args_handler.cpp
+ * @brief Command line arguments handling
+ */
+
 #include <stdio.h>
 #include <string.h>
 #include "args_handler.h"

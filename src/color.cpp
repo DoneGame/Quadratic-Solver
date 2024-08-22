@@ -1,3 +1,8 @@
+/**
+ * @file color.cpp
+ * @brief Color text and background for command line
+ */
+
 #include <stdlib.h>
 #include <stdio.h>
 #include "color.h"

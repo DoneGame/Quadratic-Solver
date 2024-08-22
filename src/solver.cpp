@@ -1,3 +1,8 @@
+/**
+ * @file solver.cpp
+ * @brief Quadratic equation solver
+ */
+
 #include <math.h>
 #include "solver.h"
 #include "solver_structs.h"

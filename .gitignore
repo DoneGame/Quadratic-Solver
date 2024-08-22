@@ -7,3 +7,4 @@
 *.exe.log.dmp
 *.ii
 *.txt
+doxygen/

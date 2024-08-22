@@ -1,3 +1,7 @@
+/**
+ * @file solver_structs.h
+ */
+
 #ifndef SOLVER_STRUCTS_H
 #define SOLVER_STRUCTS_H
 

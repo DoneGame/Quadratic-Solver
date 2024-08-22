@@ -1,3 +1,8 @@
+/**
+ * @file testing.cpp
+ * @brief Unit testing
+ */
+
 #include <stdio.h>
 #include "solver.h"
 #include "testing.h"
