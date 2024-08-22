@@ -5,11 +5,10 @@ CFLAGS=-c -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-eq
 LDFLAGS=
 
 SRC_DIR=src
-SOURCES=main.cpp input.cpp solver.cpp output.cpp testing.cpp agrs_handler.cpp color.cpp
+SOURCES=$(patsubst $(SRC_DIR)/%, %, $(wildcard $(SRC_DIR)/*.cpp))
 
 OBJ_DIR=objects
-OBJECTS_temp=$(SOURCES:.cpp=.o)
-OBJECTS=$(OBJECTS_temp:%=$(OBJ_DIR)/%)
+OBJECTS=$(SOURCES:%.cpp=$(OBJ_DIR)/%.o)
 
 HEADERS_DIR=include
 
