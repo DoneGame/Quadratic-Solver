@@ -1,3 +1,5 @@
+*.save
 *.cpp.save
 *.exe
 *.h.save
+*.o

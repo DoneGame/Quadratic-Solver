@@ -4,7 +4,8 @@
 #include <TXLib.h>
 
 const unsigned DEFAULT_COLOR_ATTR = txGetConsoleAttr();
-const unsigned DEFAULT_BACKGROUND = DEFAULT_COLOR_ATTR & 240;
+const unsigned TEXT_COLOR_MASK = 240;
+const unsigned DEFAULT_BACKGROUND = DEFAULT_COLOR_ATTR & TEXT_COLOR_MASK;
 
 void RedText (void);
 void YellowText (void);
