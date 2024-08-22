@@ -4,24 +4,27 @@ CFLAGS=-c -Wshadow -Winit-self -Wredundant-decls -Wcast-align -Wundef -Wfloat-eq
 
 LDFLAGS=
 
+SRC_DIR=src
 SOURCES=main.cpp input.cpp solver.cpp output.cpp testing.cpp agrs_handler.cpp color.cpp
 
 OBJ_DIR=objects
 OBJECTS_temp=$(SOURCES:.cpp=.o)
 OBJECTS=$(OBJECTS_temp:%=$(OBJ_DIR)/%)
 
-# HEADERS=$(SOURCES:.cpp=.h) tests.h num_roots.h solver_structs.h
+HEADERS_DIR=include
+HEADERS_temp=$(SOURCES:.cpp=.h) num_roots.h tests.h solver_structs.h 
+HEADERS=$(HEADERS_temp:%=$(HEADERS_DIR)/%)
 
 EXECUTABLE=quad.exe
 
 
-all: $(SOURCES) $(EXECUTABLE)
+all: $(EXECUTABLE)
 
 $(EXECUTABLE): $(OBJECTS)
 	$(CC) $(LDFLAGS) $(OBJECTS) -o $@
 
-$(OBJ_DIR)/%.o: %.cpp
-	$(CC) $(CFLAGS) $< -o $@
+$(OBJ_DIR)/%.o: $(SRC_DIR)/%.cpp
+	@$(CC) $(CFLAGS) $< -o $@
 
 
 clean:

@@ -1,6 +1,6 @@
-#include "input.h"
-#include "solver_structs.h"
-#include "color.h"
+#include "../include/input.h"
+#include "../include/solver_structs.h"
+#include "../include/color.h"
 #include <stdio.h>
 
 struct COEFFICIENTS GetCoefs(void) {

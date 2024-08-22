@@ -1,4 +1,4 @@
-#include "color.h"
+#include "../include/color.h"
 #include <TXLib.h>
 
 void RedText (void) {txSetConsoleAttr (FOREGROUND_RED | DEFAULT_BACKGROUND);}
