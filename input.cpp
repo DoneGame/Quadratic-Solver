@@ -1,5 +1,6 @@
 #include "input.h"
 #include "solver_structs.h"
+#include "color.h"
 #include <stdio.h>
 
 struct COEFFICIENTS GetCoefs(void) {
@@ -12,7 +13,10 @@ struct COEFFICIENTS GetCoefs(void) {
 
         ClearBuffer();
 
-        printf("# Incorrect format. Enter a, b, c: ");
+        YellowText();
+        printf("# Incorrect format. ");
+        DefaultText();
+        printf("Enter a, b, c: ");
     }
 
     return coefs;

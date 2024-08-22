@@ -43,7 +43,7 @@ void HandleArgs (int argc, char *argv[]) {
 
     if (args_status == BAD) {
         RedText();
-        printf ("# Incorrect arguments, try again");
+        printf ("# Incorrect arguments, try again\n");
         DefaultText();
     }
 
