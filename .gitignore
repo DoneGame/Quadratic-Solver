@@ -4,3 +4,4 @@
 *.h.save
 *.o
 *.exe.log
+*.exe.log.dmp
