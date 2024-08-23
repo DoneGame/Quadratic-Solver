@@ -12,13 +12,6 @@
 #include "output.h"
 #include "color.h"
 
-/**
- * @brief SolveEquation() testing
- *
- * Checks function with tests from tests.h
- *
- * @return Number of failed tests
- */
 int RunSolverTests (void) {
     printf("# Testing SolveEquation()\n");
 
@@ -33,15 +26,6 @@ int RunSolverTests (void) {
     return failed;
 }
 
-/**
- * @brief Single Solver test
- *
- * Checks function with test
- *
- * @param test Standard solver test
- *
- * @return Result of test (enum)
- */
 TEST_STATUS SolverTest (struct solver_test test) {
 
         struct COEFFICIENTS coefs = {0, 0, 0};
@@ -89,13 +73,6 @@ TEST_STATUS SolverTest (struct solver_test test) {
 }
 
 
-/**
- * @brief NonZero() testing
- *
- * Checks function with tests from tests.h
- *
- * @return Number of failed tests
- */
 int RunNonZeroTests (void) {
     printf("# Testing NonZero()\n");
 
@@ -110,17 +87,6 @@ int RunNonZeroTests (void) {
     return failed;
 }
 
-/**
- * @brief Single NonZero test
- *
- * Checks function with test
- *
- * @param test_number Number of test in sequence
- * @param in          Test input
- * @param out         Expected function output
- *
- * @return Result of test (enum)
- */
 TEST_STATUS NonZeroTest (int test_number, double in, int out) {
     int result = NonZero(in);
 

@@ -1,5 +1,6 @@
 /**
  * @file num_roots.h
+ * @brief Number of roots enum
  */
 
 #ifndef NUM_ROOTS_H

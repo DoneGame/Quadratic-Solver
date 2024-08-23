@@ -9,16 +9,7 @@
 #include "solver_structs.h"
 #include "color.h"
 
-/**
- * @brief Get coefficients from cin
- *
- * Search for 3 double numbers in one line,
- * doesn't pay attention to spaces and tabs, finishes on EOF
- *
- * @see @ref main
- *
- * @return Struct with 3 coefficients of equation
- */
+
 struct COEFFICIENTS GetCoefs(void) {
     struct COEFFICIENTS coefs = {.a = 0, .b = 0, .c = 0};
 
@@ -40,11 +31,6 @@ struct COEFFICIENTS GetCoefs(void) {
     return coefs;
 }
 
-/**
- * @brief Clears cin buffer
- *
- * Clears buffer to end of line, aborts program if finds EOF
- */
 void ClearBuffer (void) {
     int s = '\0';
     while ((s = getchar()) != '\n') {
@@ -57,15 +43,6 @@ void ClearBuffer (void) {
     };
 }
 
-/**
- * @brief Get coefficients from command line arguments
- *
- * Search for number in each of 3 consecutive command line argument
- *
- * @see @ref SolveFromArgs
- *
- * @return Struct with 3 coefficients of equation
- */
 struct COEFFICIENTS GetCoefsFromStr(char **start) {
     struct COEFFICIENTS coefs = {.a = 0, .b = 0, .c = 0};
 
@@ -76,15 +53,6 @@ struct COEFFICIENTS GetCoefsFromStr(char **start) {
     return coefs;
 }
 
-/**
- * @brief Is number simbol in string
- *
- * Checks if string contains number
- *
- * @param c String
- *
- * @return Result of check (0 or 1)
- */
 int IsNumberInStr (char *c) {
     while (*c < '0' || *c > '9') {
         if (*(++c) == '\0') return 0;

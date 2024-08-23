@@ -1,7 +1,7 @@
 /**
  * @file my_asserts.h
  *
- * @brief my_assert and isfinite_assert
+ * @brief Implementation of asserts with define
  *
  * Can be deactivated with #define DEACTIVATE_MY_ASSERTS or NBEDUG
  */
@@ -17,6 +17,7 @@
 
 
 #if (!defined (NDEBUG) && !defined (DEACTIVATE_MY_ASSERTS))
+    /** My implementation of assert() from assert.h*/
     #define my_assert(log_expr) {                                                             \
         if (!(log_expr)) {                                                                    \
             ColorOn();                                                                        \
@@ -29,6 +30,8 @@
         }                                                                                     \
     }
 
+    /** United impementation of assert(isfinite(fp)),
+        gives additional information about fp value*/
     #define isfinite_assert(fp) {                                                             \
         if (!isfinite(fp)) {                                                                  \
             ColorOn();                                                                        \

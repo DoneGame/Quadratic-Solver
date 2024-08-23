@@ -1,5 +1,6 @@
 /**
  * @file solver_structs.h
+ * @brief Structs for Solver
  */
 
 #ifndef SOLVER_STRUCTS_H
@@ -9,40 +10,20 @@
 
 /** @struct COEFFICIENTS
  *  @brief Coefficients of equation
- *
- *
- *  @var COEFFICIENTS::a
- *  First coef
- *
- *  @var COEFFICIENTS::b
- *  Second coef
- *
- *  @var COEFFICIENTS::c
- *  Third coef
  */
 struct COEFFICIENTS {
-    double a;
-    double b;
-    double c;
+    double a; ///< First coef
+    double b; ///< Second coef
+    double c; ///< Third coef
 };
 
 /** @struct ROOTS
  *  @brief Solution of equation
- *
- *
- *  @var ROOTS::num_roots
- *  Number of roots
- *
- *  @var ROOTS::x1
- *  Smaller or single root
- *
- *  @var ROOTS::x2
- *  Larger root
  */
 struct ROOTS {
-    NUM_ROOTS num_roots;
-    double    x1;
-    double    x2;
+    NUM_ROOTS num_roots; ///< Number of roots
+    double    x1;        ///< Smaller or single root
+    double    x2;        ///< Larger root
 };
 
 #endif

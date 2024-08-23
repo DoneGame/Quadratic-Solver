@@ -14,16 +14,7 @@
 #include "testing.h"
 #include "color.h"
 
-/**
- * @brief Command line argument handler
- *
- * Goes though all arguments and performs appropriate actions
- *
- * @param argc Number of arguments
- * @param argv List of arguments
- *
- * @note Throws error if none of the arguments were correct
- */
+
 void HandleArgs (int argc, char *argv[]) {
 
     ARGS_STATUS args_status = BAD;
@@ -66,16 +57,6 @@ void HandleArgs (int argc, char *argv[]) {
 
 }
 
-/**
- * @brief --solve argument handler
- *
- * Searches next three args for coefficients and outputs
- * solution of quadratic equation
- *
- * @param argv List of arguments after -s or --solve
- *
- * @return Correctness of the passed arguments
- */
 ARGS_STATUS SolveFromArgs (char *argv[]) {
     if (IsNumberInStr (argv[0]) && IsNumberInStr (argv[1]) && IsNumberInStr (argv[2])) {
 

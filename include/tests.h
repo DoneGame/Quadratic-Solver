@@ -1,5 +1,6 @@
 /**
  * @file tests.h
+ * @brief All tests for unit testing
  */
 
 #ifndef TESTS_H
@@ -13,37 +14,15 @@ const int    NonZero_out[] = {0, 1, 1      , 0        , 1      , 1  , 1       };
 
 /** @struct solver_test
  *  @brief Test for SolveEquation()
- *
- *
- *  @var solver_test::n
- *  Test number
- *
- *  @var solver_test::a
- *  First coef
- *
- *  @var solver_test::b
- *  Second coef
- *
- *  @var solver_test::c
- *  Third coef
- *
- *  @var solver_test::n_roots_exp
- *  Expected number of roots
- *
- *  @var solver_test::x1_exp
- *  Expected smaller or single root
- *
- *  @var solver_test::x2_exp
- *  Expected larger root
  */
 struct solver_test {
-    int       test_number;
-    double    a;
-    double    b;
-    double    c;
-    NUM_ROOTS n_roots_exp;
-    double    x1_exp;
-    double    x2_exp;
+    int       test_number; ///< Test number
+    double    a;           ///< First coef
+    double    b;           ///< Second coef
+    double    c;           ///< Third coef
+    NUM_ROOTS n_roots_exp; ///< Number of roots (expected)
+    double    x1_exp;      ///< Smaller or single root (expected)
+    double    x2_exp;      ///< Larger root (expected)
 } tests [] = {
 
 //  n    a       b       c      n_roots     x1         x2
