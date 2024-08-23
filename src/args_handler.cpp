@@ -123,6 +123,6 @@ void PrintHelp (void) {
             "  no agrs   Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
             "  solve     Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
             "  test      Testing internal functions\n"
-            "  epsilon   Current parameter for NonZero()\n"
+            "  epsilon   Printing current value of constant for NonZero()\n"
             "\n");
 }
