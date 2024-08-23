@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include "output.h"
+#include "solver.h"
 #include "solver_structs.h"
 #include "color.h"
 
@@ -18,6 +19,9 @@
  *
  */
 void PrintResults (struct ROOTS solution) {
+    if (!NonZero(solution.x1)) solution.x1 = 0;
+    if (!NonZero(solution.x2)) solution.x2 = 0;
+
     switch (solution.num_roots) {
         case NO_ROOTS:  YellowText();
                         printf("# No roots\n");
