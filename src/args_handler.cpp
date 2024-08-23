@@ -94,35 +94,3 @@ ARGS_STATUS SolveFromArgs (char *argv[]) {
 
     return BAD;
 }
-
-/**
- * @brief Is number simbol in string
- *
- * Checks if string contains number
- *
- * @param c String
- *
- *
- * @return Result of check
- */
-int IsNumberInStr (char *c) {
-    while (*c < '0' || *c > '9') {
-        if (*(++c) == '\0') return 0;
-    }
-
-    return 1;
-}
-
-/**
- * @brief Helpful information
- *
- * Prints helping information in console
- */
-void PrintHelp (void) {
-    printf ("# usage: quad.exe [-s | --solve <a> <b> <c>] [-h | --help] [-t | --test] [--epsilon | --eps]\n\n"
-            "  no agrs   Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
-            "  solve     Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
-            "  test      Testing internal functions\n"
-            "  epsilon   Printing current value of constant for NonZero()\n"
-            "\n");
-}

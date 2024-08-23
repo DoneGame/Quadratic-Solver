@@ -13,8 +13,5 @@ typedef enum __ARGS {
 
 void        HandleArgs    (int argc, char *argv[]);
 ARGS_STATUS SolveFromArgs (char *argv[]);
-int         StartsWith    (char *a, const char *b);
-int         IsNumberInStr (char *c);
-void        PrintHelp     (void);
 
 #endif

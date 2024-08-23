@@ -36,7 +36,7 @@ int main (int argc, char *argv[]) {
     }
     else {
 
-        printf("# Second power equation solver\n");
+        EntryMessage();
 
         struct COEFFICIENTS coefficients = GetCoefs();
 

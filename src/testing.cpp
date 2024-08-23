@@ -9,6 +9,7 @@
 #include "testing.h"
 #include "tests.h"
 #include "solver_structs.h"
+#include "output.h"
 #include "color.h"
 
 /**
@@ -27,11 +28,7 @@ int RunSolverTests (void) {
         failed += (int) SolverTest(tests[i]);
     }
 
-    if (failed == 0) GreenText();
-    else if (failed < num_tests / 2) YellowText();
-    else RedText();
-    printf ("# SolveEquation(): Failed %d tests out of %d\n\n", failed, num_tests);
-    DefaultText();
+    PrintTestingRes("SolveEquation", num_tests, failed);
 
     return failed;
 }
@@ -69,7 +66,9 @@ TEST_STATUS SolverTest (struct solver_test test) {
                 case INF_ROOTS: if (sol.x1 == NAN || sol.x2 == NAN) status = FAIL;
                                 break;
 
-                default:        printf("PrintResults(): n_roots is incorrect");
+                default:        RedText();
+                                printf("PrintResults(): n_roots is incorrect\n");
+                                DefaultText();
                                 return FAIL;
             }
         }
@@ -106,11 +105,7 @@ int RunNonZeroTests (void) {
         failed += (int) NonZeroTest(i + 1, NonZero_in[i], NonZero_out[i]);
     }
 
-    if (failed == 0) GreenText();
-    else if (failed < num_tests / 2) YellowText();
-    else RedText();
-    printf ("# NonZero(): Failed %d tests out of %d\n\n", failed, num_tests);
-    DefaultText();
+    PrintTestingRes("NonZero", num_tests, failed);
 
     return failed;
 }

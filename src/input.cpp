@@ -76,3 +76,21 @@ struct COEFFICIENTS GetCoefsFromStr(char **start) {
 
     return coefs;
 }
+
+/**
+ * @brief Is number simbol in string
+ *
+ * Checks if string contains number
+ *
+ * @param c String
+ *
+ *
+ * @return Result of check (0 or 1)
+ */
+int IsNumberInStr (char *c) {
+    while (*c < '0' || *c > '9') {
+        if (*(++c) == '\0') return 0;
+    }
+
+    return 1;
+}

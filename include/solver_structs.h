@@ -27,9 +27,9 @@ struct COEFFICIENTS {
  *  @var ROOTS::num_roots
  *  Number of roots
  *  @var ROOTS::x1
- *  Smallest or single root
+ *  Smaller or single root
  *  @var ROOTS::x2
- *  Largest root
+ *  Larger root
  */
 struct ROOTS {
     NUM_ROOTS num_roots;

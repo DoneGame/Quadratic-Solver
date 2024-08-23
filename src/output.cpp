@@ -1,6 +1,6 @@
 /**
  * @file output.cpp
- * @brief All output functions of program
+ * @brief Most of the program's output
  */
 
 #include <stdio.h>
@@ -8,6 +8,10 @@
 #include "solver.h"
 #include "solver_structs.h"
 #include "color.h"
+
+void EntryMessage (void) {
+    printf("# Second power equation solver\n");
+}
 
 /**
  * @brief Solution output
@@ -46,4 +50,40 @@ void PrintResults (struct ROOTS solution) {
     }
 
     DefaultText();
+}
+
+/**
+ * @brief Testing result
+ *
+ * Prints information about failed tests in different colors
+ *
+ * @param tested_func Name of the function that was tested
+ * @param num_tests   Number of tests
+ * @param failed      Number of failed tests
+ *
+ * @see @ref RunSolverTests
+ * @see @ref RunNonZeroTests
+ */
+void PrintTestingRes (const char *tested_func, int num_tests, int failed) {
+    if (failed == 0) GreenText();
+    else if (failed < num_tests / 2) YellowText();
+    else RedText();
+    printf ("# %s(): Failed %d tests out of %d\n\n", tested_func, failed, num_tests);
+    DefaultText();
+}
+
+/**
+ * @brief Helpful information
+ *
+ * Prints helping information in console
+ *
+ * @see @ref HandleArgs
+ */
+void PrintHelp (void) {
+    printf ("# usage: quad.exe [-s | --solve <a> <b> <c>] [-h | --help] [-t | --test] [--epsilon | --eps]\n\n"
+            "  no agrs   Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
+            "  solve     Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
+            "  test      Testing internal functions\n"
+            "  epsilon   Printing current value of constant for NonZero()\n"
+            "\n");
 }

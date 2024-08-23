@@ -24,9 +24,9 @@ const int    NonZero_out[] = {0, 1, 1      , 0        , 1      , 1  , 1       };
  *  @var solver_test::n_roots_exp
  *  Expected number of roots
  *  @var solver_test::x1_exp
- *  Expected smallest or single root
+ *  Expected smaller or single root
  *  @var solver_test::x2_exp
- *  Expected largest root
+ *  Expected larger root
  */
 struct solver_test {
     int       test_number;
