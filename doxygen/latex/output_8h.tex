@@ -1,0 +1,115 @@
+\hypertarget{output_8h}{}\doxysection{include/output.h File Reference}
+\label{output_8h}\index{include/output.h@{include/output.h}}
+
+
+Most of the program\textquotesingle{}s output.  
+
+
+{\ttfamily \#include \char`\"{}num\+\_\+roots.\+h\char`\"{}}\newline
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{output_8h_a312f52b83c774a4f2ea9b176ab9f509c}{Entry\+Message}} (void)
+\begin{DoxyCompactList}\small\item\em Prints first message. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{output_8h_ac2f63eb3fddc8b077a6263dfed45eaaa}{Print\+Results}} (struct \mbox{\hyperlink{struct_r_o_o_t_s}{ROOTS}} solution)
+\begin{DoxyCompactList}\small\item\em Solution output. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{output_8h_a9fb44e442b797e241b1e28daa9ed0358}{Print\+Testing\+Res}} (const char $\ast$tested\+\_\+func, int num\+\_\+tests, int failed)
+\begin{DoxyCompactList}\small\item\em Testing result. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{output_8h_a21377f0653d476392ed1160cd6b61665}{Print\+Help}} (void)
+\begin{DoxyCompactList}\small\item\em Helpful information. \end{DoxyCompactList}\item 
+void \mbox{\hyperlink{output_8h_af1ca7cdb427ea8e3569cc62be84c51c1}{Print\+Eps}} (void)
+\begin{DoxyCompactList}\small\item\em Prints PRECISION. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Most of the program\textquotesingle{}s output. 
+
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{output_8h_a312f52b83c774a4f2ea9b176ab9f509c}\label{output_8h_a312f52b83c774a4f2ea9b176ab9f509c}} 
+\index{output.h@{output.h}!EntryMessage@{EntryMessage}}
+\index{EntryMessage@{EntryMessage}!output.h@{output.h}}
+\doxysubsubsection{\texorpdfstring{EntryMessage()}{EntryMessage()}}
+{\footnotesize\ttfamily void Entry\+Message (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Prints first message. 
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{main_8cpp_a0ddf1224851353fc92bfbff6f499fa97}{main}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{output_8h_af1ca7cdb427ea8e3569cc62be84c51c1}\label{output_8h_af1ca7cdb427ea8e3569cc62be84c51c1}} 
+\index{output.h@{output.h}!PrintEps@{PrintEps}}
+\index{PrintEps@{PrintEps}!output.h@{output.h}}
+\doxysubsubsection{\texorpdfstring{PrintEps()}{PrintEps()}}
+{\footnotesize\ttfamily void Print\+Eps (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Prints PRECISION. 
+
+Prints parameter for \mbox{\hyperlink{solver_8cpp_a81f26e7b9ccdf530b7e897979c6d7659}{Non\+Zero()}}
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{args__handler_8h_a778cd845b05058ded4ead9ceccad4810}{Handle\+Args}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{output_8h_a21377f0653d476392ed1160cd6b61665}\label{output_8h_a21377f0653d476392ed1160cd6b61665}} 
+\index{output.h@{output.h}!PrintHelp@{PrintHelp}}
+\index{PrintHelp@{PrintHelp}!output.h@{output.h}}
+\doxysubsubsection{\texorpdfstring{PrintHelp()}{PrintHelp()}}
+{\footnotesize\ttfamily void Print\+Help (\begin{DoxyParamCaption}\item[{void}]{ }\end{DoxyParamCaption})}
+
+
+
+Helpful information. 
+
+Prints helping information in console
+
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{args__handler_8h_a778cd845b05058ded4ead9ceccad4810}{Handle\+Args}} 
+\end{DoxySeeAlso}
+\mbox{\Hypertarget{output_8h_ac2f63eb3fddc8b077a6263dfed45eaaa}\label{output_8h_ac2f63eb3fddc8b077a6263dfed45eaaa}} 
+\index{output.h@{output.h}!PrintResults@{PrintResults}}
+\index{PrintResults@{PrintResults}!output.h@{output.h}}
+\doxysubsubsection{\texorpdfstring{PrintResults()}{PrintResults()}}
+{\footnotesize\ttfamily void Print\+Results (\begin{DoxyParamCaption}\item[{struct \mbox{\hyperlink{struct_r_o_o_t_s}{ROOTS}}}]{solution }\end{DoxyParamCaption})}
+
+
+
+Solution output. 
+
+Prints results of solving equation. Considers different number of roots and highlights with color.
+
+
+\begin{DoxyParams}{Parameters}
+{\em solution} & Struct with solution \\
+\hline
+\end{DoxyParams}
+\mbox{\Hypertarget{output_8h_a9fb44e442b797e241b1e28daa9ed0358}\label{output_8h_a9fb44e442b797e241b1e28daa9ed0358}} 
+\index{output.h@{output.h}!PrintTestingRes@{PrintTestingRes}}
+\index{PrintTestingRes@{PrintTestingRes}!output.h@{output.h}}
+\doxysubsubsection{\texorpdfstring{PrintTestingRes()}{PrintTestingRes()}}
+{\footnotesize\ttfamily void Print\+Testing\+Res (\begin{DoxyParamCaption}\item[{const char $\ast$}]{tested\+\_\+func,  }\item[{int}]{num\+\_\+tests,  }\item[{int}]{failed }\end{DoxyParamCaption})}
+
+
+
+Testing result. 
+
+Prints information about failed tests in different colors
+
+
+\begin{DoxyParams}{Parameters}
+{\em tested\+\_\+func} & Name of the function that was tested \\
+\hline
+{\em num\+\_\+tests} & Number of tests \\
+\hline
+{\em failed} & Number of failed tests\\
+\hline
+\end{DoxyParams}
+\begin{DoxySeeAlso}{See also}
+\mbox{\hyperlink{testing_8h_a83c6f7304195198fe88ff92f273efdb9}{Run\+Solver\+Tests}} 
+
+\mbox{\hyperlink{testing_8h_a045ecec7b77b2bf27676273d63a41774}{Run\+Non\+Zero\+Tests}} 
+\end{DoxySeeAlso}

@@ -1,0 +1,100 @@
+\hypertarget{args__handler_8h}{}\doxysection{include/args\+\_\+handler.h File Reference}
+\label{args__handler_8h}\index{include/args\_handler.h@{include/args\_handler.h}}
+
+
+Command line arguments handling.  
+
+
+\doxysubsection*{Typedefs}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\Hypertarget{args__handler_8h_a3c0dd03baff2377406b9c5030707f55c}\label{args__handler_8h_a3c0dd03baff2377406b9c5030707f55c}} 
+typedef enum \mbox{\hyperlink{args__handler_8h_a2134beae42a261831249008d01c76339}{\+\_\+\+\_\+\+ARGS}} \mbox{\hyperlink{args__handler_8h_a3c0dd03baff2377406b9c5030707f55c}{ARGS\+\_\+\+STATUS}}
+\begin{DoxyCompactList}\small\item\em Checking for valid argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Enumerations}
+\begin{DoxyCompactItemize}
+\item 
+enum \mbox{\hyperlink{args__handler_8h_a2134beae42a261831249008d01c76339}{\+\_\+\+\_\+\+ARGS}} \{ \mbox{\hyperlink{args__handler_8h_a2134beae42a261831249008d01c76339a8eb0135a04a7e7daf1ca4abf2c87832c}{GOOD}} = 1
+, \mbox{\hyperlink{args__handler_8h_a2134beae42a261831249008d01c76339afe29bdbfb6e2165eec29bf28af429856}{BAD}} = 0
+ \}
+\begin{DoxyCompactList}\small\item\em Checking for valid argument. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsection*{Functions}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{args__handler_8h_a778cd845b05058ded4ead9ceccad4810}{Handle\+Args}} (int argc, char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em Command line argument handler. \end{DoxyCompactList}\item 
+\mbox{\hyperlink{args__handler_8h_a3c0dd03baff2377406b9c5030707f55c}{ARGS\+\_\+\+STATUS}} \mbox{\hyperlink{args__handler_8h_a78697abdea14e5fb203b46e4fd70542d}{Solve\+From\+Args}} (char $\ast$argv\mbox{[}$\,$\mbox{]})
+\begin{DoxyCompactList}\small\item\em --solve argument handler \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Detailed Description}
+Command line arguments handling. 
+
+
+
+\doxysubsection{Enumeration Type Documentation}
+\mbox{\Hypertarget{args__handler_8h_a2134beae42a261831249008d01c76339}\label{args__handler_8h_a2134beae42a261831249008d01c76339}} 
+\index{args\_handler.h@{args\_handler.h}!\_\_ARGS@{\_\_ARGS}}
+\index{\_\_ARGS@{\_\_ARGS}!args\_handler.h@{args\_handler.h}}
+\doxysubsubsection{\texorpdfstring{\_\_ARGS}{\_\_ARGS}}
+{\footnotesize\ttfamily enum \mbox{\hyperlink{args__handler_8h_a2134beae42a261831249008d01c76339}{\+\_\+\+\_\+\+ARGS}}}
+
+
+
+Checking for valid argument. 
+
+\begin{DoxyEnumFields}{Enumerator}
+\raisebox{\heightof{T}}[0pt][0pt]{\index{GOOD@{GOOD}!args\_handler.h@{args\_handler.h}}\index{args\_handler.h@{args\_handler.h}!GOOD@{GOOD}}}\mbox{\Hypertarget{args__handler_8h_a2134beae42a261831249008d01c76339a8eb0135a04a7e7daf1ca4abf2c87832c}\label{args__handler_8h_a2134beae42a261831249008d01c76339a8eb0135a04a7e7daf1ca4abf2c87832c}} 
+GOOD&Was at least one valid argument. \\
+\hline
+
+\raisebox{\heightof{T}}[0pt][0pt]{\index{BAD@{BAD}!args\_handler.h@{args\_handler.h}}\index{args\_handler.h@{args\_handler.h}!BAD@{BAD}}}\mbox{\Hypertarget{args__handler_8h_a2134beae42a261831249008d01c76339afe29bdbfb6e2165eec29bf28af429856}\label{args__handler_8h_a2134beae42a261831249008d01c76339afe29bdbfb6e2165eec29bf28af429856}} 
+BAD&No valid arguments. \\
+\hline
+
+\end{DoxyEnumFields}
+
+
+\doxysubsection{Function Documentation}
+\mbox{\Hypertarget{args__handler_8h_a778cd845b05058ded4ead9ceccad4810}\label{args__handler_8h_a778cd845b05058ded4ead9ceccad4810}} 
+\index{args\_handler.h@{args\_handler.h}!HandleArgs@{HandleArgs}}
+\index{HandleArgs@{HandleArgs}!args\_handler.h@{args\_handler.h}}
+\doxysubsubsection{\texorpdfstring{HandleArgs()}{HandleArgs()}}
+{\footnotesize\ttfamily void Handle\+Args (\begin{DoxyParamCaption}\item[{int}]{argc,  }\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+Command line argument handler. 
+
+Goes though all arguments and performs appropriate actions
+
+
+\begin{DoxyParams}{Parameters}
+{\em argc} & Number of arguments \\
+\hline
+{\em argv} & List of arguments\\
+\hline
+\end{DoxyParams}
+\begin{DoxyNote}{Note}
+Throws error if none of the arguments were correct 
+\end{DoxyNote}
+\mbox{\Hypertarget{args__handler_8h_a78697abdea14e5fb203b46e4fd70542d}\label{args__handler_8h_a78697abdea14e5fb203b46e4fd70542d}} 
+\index{args\_handler.h@{args\_handler.h}!SolveFromArgs@{SolveFromArgs}}
+\index{SolveFromArgs@{SolveFromArgs}!args\_handler.h@{args\_handler.h}}
+\doxysubsubsection{\texorpdfstring{SolveFromArgs()}{SolveFromArgs()}}
+{\footnotesize\ttfamily \mbox{\hyperlink{args__handler_8h_a3c0dd03baff2377406b9c5030707f55c}{ARGS\+\_\+\+STATUS}} Solve\+From\+Args (\begin{DoxyParamCaption}\item[{char $\ast$}]{argv\mbox{[}$\,$\mbox{]} }\end{DoxyParamCaption})}
+
+
+
+--solve argument handler 
+
+Searches next three args for coefficients and outputs solution of quadratic equation
+
+
+\begin{DoxyParams}{Parameters}
+{\em argv} & List of arguments after -\/s or --solve\\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Returns}
+Correctness of the passed arguments 
+\end{DoxyReturn}
