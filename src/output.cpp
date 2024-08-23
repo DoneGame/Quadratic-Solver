@@ -19,6 +19,7 @@
  *
  */
 void PrintResults (struct ROOTS solution) {
+    // -0 bug solution
     if (!NonZero(solution.x1)) solution.x1 = 0;
     if (!NonZero(solution.x2)) solution.x2 = 0;
 
