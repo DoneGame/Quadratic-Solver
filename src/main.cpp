@@ -3,10 +3,6 @@
  * @brief Main file of program
  */
 
-#include "my_asserts.h"
-#include <math.h>
-#include <assert.h>
-
 #include <stdio.h>
 #include "num_roots.h"
 #include "input.h"
