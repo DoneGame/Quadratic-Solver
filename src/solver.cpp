@@ -44,10 +44,11 @@ struct ROOTS SolveEquation (struct COEFFICIENTS coefs) {
  * @brief Linear equation solver
  *
  * Solves a*x + b = 0 equation
+ * Returns ROOTS.x1 = NAN if root doesn't exist
  *
  * @param coefs Struct with coefficients of equation
  *
- * @warning Only two first coeficients are used (a and b) and only x1 contains root
+ * @warning Only two first coeficients are used (a and b) and only x1 contains root (if it exists)
  *
  * @return Struct with solution
  *
@@ -55,7 +56,7 @@ struct ROOTS SolveEquation (struct COEFFICIENTS coefs) {
  */
 struct ROOTS SolveLinear (struct COEFFICIENTS coefs) {
 
-    struct ROOTS sol = {.num_roots = NO_ROOTS, .x1 = 0, .x2 = 0};
+    struct ROOTS sol = {.num_roots = NO_ROOTS, .x1 = NAN, .x2 = NAN};
 
     if (NonZero(coefs.a)) {
         sol.x1 = -coefs.b / coefs.a;
@@ -77,6 +78,7 @@ struct ROOTS SolveLinear (struct COEFFICIENTS coefs) {
  * @brief Quadratic equation solver
  *
  * Solves a*x^2 + b*x + c = 0 equation
+ * Returns ROOTS.x1 = NAN or x2 = NAN if appropriate root doesn't exist
  *
  * @param coefs Struct with coefficients of equation
  *
@@ -88,7 +90,7 @@ struct ROOTS SolveLinear (struct COEFFICIENTS coefs) {
  */
 struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
 
-    struct ROOTS sol = {.num_roots = NO_ROOTS, .x1 = 0, .x2 = 0};
+    struct ROOTS sol = {.num_roots = NO_ROOTS, .x1 = NAN, .x2 = NAN};
 
     double descr = coefs.b * coefs.b - 4 * coefs.a * coefs.c;
 
@@ -131,8 +133,14 @@ struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
  * Checks whether floating point number can be considered
  * non-zero with given precision (see PRECISION constant)
  *
+ * @warning NAN and INFINITY are considered non-zero
+ *
  * @param fp_number Floating points number
  *
  * @return 0 or 1
  */
-int NonZero (double fp_number) {return fabs(fp_number) > PRECISION;}
+int NonZero (double fp_number) {
+    if (!isfinite(fp_number)) return 1;
+
+    return fabs(fp_number) > PRECISION;
+}

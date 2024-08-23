@@ -4,6 +4,7 @@
  */
 
 #include <stdio.h>
+#include <math.h>
 #include "solver.h"
 #include "testing.h"
 #include "tests.h"
@@ -56,16 +57,16 @@ TEST_STATUS SolverTest (struct solver_test test) {
         TEST_STATUS status = OK;
         if (sol.num_roots == test.n_roots_exp) {
             switch (sol.num_roots) {
-                case NO_ROOTS:  if (NonZero(sol.x1) || NonZero(sol.x2)) status = FAIL;
+                case NO_ROOTS:  if (sol.x1 == NAN || sol.x2 == NAN) status = FAIL;
                                 break;
 
-                case ONE_ROOT:  if (NonZero(sol.x1 - test.x1_exp) || NonZero(sol.x2)) status = FAIL;
+                case ONE_ROOT:  if (NonZero(sol.x1 - test.x1_exp) || sol.x2 == NAN) status = FAIL;
                                 break;
 
                 case TWO_ROOTS: if (NonZero(sol.x1 - test.x1_exp) || NonZero(sol.x2 - test.x2_exp)) status = FAIL;
                                 break;
 
-                case INF_ROOTS: if (NonZero(sol.x1) || NonZero(sol.x2)) status = FAIL;
+                case INF_ROOTS: if (sol.x1 == NAN || sol.x2 == NAN) status = FAIL;
                                 break;
 
                 default:        printf("PrintResults(): n_roots is incorrect");
