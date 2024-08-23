@@ -82,7 +82,7 @@ ARGS_STATUS SolveFromArgs (char *argv[]) {
         struct COEFFICIENTS coefs = GetCoefsFromStr (argv);
 
         printf ("# Solving a*x^2 + b*x + c = 0\n");
-        printf ("# Entered: a=%lg, b=%lg, c=%lg\n", coefs.a, coefs.b, coefs.c);
+        printf ("# Entered: a = %.6lg, b = %.6lg, c = %.6lg\n", coefs.a, coefs.b, coefs.c);
 
         struct ROOTS solution = SolveEquation (coefs);
 

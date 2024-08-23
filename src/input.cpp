@@ -22,7 +22,7 @@
 struct COEFFICIENTS GetCoefs(void) {
     struct COEFFICIENTS coefs = {.a = 0, .b = 0, .c = 0};
 
-    printf ("# Solving a*x^2 + b*x + c = 0\n");
+    printf ("# Solving a*x^2 + b*x + c = 0\n\n");
     printf ("# Enter a, b, c (separated by spaces): ");
 
     while (scanf ("%lg %lg %lg", &coefs.a, &coefs.b, &coefs.c) != 3) {
@@ -34,6 +34,7 @@ struct COEFFICIENTS GetCoefs(void) {
         printf("Enter a, b, c: ");
     }
 
+    printf ("# Entered: a = %.6lg, b = %.6lg, c = %.6lg\n", coefs.a, coefs.b, coefs.c);
     printf("\n");
 
     return coefs;
