@@ -7,6 +7,9 @@
 
 #include "num_roots.h"
 
+/**@var PRECISION
+ * Treshold for determining zero value of double
+ */
 const double PRECISION = 0.000001;
 
 struct ROOTS SolveEquation  (struct COEFFICIENTS coefs);
