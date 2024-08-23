@@ -31,25 +31,25 @@ void HandleArgs (int argc, char *argv[]) {
     for (int i = 1; i < argc; i++) {
         char *arg = argv[i];
 
-        if (StartsWith(arg, "--help") || StartsWith(arg, "-h")) {
+        if (strcmp(arg, "--help") == 0 || strcmp(arg, "-h") == 0) {
             args_status = GOOD;
 
             PrintHelp();
         }
 
-        if (StartsWith(arg, "--solve") || StartsWith(arg, "-s")) {
+        if (strcmp(arg, "--solve") == 0 || strcmp(arg, "-s") == 0) {
             if (i < argc - 3) args_status = SolveFromArgs(argv + i + 1);
             else args_status = BAD;
         }
 
-        if (StartsWith(arg, "--test") || StartsWith(arg, "-t")) {
+        if (strcmp(arg, "--test") == 0 || strcmp(arg, "-t") == 0) {
             args_status = GOOD;
 
             RunNonZeroTests();
             RunSolverTests();
         }
 
-        if (StartsWith(arg, "--epsilon") || StartsWith(arg, "--eps")) {
+        if (strcmp(arg, "--epsilon") == 0 || strcmp(arg, "--eps") == 0) {
             args_status = GOOD;
 
             YellowText();
@@ -93,16 +93,6 @@ ARGS_STATUS SolveFromArgs (char *argv[]) {
     }
 
     return BAD;
-}
-
-/**
- * @todo WTF?
- */
-int StartsWith (char *a, const char *b)
-{
-   if (strncmp(a, b, strlen(b) + 1) == 0) return 1;
-
-   return 0;
 }
 
 /**
