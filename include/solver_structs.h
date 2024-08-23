@@ -9,10 +9,14 @@
 
 /** @struct COEFFICIENTS
  *  @brief Coefficients of equation
+ *
+ *
  *  @var COEFFICIENTS::a
  *  First coef
+ *
  *  @var COEFFICIENTS::b
  *  Second coef
+ *
  *  @var COEFFICIENTS::c
  *  Third coef
  */
@@ -24,10 +28,14 @@ struct COEFFICIENTS {
 
 /** @struct ROOTS
  *  @brief Solution of equation
+ *
+ *
  *  @var ROOTS::num_roots
  *  Number of roots
+ *
  *  @var ROOTS::x1
  *  Smaller or single root
+ *
  *  @var ROOTS::x2
  *  Larger root
  */

@@ -11,5 +11,6 @@ void EntryMessage    (void);
 void PrintResults    (struct ROOTS solution);
 void PrintTestingRes (const char *tested_func, int num_tests, int failed);
 void PrintHelp       (void);
+void PrintEps        (void);
 
 #endif

@@ -65,9 +65,13 @@ void PrintResults (struct ROOTS solution) {
  * @see @ref RunNonZeroTests
  */
 void PrintTestingRes (const char *tested_func, int num_tests, int failed) {
-    if (failed == 0) GreenText();
-    else if (failed < num_tests / 2) YellowText();
-    else RedText();
+    if (failed == 0)
+        GreenText();
+    else if (failed < num_tests / 2)
+        YellowText();
+    else
+        RedText();
+
     printf ("# %s(): Failed %d tests out of %d\n\n", tested_func, failed, num_tests);
     DefaultText();
 }
@@ -86,4 +90,17 @@ void PrintHelp (void) {
             "  test      Testing internal functions\n"
             "  epsilon   Printing current value of constant for NonZero()\n"
             "\n");
+}
+
+/**
+ * @brief Prints PRECISION
+ *
+ * Prints parameter for NonZero()
+ *
+ * @see @ref HandleArgs
+ */
+void PrintEps (void) {
+    YellowText();
+    printf("# Epsilon = %lg\n\n", PRECISION);
+    DefaultText();
 }

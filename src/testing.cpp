@@ -116,8 +116,8 @@ int RunNonZeroTests (void) {
  * Checks function with test
  *
  * @param test_number Number of test in sequence
- * @param in Test input
- * @param out Expected function output
+ * @param in          Test input
+ * @param out         Expected function output
  *
  * @return Result of test (enum)
  */

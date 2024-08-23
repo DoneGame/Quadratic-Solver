@@ -13,8 +13,7 @@
  * @brief Get coefficients from cin
  *
  * Search for 3 double numbers in one line,
- * doesn't pay attention to spaces and tabs,
- * finishes on EOF
+ * doesn't pay attention to spaces and tabs, finishes on EOF
  *
  * @see @ref main
  *
@@ -43,8 +42,7 @@ struct COEFFICIENTS GetCoefs(void) {
 /**
  * @brief Clears cin buffer
  *
- * Clears buffer to end of line,
- * aborts program if finds EOF
+ * Clears buffer to end of line, aborts program if finds EOF
  */
 void ClearBuffer (void) {
     int s = '\0';
@@ -83,7 +81,6 @@ struct COEFFICIENTS GetCoefsFromStr(char **start) {
  * Checks if string contains number
  *
  * @param c String
- *
  *
  * @return Result of check (0 or 1)
  */

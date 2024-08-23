@@ -38,8 +38,10 @@ void HandleArgs (int argc, char *argv[]) {
         }
 
         if (strcmp(arg, "--solve") == 0 || strcmp(arg, "-s") == 0) {
-            if (i < argc - 3) args_status = SolveFromArgs(argv + i + 1);
-            else args_status = BAD;
+            if (i < argc - 3)
+                args_status = SolveFromArgs(argv + i + 1);
+            else
+                args_status = BAD;
         }
 
         if (strcmp(arg, "--test") == 0 || strcmp(arg, "-t") == 0) {
@@ -52,9 +54,7 @@ void HandleArgs (int argc, char *argv[]) {
         if (strcmp(arg, "--epsilon") == 0 || strcmp(arg, "--eps") == 0) {
             args_status = GOOD;
 
-            YellowText();
-            printf("# Epsilon = %lg\n\n", PRECISION);
-            DefaultText();
+            PrintEps();
         }
     }
 

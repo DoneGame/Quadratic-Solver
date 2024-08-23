@@ -13,18 +13,26 @@ const int    NonZero_out[] = {0, 1, 1      , 0        , 1      , 1  , 1       };
 
 /** @struct solver_test
  *  @brief Test for SolveEquation()
+ *
+ *
  *  @var solver_test::n
  *  Test number
+ *
  *  @var solver_test::a
  *  First coef
+ *
  *  @var solver_test::b
  *  Second coef
+ *
  *  @var solver_test::c
  *  Third coef
+ *
  *  @var solver_test::n_roots_exp
  *  Expected number of roots
+ *
  *  @var solver_test::x1_exp
  *  Expected smaller or single root
+ *
  *  @var solver_test::x2_exp
  *  Expected larger root
  */
