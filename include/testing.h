@@ -1,22 +1,13 @@
-/**
- * @file testing.h
- */
-
 #ifndef TESTING_H
 #define TESTING_H
 
-#include "num_roots.h"
-
-/// Test result
 typedef enum __TEST_STATUS {
     OK   = 0,
     FAIL = 1,
 } TEST_STATUS;
 
-int RunSolverTests      (void);
-TEST_STATUS SolverTest  (struct solver_test test);
-
-int RunNonZeroTests     (void);
-TEST_STATUS NonZeroTest (int test_number, double in, int out);
+int         RunTests        (const char *func_name, int (*func_to_test)(double), double tests_in[], int tests_exp_out[]);
+TEST_STATUS Test            (int test_number, const char *func_name, int (*func_to_test)(double), double in, int exp_out);
+void        PrintTestingRes (const char *tested_func, int num_tests, int failed);
 
 #endif

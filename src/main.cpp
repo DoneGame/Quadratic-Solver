@@ -1,50 +1,33 @@
-/**
- * @file main.cpp
- * @brief Main file of program
- */
-
+#include <math.h>
 #include <stdio.h>
-#include "num_roots.h"
-#include "input.h"
-#include "solver.h"
-#include "solver_structs.h"
-#include "output.h"
+#include <float.h>
+#include "main.h"
 #include "testing.h"
-#include "args_handler.h"
-#include "color.h"
 
+int main()
+{
+    double tests_in[]     = {NAN, INFINITY, 0, 9e15, 9e-15, 100, 0.01, DBL_MAX, DBL_MIN, DBL_EPSILON};
+    int isnan_out[]       = {1,   0,        0, 0,    0,     0,   0,    0,       0,       0          };
+    int isinf_out[]       = {0,   1,        0, 0,    0,     0,   0,    0,       0,       0          };
+    int isfinite_out[]    = {0,   0,        1, 1,    1,     1,   1,    1,       1,       1          };
 
-/**
- * @brief Entry point
- *
- * Enabling color for text, handling
- * number of arguments and main use case
- *
- *
- * @param argc Number of arguments
- * @param argv List of arguments
- *
- * @return Program exit status
- *
- * @see @ref HandleArgs
- */
-int main (int argc, char *argv[]) {
-    ColorOn();
-
-    if (argc > 1) {
-        HandleArgs (argc, argv);
-    }
-    else {
-
-        EntryMessage();
-
-        struct COEFFICIENTS coefficients = GetCoefs();
-
-        struct ROOTS solution = SolveEquation (coefficients);
-
-        PrintResults (solution);
-
-    }
-
-    return 0;
+    RunTests("IsNaN",    IsNaN,    tests_in, isnan_out);
+    RunTests("IsInf",    IsInf,    tests_in, isinf_out);
+    RunTests("IsFinite", IsFinite, tests_in, isfinite_out);
 }
+
+int IsNaN (double fp_number) {
+    return fp_number != fp_number;
+}
+
+int IsInf (double fp_number) {
+    return (0.1*fp_number == fp_number) && (fp_number + 1 == fp_number);
+}
+
+int IsFinite (double fp_number) {
+    return !IsInf (fp_number) && !IsNaN (fp_number);
+}
+
+
+
+

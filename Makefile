@@ -20,7 +20,7 @@ HEADERS_DIR=include
 HEADERS=$(wildcard $(HEADERS_DIR)/*.h)
 
 # Result file
-EXECUTABLE=quad.exe
+EXECUTABLE=test.exe
 
 # Order of execution
 all: $(OBJ_DIR) info $(EXECUTABLE)
