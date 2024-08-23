@@ -16,6 +16,7 @@
  * doesn't pay attention to spaces and tabs,
  * finishes on EOF
  *
+ * @see @ref main
  *
  * @return Struct with 3 coefficients of equation
  */
@@ -44,7 +45,6 @@ struct COEFFICIENTS GetCoefs(void) {
  *
  * Clears buffer to end of line,
  * aborts program if finds EOF
- *
  */
 void ClearBuffer (void) {
     int s = '\0';
@@ -63,6 +63,7 @@ void ClearBuffer (void) {
  *
  * Search for number in each of 3 consecutive command line argument
  *
+ * @see @ref SolveFromArgs
  *
  * @return Struct with 3 coefficients of equation
  */

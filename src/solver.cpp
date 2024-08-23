@@ -18,6 +18,9 @@
  * @param coefs Struct with coefficients of equation
  *
  * @return Struct with solution
+ *
+ * @see @ref COEFFICIENTS
+ * @see @ref ROOTS
  */
 struct ROOTS SolveEquation (struct COEFFICIENTS coefs) {
 
@@ -47,6 +50,8 @@ struct ROOTS SolveEquation (struct COEFFICIENTS coefs) {
  * @warning Only two first coeficients are used (a and b) and only x1 contains root
  *
  * @return Struct with solution
+ *
+ * @see @ref SolveEquation
  */
 struct ROOTS SolveLinear (struct COEFFICIENTS coefs) {
 
@@ -78,6 +83,8 @@ struct ROOTS SolveLinear (struct COEFFICIENTS coefs) {
  * @warning If equation have one solution, only x1 contains root
  *
  * @return Struct with solution
+ *
+ * @see @ref SolveEquation
  */
 struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
 

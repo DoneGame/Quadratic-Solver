@@ -26,7 +26,7 @@
  *
  * @return Program exit status
  *
- * @see HandleArgs
+ * @see @ref HandleArgs
  */
 int main (int argc, char *argv[]) {
     ColorOn();

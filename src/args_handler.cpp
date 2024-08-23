@@ -127,7 +127,6 @@ int IsNumberInStr (char *c) {
  * @brief Helpful information
  *
  * Prints helping information in console
- *
  */
 void PrintHelp (void) {
     printf ("# usage: quad.exe [-s | --solve <a> <b> <c>] [-h | --help] [-t | --test] [--epsilon | --eps]\n\n"
