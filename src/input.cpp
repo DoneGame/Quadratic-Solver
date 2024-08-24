@@ -1,6 +1,6 @@
 /**
  * @file input.cpp
- * @brief All input functions of program
+ * @brief Most of the program's input
  */
 
 #include <stdio.h>

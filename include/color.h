@@ -13,22 +13,32 @@
  *
  * @warning I don't know how it works
  */
-void ColorOn     (void);
-void RedText     (void);
-void YellowText  (void);
-void GreenText   (void);
-void WhiteText   (void);
+void ColorOn      (void);
+
+/**
+ * @brief Colors the text
+ *
+ * Prints escape sequence if output wasn't redirected
+ *
+ * @param color_number Number from ANSI Escape Sequences
+ */
+void ColorTextAnbBG (int color_number);
+
+void RedText        (void);
+void YellowText     (void);
+void GreenText      (void);
+void WhiteText      (void);
 /**
  * @brief Return to default color text
  */
-void DefaultText (void);
+void DefaultText    (void);
 
 
-void WhiteBG     (void);
+void WhiteBG        (void);
 /**
  * @brief Return to default background color
  */
-void DefaultBG   (void);
+void DefaultBG      (void);
 
 /**
  * @brief Checks if stdout was redirected
@@ -37,6 +47,6 @@ void DefaultBG   (void);
  *
  * @return 0 or 1
  */
-int NotRedirected (void);
+int NotRedirected   (void);
 
 #endif

@@ -22,7 +22,7 @@ typedef enum __ARGS {
  *
  * @note Throws error if none of the arguments were correct
  */
-void        HandleArgs    (int argc, char *argv[]);
+void        HandleArgs        (int argc, char *argv[]);
 
 /**
  * @brief --solve argument handler
@@ -34,6 +34,10 @@ void        HandleArgs    (int argc, char *argv[]);
  *
  * @return Correctness of the passed arguments
  */
-ARGS_STATUS SolveFromArgs (char *argv[]);
+ARGS_STATUS SolveFromArgs     (char *argv[]);
+
+ARGS_STATUS IncorrectFileName (char *file_name);
+
+int IsTxtFileName             (char *arg);
 
 #endif

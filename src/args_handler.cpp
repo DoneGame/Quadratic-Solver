@@ -11,8 +11,11 @@
 #include "solver.h"
 #include "solver_structs.h"
 #include "output.h"
+#include "tests.h"
 #include "testing.h"
 #include "color.h"
+
+const int MAX_FILENAME_LEN = 255;
 
 
 void HandleArgs (int argc, char *argv[]) {
@@ -36,10 +39,26 @@ void HandleArgs (int argc, char *argv[]) {
         }
 
         if (strcmp(arg, "--test") == 0 || strcmp(arg, "-t") == 0) {
-            args_status = GOOD;
+            if (i == argc - 1 or argv[i + 1][0] == '-') {
+                args_status = GOOD;
 
-            RunNonZeroTests();
-            RunSolverTests();
+                RunNonZeroTests(NonZero_tests_in, NonZero_tests_out);
+                RunSolverTests(solver_tests);
+            }
+            else if (!IsTxtFileName (argv[i + 1])) {
+                args_status = IncorrectFileName (argv[i + 1]);
+                printf("dsfsdf");
+            }
+            else {
+                FILE *fp = fopen(argv[i + 1], "r");
+
+                if (fp == NULL) {
+                    args_status = IncorrectFileName (argv[i + 1]);
+                }
+                else {
+                    args_status = RunTestsFromFile (fp);
+                }
+            }
         }
 
         if (strcmp(arg, "--epsilon") == 0 || strcmp(arg, "--eps") == 0) {
@@ -75,3 +94,22 @@ ARGS_STATUS SolveFromArgs (char *argv[]) {
 
     return BAD;
 }
+
+ARGS_STATUS IncorrectFileName (char *file_name) {
+    RedText();
+    printf ("# Incorrect file name: %s\n\n", file_name);
+    DefaultText();
+
+    return BAD;
+}
+
+int IsTxtFileName (char *arg) {
+    char *dot = strrchr(arg, '.');
+    if (dot && !strcmp(dot, ".txt"))
+        return 1;
+
+    return 0;
+}
+
+
+

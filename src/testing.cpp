@@ -5,19 +5,25 @@
 
 #include <stdio.h>
 #include <math.h>
+#include <assert.h>
 #include "solver.h"
 #include "testing.h"
-#include "tests.h"
 #include "solver_structs.h"
 #include "output.h"
 #include "color.h"
+#include "args_handler.h"
 
-int RunSolverTests (void) {
+const int MAX_TESTS = 3;
+
+
+int RunSolverTests (struct solver_test tests[]) {
     printf("# Testing SolveEquation()\n");
 
-    int num_tests = sizeof(tests) / sizeof(tests[0]);
+    int num_tests = 0;
     int failed = 0;
-    for (int i = 0; i < num_tests; i++) {
+    int i = -1;
+    while ((tests[++i]).test_number != -1) {
+        num_tests++;
         failed += (int) SolverTest(tests[i]);
     }
 
@@ -73,13 +79,13 @@ TEST_STATUS SolverTest (struct solver_test test) {
 }
 
 
-int RunNonZeroTests (void) {
+int RunNonZeroTests (const double *tests_in, const int *tests_out) {
     printf("# Testing NonZero()\n");
 
-    int num_tests = sizeof(NonZero_in) / sizeof(NonZero_in[0]);
+    int num_tests = sizeof(tests_in) / sizeof(tests_in[0]);
     int failed = 0;
     for (int i = 0; i < num_tests; i++) {
-        failed += (int) NonZeroTest(i + 1, NonZero_in[i], NonZero_out[i]);
+        failed += (int) NonZeroTest(i + 1, tests_in[i], tests_out[i]);
     }
 
     PrintTestingRes("NonZero", num_tests, failed);
@@ -102,4 +108,51 @@ TEST_STATUS NonZeroTest (int test_number, double in, int out) {
     }
 
     return OK;
+}
+
+ARGS_STATUS RunTestsFromFile (FILE *fp) {
+
+    struct solver_test tests[MAX_TESTS] = {};
+    int num_roots = 0;
+    int test_n    = 0;
+    int line_num  = 0;
+    int s         = '\0';
+    while ((s = getc(fp)) != EOF) {
+        ungetc(s, fp);
+
+        if (line_num + 1 > MAX_TESTS) {
+            YellowText();
+            printf ("# Too many tests in file. Using first %d tests\n", MAX_TESTS);
+            DefaultText();
+
+            break;
+        }
+
+        assert(line_num < MAX_TESTS);
+        struct solver_test *test = &tests[line_num];
+
+        int correct_args = fscanf (fp, "%d       %lg       %lg       %lg       %d          %lg           %lg",
+                                        &test_n, &test->a, &test->b, &test->c, &num_roots, &test->x1_exp, &test->x2_exp);
+
+        test->n_roots_exp = (NUM_ROOTS) num_roots;
+        test->test_number = test_n;
+
+        if (correct_args != 7 || test_n < 0) {
+            RedText();
+            printf("# Incorrect file with tests!\n\n");
+            DefaultText();
+
+            return GOOD;
+        }
+
+        while ((s = getc(fp)) != '\n' && s != EOF);
+
+        line_num++;
+    }
+
+    tests[line_num].test_number = -1;
+
+    RunSolverTests (tests);
+
+    return GOOD;
 }

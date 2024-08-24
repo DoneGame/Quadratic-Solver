@@ -7,6 +7,20 @@
 #define TESTING_H
 
 #include "num_roots.h"
+#include "args_handler.h"
+
+/** @struct solver_test
+ *  @brief Test for SolveEquation()
+ */
+ struct solver_test {
+    int       test_number; ///< Test number
+    double    a;           ///< First coef
+    double    b;           ///< Second coef
+    double    c;           ///< Third coef
+    NUM_ROOTS n_roots_exp; ///< Number of roots (expected)
+    double    x1_exp;      ///< Smaller or single root (expected)
+    double    x2_exp;      ///< Larger root (expected)
+};
 
 /// Test result
 typedef enum __TEST_STATUS {
@@ -20,9 +34,11 @@ typedef enum __TEST_STATUS {
  *
  * Checks function with tests from tests.h
  *
+ * @param tests Tests to run
+ *
  * @return Number of failed tests
  */
-int RunSolverTests      (void);
+int RunSolverTests           (struct solver_test tests[]);
 
 /**
  * @brief Single Solver test
@@ -33,7 +49,7 @@ int RunSolverTests      (void);
  *
  * @return Result of test (enum)
  */
-TEST_STATUS SolverTest  (struct solver_test test);
+TEST_STATUS SolverTest       (struct solver_test test);
 
 /**
  * @brief NonZero() testing
@@ -42,7 +58,7 @@ TEST_STATUS SolverTest  (struct solver_test test);
  *
  * @return Number of failed tests
  */
-int RunNonZeroTests     (void);
+int RunNonZeroTests          (const double *tests_in, const int *tests_out);
 
 /**
  * @brief Single NonZero test
@@ -55,6 +71,8 @@ int RunNonZeroTests     (void);
  *
  * @return Result of test (enum)
  */
-TEST_STATUS NonZeroTest (int test_number, double in, int out);
+TEST_STATUS NonZeroTest      (int test_number, double in, int out);
+
+ARGS_STATUS RunTestsFromFile (FILE *fp);
 
 #endif
