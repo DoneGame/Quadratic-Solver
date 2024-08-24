@@ -30,4 +30,13 @@ void WhiteBG     (void);
  */
 void DefaultBG   (void);
 
+/**
+ * @brief Checks if stdout was redirected
+ *
+ * Using to not send escape sequences outside command line
+ *
+ * @return 0 or 1
+ */
+int NotRedirected (void);
+
 #endif
