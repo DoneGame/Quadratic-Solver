@@ -38,7 +38,7 @@ typedef enum __TEST_STATUS {
  *
  * @return Number of failed tests
  */
-int RunSolverTests           (struct solver_test tests[]);
+int RunSolverTests                (struct solver_test tests[]);
 
 /**
  * @brief Single Solver test
@@ -49,7 +49,7 @@ int RunSolverTests           (struct solver_test tests[]);
  *
  * @return Result of test (enum)
  */
-TEST_STATUS SolverTest       (struct solver_test test);
+TEST_STATUS SolverTest            (struct solver_test test);
 
 /**
  * @brief NonZero() testing
@@ -58,7 +58,7 @@ TEST_STATUS SolverTest       (struct solver_test test);
  *
  * @return Number of failed tests
  */
-int RunNonZeroTests          (const double *tests_in, const int *tests_out);
+int RunNonZeroTests               (const double *tests_in, const int *tests_out);
 
 /**
  * @brief Single NonZero test
@@ -71,8 +71,10 @@ int RunNonZeroTests          (const double *tests_in, const int *tests_out);
  *
  * @return Result of test (enum)
  */
-TEST_STATUS NonZeroTest      (int test_number, double in, int out);
+TEST_STATUS NonZeroTest           (int test_number, double in, int out);
 
-ARGS_STATUS RunTestsFromFile (FILE *fp);
+ARGS_STATUS RunTestsFromFile      (FILE *fp);
+
+void        FileClearBuffer       (FILE *fp);
 
 #endif

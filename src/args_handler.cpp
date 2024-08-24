@@ -45,19 +45,18 @@ void HandleArgs (int argc, char *argv[]) {
                 RunNonZeroTests(NonZero_tests_in, NonZero_tests_out);
                 RunSolverTests(solver_tests);
             }
-            else if (!IsTxtFileName (argv[i + 1])) {
+
+            else if (!IsCsvFileName (argv[i + 1])) {
                 args_status = IncorrectFileName (argv[i + 1]);
-                printf("dsfsdf");
             }
+
             else {
                 FILE *fp = fopen(argv[i + 1], "r");
 
-                if (fp == NULL) {
+                if (fp == NULL)
                     args_status = IncorrectFileName (argv[i + 1]);
-                }
-                else {
+                else
                     args_status = RunTestsFromFile (fp);
-                }
             }
         }
 
@@ -103,12 +102,9 @@ ARGS_STATUS IncorrectFileName (char *file_name) {
     return BAD;
 }
 
-int IsTxtFileName (char *arg) {
+int IsCsvFileName (char *arg) {
     char *dot = strrchr(arg, '.');
-    if (dot && !strcmp(dot, ".txt"))
-        return 1;
-
-    return 0;
+    return dot && !strcmp(dot, ".csv");
 }
 
 

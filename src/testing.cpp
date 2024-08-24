@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <math.h>
 #include <assert.h>
+#include <ctype.h>
 #include "solver.h"
 #include "testing.h"
 #include "solver_structs.h"
@@ -13,7 +14,7 @@
 #include "color.h"
 #include "args_handler.h"
 
-const int MAX_TESTS = 3;
+const int MAX_TESTS_IN_FILE = 101;
 
 
 int RunSolverTests (struct solver_test tests[]) {
@@ -112,27 +113,31 @@ TEST_STATUS NonZeroTest (int test_number, double in, int out) {
 
 ARGS_STATUS RunTestsFromFile (FILE *fp) {
 
-    struct solver_test tests[MAX_TESTS] = {};
-    int num_roots = 0;
-    int test_n    = 0;
+    struct solver_test tests[MAX_TESTS_IN_FILE] = {};
     int line_num  = 0;
     int s         = '\0';
     while ((s = getc(fp)) != EOF) {
         ungetc(s, fp);
 
-        if (line_num + 1 > MAX_TESTS) {
+        if (!isspace(s) and !isdigit(s)) // header
+            FileClearBuffer (fp);
+
+        if (line_num + 1 > MAX_TESTS_IN_FILE) {
             YellowText();
-            printf ("# Too many tests in file. Using first %d tests\n", MAX_TESTS);
+            printf ("# Too many tests in file. Using first %d tests\n", MAX_TESTS_IN_FILE);
             DefaultText();
 
             break;
         }
 
-        assert(line_num < MAX_TESTS);
+        int num_roots = 0;
+        int test_n    = 0;
+
+        assert(line_num < MAX_TESTS_IN_FILE);
         struct solver_test *test = &tests[line_num];
 
-        int correct_args = fscanf (fp, "%d       %lg       %lg       %lg       %d          %lg           %lg",
-                                        &test_n, &test->a, &test->b, &test->c, &num_roots, &test->x1_exp, &test->x2_exp);
+        int correct_args = fscanf (fp, "%d,       %lg,       %lg,       %lg,       %d,          %lg,           %lg",
+                                        &test_n,  &test->a,  &test->b,  &test->c,  &num_roots,  &test->x1_exp, &test->x2_exp);
 
         test->n_roots_exp = (NUM_ROOTS) num_roots;
         test->test_number = test_n;
@@ -145,7 +150,7 @@ ARGS_STATUS RunTestsFromFile (FILE *fp) {
             return GOOD;
         }
 
-        while ((s = getc(fp)) != '\n' && s != EOF);
+        FileClearBuffer (fp);
 
         line_num++;
     }
@@ -155,4 +160,9 @@ ARGS_STATUS RunTestsFromFile (FILE *fp) {
     RunSolverTests (tests);
 
     return GOOD;
+}
+
+void FileClearBuffer (FILE *fp) {
+    int s = '\0';
+    while ((s = getc(fp)) != '\n' && s != EOF);
 }
