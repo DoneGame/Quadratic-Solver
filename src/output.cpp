@@ -59,7 +59,8 @@ void PrintHelp (void) {
     printf ("# usage: quad.exe [-s | --solve <a> <b> <c>] [-h | --help] [-t | --test (optional) <filename.csv>] [--test_file_help] [--epsilon | --eps]\n\n"
             "  no agrs        Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
             "  solve          Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
-            "  test           Testing internal functions. It is possiblee to use tests for Solver from file: --test_file_help\n"
+            "  test           Testing internal functions.\n"
+            "                 It is possiblee to use tests for Solver from file: --test_file_help for more info\n"
             "  test_file_help Prints help info about format of file with tests\n"
             "  epsilon        Printing current value of constant for NonZero()\n"
             "\n");
@@ -67,7 +68,7 @@ void PrintHelp (void) {
 
 void PrintTestFileHelp (void) {
     printf ("# usage: quad.exe --test (optional) <filename.csv>\n\n"
-            "  File must have .csv format with ',' separtor and '\n' as end of line. First row must be header with text."
+            "  File must have .csv format with ',' separtor and '\\n' as end of line. First row must be header with text.\n"
             "  Float numbers must have '.' decimal separator. Test number must be positive. Each root must be indicated\n"
             "  with accuracy of 6 decimal places. File must not contain empty lines.\n"
             "  Sequence of test parameters:\n"
