@@ -48,7 +48,7 @@ See it in FireFox:
 firefox doxygen/html/index.html
 ```
 
-Or just open doxygen/html/index.html in another browser
+Or just open `doxygen/html/index.html` in another browser
 
 ## Possible arguments
 
@@ -62,9 +62,10 @@ Can be called in any order and any number of times
 
 
 ### Abbreviations in tooltips and code:
-> coef  = coefficient
-> coefs = coefficients
-> sol   = solution
+coef  = coefficient
+coefs = coefficients
+sol   = solution
+info  = information
 
 
  
