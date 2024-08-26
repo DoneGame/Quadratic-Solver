@@ -31,20 +31,20 @@ void HandleArgs (int argc, char *argv[]) {
             PrintHelp();
         }
 
-        if (strcmp(arg, "--test_file_help") == 0) {
+        else if (strcmp(arg, "--test_file_help") == 0) {
             args_status = GOOD;
 
             PrintTestFileHelp();
         }
 
-        if (strcmp(arg, "--solve") == 0 || strcmp(arg, "-s") == 0) {
+        else if (strcmp(arg, "--solve") == 0 || strcmp(arg, "-s") == 0) {
             if (i < argc - 3)
                 args_status = SolveFromArgs(argv + i + 1);
             else
                 args_status = BAD;
         }
 
-        if (strcmp(arg, "--test") == 0 || strcmp(arg, "-t") == 0) {
+        else if (strcmp(arg, "--test") == 0 || strcmp(arg, "-t") == 0) {
             if (i == argc - 1 or argv[i + 1][0] == '-') {
                 args_status = GOOD;
 
@@ -63,13 +63,21 @@ void HandleArgs (int argc, char *argv[]) {
                     args_status = IncorrectFileName (argv[i + 1]);
                 else
                     args_status = RunTestsFromFile (fp);
+
+                fclose(fp);
             }
         }
 
-        if (strcmp(arg, "--epsilon") == 0 || strcmp(arg, "--eps") == 0) {
+        else if (strcmp(arg, "--epsilon") == 0 || strcmp(arg, "--eps") == 0) {
             args_status = GOOD;
 
             PrintEps();
+        }
+
+        else if (strcmp(arg, "--cat") == 0) {
+            args_status = GOOD;
+
+            PrintCat();
         }
     }
 

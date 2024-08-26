@@ -67,4 +67,13 @@ void PrintTestFileHelp (void);
  */
 void PrintEps          (void);
 
+/**
+ * @brief Easter egg
+ *
+ * Prints poltorashka
+ *
+ * @see @ref HandleArgs
+ */
+void PrintCat          (void);
+
 #endif

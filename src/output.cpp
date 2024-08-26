@@ -56,7 +56,7 @@ void PrintTestingRes (const char *tested_func, int num_tests, int failed) {
 }
 
 void PrintHelp (void) {
-    printf ("# usage: quad.exe [-s | --solve <a> <b> <c>] [-h | --help] [-t | --test (optional) <filename.csv>] [--test_file_help] [--epsilon | --eps]\n\n"
+    printf ("# usage: quad.exe [-s | --solve <a> <b> <c>] [-h | --help] [--test_file_help] [-t | --test (optional) <filename.csv>] [--epsilon | --eps]\n\n"
             "  no agrs        Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
             "  solve          Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
             "  test           Testing internal functions.\n"
@@ -90,3 +90,21 @@ void PrintEps (void) {
     DefaultText();
 }
 
+void PrintCat (void) {
+    FILE *fp = fopen("cat.txt", "r");
+
+    if (fp != NULL) {
+        int c;
+        while ((c = getc(fp)) != EOF)
+            putchar(c);
+
+        fclose(fp);
+    }
+    else {
+        RedText();
+        printf("No cat file!\n");
+        DefaultText();
+    }
+
+    printf("\n");
+}
