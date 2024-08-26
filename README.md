@@ -15,8 +15,8 @@
 Clone the project
 
 ```bash
-git clone https://github.com/
-cd mipt-
+git clone https://github.com/DoneGame/Quadratic-Solver.git
+cd Quadratic-Solver
 ```
 
 Compile code
