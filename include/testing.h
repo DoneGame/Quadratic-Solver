@@ -42,7 +42,7 @@ typedef enum __TEST_STATUS {
  *
  * @return Number of failed tests
  */
-int RunSolverTests                (struct SOLVER_TEST tests[]);
+int         RunSolverTests        (struct SOLVER_TEST tests[]);
 
 /**
  * @brief Single Solver test
@@ -62,7 +62,7 @@ TEST_STATUS SolverTest            (struct SOLVER_TEST test);
  *
  * @return Number of failed tests
  */
-int RunNonZeroTests               (const double *tests_in, const int *tests_out);
+int         RunNonZeroTests       (const double *tests_in, const int *tests_out);
 
 /**
  * @brief Single NonZero test

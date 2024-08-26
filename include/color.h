@@ -13,7 +13,7 @@
  *
  * @warning I don't know how it works
  */
-void ColorOn      (void);
+void ColorOn        (void);
 
 /**
  * @brief Colors the text
