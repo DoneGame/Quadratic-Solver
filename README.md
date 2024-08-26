@@ -1,13 +1,14 @@
 # Quadratic equation solver
-*Created at the MIPT summer school for first-year students of the program "System Programming and Applied Math"*
 
-Simple CLI program for solving equations of the form ax² + bx + c = 0 with any coeefficients
+### Simple CLI program for solving equations of the form ax² + bx + c = 0 with any coefficients
+
+*Created at the MIPT summer school for first-year students of the program "System Programming and Applied Math"*
 
 ## Dependencies
 
-- `gcc`
-- `make`
-- `doxygen (optional)`
+- `GCC`
+- `Make`
+- `Doxygen (optional)`
 
 ## Run program
 
@@ -32,14 +33,14 @@ quad.exe
 
 ## Possible arguments
 
-Can be called in any order and any number of times
+*Can be called in any order and any number of times*
 
-- solve<pre>           </pre>Solving quadratic equation. Coefficients must be in form `-s <a> <b> <c>` 
-- <pre>help  	       Prints information about argumets</pre>
-- <pre>test_file_help  Gives information about format of file with tests</pre>
-- <pre>test            Testing internal functions</pre>
-- <pre>epsilon         Printing current value of constant for NonZero()</pre>
-<!-- cat               Prints poltorashka --!>
+- <pre>solve            Solving quadratic equation. Coefficients must be in form -s a b c</pre> 
+- <pre>help  	         Prints information about argumets</pre>
+- <pre>test_file_help   Gives information about format of file with tests</pre>
+- <pre>test             Testing internal functions</pre>
+- <pre>epsilon          Printing current value of constant for NonZero()</pre>
+<!-- cat                Prints poltorashka -->
 
 ## Get documentation
 
@@ -57,10 +58,10 @@ Or just open `doxygen/html/index.html` in another browser
 
 
 ### Abbreviations in tooltips and code:
-- coef  = coefficient
-- coefs = coefficients
-- sol   = solution
-- info  = information
+- <pre>coef  = coefficient</pre>
+- <pre>coefs = coefficients</pre>
+- <pre>sol   = solution</pre>
+- <pre>info  = information</pre>
 
 
  
