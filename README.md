@@ -35,12 +35,12 @@ quad.exe
 
 *Can be called in any order and any number of times*
 
-- <pre>solve            Solving quadratic equation. Coefficients must be in form -s a b c</pre> 
-- <pre>help  	         Prints information about argumets</pre>
-- <pre>test_file_help   Gives information about format of file with tests</pre>
-- <pre>test             Testing internal functions</pre>
-- <pre>epsilon          Printing current value of constant for NonZero()</pre>
-<!-- cat                Prints poltorashka -->
+<pre>--solve            Solving quadratic equation. Coefficients must be in form -s a b c</pre> 
+<pre>--help  	   Prints information about argumets</pre>
+<pre>--test_file_help   Gives information about format of file with tests</pre>
+<pre>--test             Testing internal functions</pre>
+<pre>--epsilon          Printing current value of constant for NonZero()</pre>
+<!-- --cat                Prints poltorashka -->
 
 ## Get documentation
 
@@ -57,11 +57,9 @@ firefox doxygen/html/index.html
 Or just open `doxygen/html/index.html` in another browser
 
 
-### Abbreviations in tooltips and code:
+#### Abbreviations in tooltips and code:
 - <pre>coef  = coefficient</pre>
 - <pre>coefs = coefficients</pre>
 - <pre>sol   = solution</pre>
 - <pre>info  = information</pre>
-
-
  
