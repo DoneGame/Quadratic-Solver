@@ -91,7 +91,7 @@ void PrintEps (void) {
 }
 
 void PrintCat (void) {
-    FILE *fp = fopen("cat.txt", "r");
+    FILE *fp = fopen("include/x.txt", "r");
 
     if (fp != NULL) {
         int c;

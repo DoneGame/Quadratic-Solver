@@ -30,11 +30,16 @@ Finally, run executable file
 quad.exe
 ```
 
-## Get information about arguments
+## Possible arguments
 
-```bash
-quad.exe -h
-```
+Can be called in any order and any number of times
+
+- <pre>solve           Solving quadratic equation. Coefficients must be in form `-s <a> <b> <c>`</pre> 
+- <pre>help  	       Prints information about argumets</pre>
+- <pre>test_file_help  Gives information about format of file with tests</pre>
+- <pre>test            Testing internal functions</pre>
+- <pre>epsilon         Printing current value of constant for NonZero()</pre>
+<!-- cat               Prints poltorashka --!>
 
 ## Get documentation
 
@@ -50,22 +55,12 @@ firefox doxygen/html/index.html
 
 Or just open `doxygen/html/index.html` in another browser
 
-## Possible arguments
-
-Can be called in any order and any number of times
-
-- solve           Solving quadratic equation. Coefficients must be in form `-s <a> <b> <c>` 
-- help  	  Gives information about argumets
-- test_file_help  Gives information about format of file with tests
-- test            Testing internal functions
-- epsilon         Printing current value of constant for NonZero()
-
 
 ### Abbreviations in tooltips and code:
-coef  = coefficient
-coefs = coefficients
-sol   = solution
-info  = information
+- coef  = coefficient
+- coefs = coefficients
+- sol   = solution
+- info  = information
 
 
  

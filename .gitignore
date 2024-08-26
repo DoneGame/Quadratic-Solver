@@ -10,4 +10,4 @@
 *.csv
 doxygen/
 **/.git-auto/
-!cat.txt
+!include/cat.txt
