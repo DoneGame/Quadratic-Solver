@@ -59,6 +59,7 @@ Or just open `doxygen/html/index.html` in another browser
 
 #### Abbreviations in tooltips and code:
 <pre>
+exp   = expected
 coef  = coefficient
 coefs = coefficients
 sol   = solution
