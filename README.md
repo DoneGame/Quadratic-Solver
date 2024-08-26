@@ -34,7 +34,7 @@ quad.exe
 
 Can be called in any order and any number of times
 
-- <pre>solve           Solving quadratic equation. Coefficients must be in form</pre> `-s <a> <b> <c>` 
+- solve<pre>           </pre>Solving quadratic equation. Coefficients must be in form `-s <a> <b> <c>` 
 - <pre>help  	       Prints information about argumets</pre>
 - <pre>test_file_help  Gives information about format of file with tests</pre>
 - <pre>test            Testing internal functions</pre>
