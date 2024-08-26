@@ -11,18 +11,24 @@
 #include "num_roots.h"
 
 /**@var NonZero_tests_in
+ *
  * Input data for NonZero() testing
  *
- * @see @ref RunNonZeroTests
- */
-const double NonZero_tests_in[] =  {0, 1, 0.00001, 0.0000009, 0.00001, NAN, INFINITY};
-
-/**@var NonZero_tests_out
- * Expected output data for NonZero() testing
+ * @warning -1 are treated as end of test list
  *
  * @see @ref RunNonZeroTests
  */
-const int    NonZero_tests_out[] = {0, 1, 1      , 0        , 1      , 1  , 1       };
+const double NonZero_tests_in[] =  {0, 1, 0.00001, 0.0000009, -0.00001, NAN, INFINITY, -1};
+
+/**@var NonZero_tests_out
+ *
+ * Expected output data for NonZero() testing
+ *
+ * @warning All negative numbers are treated as end of test list
+ *
+ * @see @ref RunNonZeroTests
+ */
+const int    NonZero_tests_out[] = {0, 1, 1      , 0        , 1       , 1  , 1       , -1};
 
 /**@var solver_tests
  *

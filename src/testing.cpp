@@ -7,6 +7,7 @@
 #include <math.h>
 #include <assert.h>
 #include <ctype.h>
+#include <assert.h>
 #include "solver.h"
 #include "testing.h"
 #include "solver_structs.h"
@@ -14,19 +15,22 @@
 #include "color.h"
 #include "args_handler.h"
 
-const int MAX_TESTS_IN_FILE = 101;
+const int MAX_TESTS_IN_FILE = 100;
 
 
 int RunSolverTests (struct SOLVER_TEST tests[]) {
     printf("# Testing SolveEquation()\n");
 
-    int num_tests = 0;
-    int failed = 0;
-    int i = -1;
-    while ((tests[++i]).test_number >= 0) {
-        num_tests++;
+    unsigned failed    = 0;
+    unsigned i         = 0;
+    while ((tests[i]).test_number >= 0) {
         failed += (int) SolverTest(tests[i]);
+
+        i++;
+        assert(i <= MAX_TESTS_IN_FILE); // last line contains stopping test, max tests in struct = max tests in file + 1
     }
+
+    unsigned num_tests = i;
 
     PrintTestingRes("SolveEquation", num_tests, failed);
 
@@ -80,12 +84,16 @@ TEST_STATUS SolverTest (struct SOLVER_TEST test) {
 }
 
 
-int RunNonZeroTests (const double *tests_in, const int *tests_out) {
+int RunNonZeroTests (const double tests_in[], const int tests_out[]) {
     printf("# Testing NonZero()\n");
 
-    int num_tests = sizeof(tests_in) / sizeof(tests_in[0]);
-    int failed = 0;
-    for (int i = 0; i < num_tests; i++) {
+    unsigned num_tests = 0;
+    unsigned failed    = 0;
+    for (unsigned i = 0; i <= MAX_TESTS_IN_FILE; i++) {
+        if (tests_in[i] == -1 && tests_out[i] < 0)  // stopping test
+            break;
+
+        num_tests++;
         failed += (int) NonZeroTest(i + 1, tests_in[i], tests_out[i]);
     }
 
@@ -113,13 +121,13 @@ TEST_STATUS NonZeroTest (int test_number, double in, int out) {
 
 ARGS_STATUS RunTestsFromFile (FILE *fp) {
 
-    struct SOLVER_TEST tests[MAX_TESTS_IN_FILE] = {};
-    int line_num  = 0;
-    int s         = '\0';
+    struct SOLVER_TEST tests[MAX_TESTS_IN_FILE + 1] = {};
+    unsigned line_num  = 0;
+    int s              = '\0';
     while ((s = getc(fp)) != EOF) {
         ungetc(s, fp);
 
-        if (!isspace(s) and !isdigit(s)) // header of csv file
+        if (!isspace(s) and !isdigit(s) and s != '.') // header of csv file
             FileClearBuffer (fp);
 
         if (line_num + 1 > MAX_TESTS_IN_FILE) {
@@ -155,6 +163,7 @@ ARGS_STATUS RunTestsFromFile (FILE *fp) {
         line_num++;
     }
 
+    assert(line_num <= MAX_TESTS_IN_FILE); // last line contains stopping test, max tests in struct = max tests in file + 1
     tests[line_num].test_number = -1;
 
     RunSolverTests (tests);

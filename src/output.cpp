@@ -68,9 +68,11 @@ void PrintHelp (void) {
 
 void PrintTestFileHelp (void) {
     printf ("# usage: quad.exe --test (optional) <filename.csv>\n\n"
-            "  File must have .csv format with ',' separtor and '\\n' as end of line. First row must be header with text.\n"
-            "  Float numbers must have '.' decimal separator. Test number must be positive. Each root must be indicated\n"
-            "  with accuracy of 6 decimal places. File must not contain empty lines.\n"
+            "  File must have .csv format with ',' separtor and '\\n' as end of line. First row may be header, which must start\n"
+            "  with a non-blank character, not a number and not a dot. Float numbers must have '.' decimal separator.\n"
+            "  Test number must be positive. Each root must be indicated with accuracy of 6 decimal places.\n"
+            "  File must contain no more one line of text (header).\n"
+            "\n"
             "  Sequence of test parameters:\n"
             "  test number,  first coef,  second coef,  third coef,  number of roots (-1 if infinite),  expected smaller root, expected larger root\n"
             "\n"
