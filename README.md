@@ -58,8 +58,10 @@ Or just open `doxygen/html/index.html` in another browser
 
 
 #### Abbreviations in tooltips and code:
-- <pre>coef  = coefficient</pre>
-- <pre>coefs = coefficients</pre>
-- <pre>sol   = solution</pre>
-- <pre>info  = information</pre>
+<pre>
+coef  = coefficient
+coefs = coefficients
+sol   = solution
+info  = information
+</pre>
  
