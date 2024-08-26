@@ -13,7 +13,7 @@
  *
  * @see @ref main
  */
-void EntryMessage    (void);
+void EntryMessage      (void);
 
 /**
  * @brief Solution output
@@ -24,7 +24,7 @@ void EntryMessage    (void);
  * @param solution Struct with solution
  *
  */
-void PrintResults    (struct ROOTS solution);
+void PrintResults      (struct ROOTS solution);
 
 /**
  * @brief Testing result
@@ -38,7 +38,7 @@ void PrintResults    (struct ROOTS solution);
  * @see @ref RunSolverTests
  * @see @ref RunNonZeroTests
  */
-void PrintTestingRes (const char *tested_func, int num_tests, int failed);
+void PrintTestingRes   (const char *tested_func, int num_tests, int failed);
 
 /**
  * @brief Helpful information
@@ -47,7 +47,16 @@ void PrintTestingRes (const char *tested_func, int num_tests, int failed);
  *
  * @see @ref HandleArgs
  */
-void PrintHelp       (void);
+void PrintHelp         (void);
+
+/**
+ * @brief Helpful information about file with tests
+ *
+ * Prints information in console
+ *
+ * @see @ref HandleArgs
+ */
+void PrintTestFileHelp (void);
 
 /**
  * @brief Prints PRECISION
@@ -56,6 +65,6 @@ void PrintHelp       (void);
  *
  * @see @ref HandleArgs
  */
-void PrintEps        (void);
+void PrintEps          (void);
 
 #endif

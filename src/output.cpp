@@ -56,11 +56,28 @@ void PrintTestingRes (const char *tested_func, int num_tests, int failed) {
 }
 
 void PrintHelp (void) {
-    printf ("# usage: quad.exe [-s | --solve <a> <b> <c>] [-h | --help] [-t | --test (optional) <filename.txt>] [--epsilon | --eps]\n\n"
-            "  no agrs   Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
-            "  solve     Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
-            "  test      Testing internal functions. It is possiblee to use tests for Solver from file: -t <filename.txt>\n"
-            "  epsilon   Printing current value of constant for NonZero()\n"
+    printf ("# usage: quad.exe [-s | --solve <a> <b> <c>] [-h | --help] [-t | --test (optional) <filename.csv>] [--test_file_help] [--epsilon | --eps]\n\n"
+            "  no agrs        Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
+            "  solve          Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
+            "  test           Testing internal functions. It is possiblee to use tests for Solver from file: --test_file_help\n"
+            "  test_file_help Prints help info about format of file with tests\n"
+            "  epsilon        Printing current value of constant for NonZero()\n"
+            "\n");
+}
+
+void PrintTestFileHelp (void) {
+    printf ("# usage: quad.exe --test (optional) <filename.csv>\n\n"
+            "  File must have .csv format with ',' separtor and '\n' as end of line. First row must be header with text."
+            "  Float numbers must have '.' decimal separator. Test number must be positive. Each root must be indicated\n"
+            "  with accuracy of 6 decimal places. File must not contain empty lines.\n"
+            "  Sequence of test parameters:\n"
+            "  test number,  first coef,  second coef,  third coef,  number of roots (-1 if infinite),  expected smaller root, expected larger root\n"
+            "\n"
+            "  Example:\n"
+            "  n, a,   b,   c,  roots, x1,        x2\n"
+            "  1, 0,   0,   0,  -1,    0,         0\n"
+            "  2, 1.5, 2.3, -4, 2,     -2.570674, 1.037341\n"
+            "  3, 0,   1,   1,  0,     0,         0\n"
             "\n");
 }
 

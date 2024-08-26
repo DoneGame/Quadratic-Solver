@@ -31,6 +31,12 @@ void HandleArgs (int argc, char *argv[]) {
             PrintHelp();
         }
 
+        if (strcmp(arg, "--test_file_help") == 0) {
+            args_status = GOOD;
+
+            PrintTestFileHelp();
+        }
+
         if (strcmp(arg, "--solve") == 0 || strcmp(arg, "-s") == 0) {
             if (i < argc - 3)
                 args_status = SolveFromArgs(argv + i + 1);
