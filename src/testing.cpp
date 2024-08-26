@@ -8,6 +8,7 @@
 #include <assert.h>
 #include <ctype.h>
 #include <assert.h>
+
 #include "solver.h"
 #include "testing.h"
 #include "solver_structs.h"
@@ -70,8 +71,6 @@ TEST_STATUS SolverTest (struct SOLVER_TEST test) {
         else status = FAIL;
 
         if (status == FAIL) {
-
-
             RedText();
             printf ("# SolveEquation(): Test %d failed. Params: a=%lf, b=%lf, c=%lf\n"
                     "Expected: n_roots=%d, x1=%lf, x2=%lf, get: n_roots=%d, x1=%lf, x2=%lf\n",
@@ -119,16 +118,16 @@ TEST_STATUS NonZeroTest (int test_number, double in, int out) {
     return OK;
 }
 
-ARGS_STATUS RunTestsFromFile (FILE *fp) {
+ARGS_STATUS RunTestsFromFile (FILE *file_with_tests) {
 
     struct SOLVER_TEST tests[MAX_TESTS_IN_FILE + 1] = {};
     unsigned line_num  = 0;
     int s              = '\0';
-    while ((s = getc(fp)) != EOF) {
-        ungetc(s, fp);
+    while ((s = getc(file_with_tests)) != EOF) {
+        ungetc(s, file_with_tests);
 
         if (!isspace(s) and !isdigit(s) and s != '.') // header of csv file
-            FileClearBuffer (fp);
+            FileClearBuffer (file_with_tests);
 
         if (line_num + 1 > MAX_TESTS_IN_FILE) {
             YellowText();
@@ -144,8 +143,8 @@ ARGS_STATUS RunTestsFromFile (FILE *fp) {
         assert(line_num < MAX_TESTS_IN_FILE);
         struct SOLVER_TEST *test = &tests[line_num];
 
-        int correct_args = fscanf (fp, "%d,       %lg,       %lg,       %lg,       %d,          %lg,           %lg",
-                                        &test_n,  &test->a,  &test->b,  &test->c,  &num_roots,  &test->x1_exp, &test->x2_exp);
+        int correct_args = fscanf (file_with_tests, "%d,       %lg,       %lg,       %lg,       %d,          %lg,           %lg",
+                                                     &test_n,  &test->a,  &test->b,  &test->c,  &num_roots,  &test->x1_exp, &test->x2_exp);
 
         test->n_roots_exp = (NUM_ROOTS) num_roots;
         test->test_number = test_n;
@@ -158,10 +157,12 @@ ARGS_STATUS RunTestsFromFile (FILE *fp) {
             return GOOD;
         }
 
-        FileClearBuffer (fp);
+        FileClearBuffer (file_with_tests);
 
         line_num++;
     }
+
+    fclose(file_with_tests);
 
     assert(line_num <= MAX_TESTS_IN_FILE); // last line contains stopping test, max tests in struct = max tests in file + 1
     tests[line_num].test_number = -1;
@@ -171,7 +172,7 @@ ARGS_STATUS RunTestsFromFile (FILE *fp) {
     return GOOD;
 }
 
-void FileClearBuffer (FILE *fp) {
+void FileClearBuffer (FILE *file) {
     int s = '\0';
-    while ((s = getc(fp)) != '\n' && s != EOF);
+    while ((s = getc(file)) != '\n' && s != EOF);
 }

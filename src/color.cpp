@@ -6,11 +6,14 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <unistd.h>
+
 #include "color.h"
 
 
-void ColorOn        (void) {if (NotRedirected())
-                            system(" ");}
+void ColorOn (void) {
+    if (NotRedirected())
+        system(" ");
+}
 
 void ColorTextAnbBG (int color_number) {
     if (NotRedirected())
@@ -34,4 +37,6 @@ void WhiteBG        (void) {ColorTextAnbBG(47);}
 void DefaultBG      (void) {ColorTextAnbBG(49);}
 
 
-int NotRedirected   (void) {return isatty(fileno(stdout));}
+int NotRedirected (void) {
+    return isatty(fileno(stdout));
+}

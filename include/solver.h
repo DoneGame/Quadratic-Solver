@@ -76,4 +76,4 @@ struct ROOTS SolveLinear    (struct COEFFICIENTS coefs);
  */
 int          NonZero        (double fp_number);
 
-#endif
+#endif //SOLVER_H

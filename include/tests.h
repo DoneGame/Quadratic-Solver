@@ -62,4 +62,4 @@ struct SOLVER_TEST solver_tests [] = {
 {   -1,   NAN,    NAN,    NAN,   NO_ROOTS,   NAN,       NAN      }  //stoping test (for correct processing)
 };
 
-#endif
+#endif //TESTS_H

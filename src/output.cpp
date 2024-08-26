@@ -4,6 +4,8 @@
  */
 
 #include <stdio.h>
+#include <stdlib.h>
+
 #include "output.h"
 #include "solver.h"
 #include "solver_structs.h"
@@ -91,18 +93,18 @@ void PrintEps (void) {
 }
 
 void PrintCat (void) {
-    FILE *fp = fopen("include/x.txt", "r");
+    FILE *file_cat = fopen("include/x.txt", "r");
 
-    if (fp != NULL) {
-        int c;
-        while ((c = getc(fp)) != EOF)
+    if (file_cat != NULL) {
+        int c = '\0';
+        while ((c = getc(file_cat)) != EOF)
             putchar(c);
 
-        fclose(fp);
+        fclose(file_cat);
     }
     else {
         RedText();
-        printf("No cat file!\n");
+        printf("# No file with cat!\n");
         DefaultText();
     }
 

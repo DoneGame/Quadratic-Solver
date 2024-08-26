@@ -5,6 +5,7 @@
 
 #include <stdio.h>
 #include <string.h>
+
 #include "args_handler.h"
 #include "num_roots.h"
 #include "input.h"
@@ -57,14 +58,14 @@ void HandleArgs (int argc, char *argv[]) {
             }
 
             else {
-                FILE *fp = fopen(argv[i + 1], "r");
+                FILE *file_with_tests = fopen(argv[i + 1], "r");
 
-                if (fp == NULL)
+                if (file_with_tests == NULL)
                     args_status = IncorrectFileName (argv[i + 1]);
                 else
-                    args_status = RunTestsFromFile (fp);
+                    args_status = RunTestsFromFile (file_with_tests);
 
-                fclose(fp);
+                fclose(file_with_tests);
             }
         }
 

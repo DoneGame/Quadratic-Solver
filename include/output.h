@@ -76,4 +76,4 @@ void PrintEps          (void);
  */
 void PrintCat          (void);
 
-#endif
+#endif //OUTPUT_H

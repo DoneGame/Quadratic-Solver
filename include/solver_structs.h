@@ -26,4 +26,4 @@ struct ROOTS {
     double    x2;        ///< Larger root
 };
 
-#endif
+#endif //SOLVER_STRUCTS_H

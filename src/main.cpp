@@ -4,6 +4,7 @@
  */
 
 #include <stdio.h>
+
 #include "num_roots.h"
 #include "input.h"
 #include "solver.h"
@@ -28,7 +29,7 @@
  *
  * @see @ref HandleArgs
  */
-int main (int argc, char *argv[]) {
+int main (const int argc, const char *argv[]) {
     ColorOn();
 
     if (argc > 1) {

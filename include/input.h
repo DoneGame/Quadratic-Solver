@@ -47,4 +47,4 @@ void                ClearBuffer     (void);
  */
 int                 IsNumberInStr   (char *c);
 
-#endif
+#endif //INPUT_H

@@ -7,7 +7,7 @@
 #define ARGS_HANDLER_H
 
 /// Checking for valid argument
-typedef enum __ARGS {
+typedef enum ARGS_STATUS {
     GOOD = 1, ///< Was at least one valid argument
     BAD  = 0, ///< No valid arguments
 } ARGS_STATUS;
@@ -22,7 +22,7 @@ typedef enum __ARGS {
  *
  * @note Throws error if none of the arguments were correct
  */
-void        HandleArgs        (int argc, char *argv[]);
+void        HandleArgs        (const int argc, const char *argv[]);
 
 /**
  * @brief --solve argument handler
@@ -54,4 +54,4 @@ ARGS_STATUS IncorrectFileName (char *file_name);
  */
 int IsCsvFileName             (char *arg);
 
-#endif
+#endif // ARGS_HANDLER_H

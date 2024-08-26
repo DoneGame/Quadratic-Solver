@@ -49,4 +49,4 @@ void DefaultBG      (void);
  */
 int NotRedirected   (void);
 
-#endif
+#endif //COLOR_H

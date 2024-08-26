@@ -25,7 +25,7 @@
 };
 
 /// Test result
-typedef enum __TEST_STATUS {
+typedef enum TEST_STATUS {
     OK   = 0,
     FAIL = 1,
 } TEST_STATUS;
@@ -86,7 +86,7 @@ TEST_STATUS NonZeroTest           (int test_number, double in, int out);
  *
  * @return Correctness of passed argument
  */
-ARGS_STATUS RunTestsFromFile      (FILE *fp);
+ARGS_STATUS RunTestsFromFile      (FILE *file_with_tests);
 
 /**
  * @brief Clears file buffer for fscanf()
@@ -96,6 +96,6 @@ ARGS_STATUS RunTestsFromFile      (FILE *fp);
  * @param fp File pointer (file in csv format)
  *
  */
-void        FileClearBuffer       (FILE *fp);
+void        FileClearBuffer       (FILE *file);
 
-#endif
+#endif //TESTING_H

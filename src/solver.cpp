@@ -4,6 +4,7 @@
  */
 
 #include <math.h>
+
 #include "solver.h"
 #include "solver_structs.h"
 #include "my_asserts.h"
