@@ -15,7 +15,7 @@
  *  @warning All negative test numbers are treated as end of test list
  */
  struct SOLVER_TEST {
-    int       test_number; ///< Test number (if
+    int       test_number; ///< Test number - must be non-negative for real tests and negative for last (stopping) test
     double    a;           ///< First coef
     double    b;           ///< Second coef
     double    c;           ///< Third coef
