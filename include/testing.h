@@ -9,11 +9,13 @@
 #include "num_roots.h"
 #include "args_handler.h"
 
-/** @struct solver_test
+/** @struct SOLVER_TEST
  *  @brief Test for SolveEquation()
+ *
+ *  @warning All negative test numbers are treated as end of test list
  */
- struct solver_test {
-    int       test_number; ///< Test number
+ struct SOLVER_TEST {
+    int       test_number; ///< Test number (if
     double    a;           ///< First coef
     double    b;           ///< Second coef
     double    c;           ///< Third coef
@@ -36,9 +38,11 @@ typedef enum __TEST_STATUS {
  *
  * @param tests Tests to run
  *
+ * @warning All negative test numbers are treated as end of test list
+ *
  * @return Number of failed tests
  */
-int RunSolverTests                (struct solver_test tests[]);
+int RunSolverTests                (struct SOLVER_TEST tests[]);
 
 /**
  * @brief Single Solver test
@@ -49,7 +53,7 @@ int RunSolverTests                (struct solver_test tests[]);
  *
  * @return Result of test (enum)
  */
-TEST_STATUS SolverTest            (struct solver_test test);
+TEST_STATUS SolverTest            (struct SOLVER_TEST test);
 
 /**
  * @brief NonZero() testing
@@ -73,8 +77,25 @@ int RunNonZeroTests               (const double *tests_in, const int *tests_out)
  */
 TEST_STATUS NonZeroTest           (int test_number, double in, int out);
 
+/**
+ * @brief Runs Solver tests from given file
+ *
+ * Get all tests from given cvs file and passes them to RunSolverTests()
+ *
+ * @param fp File pointer (file in csv format)
+ *
+ * @return Correctness of passed argument
+ */
 ARGS_STATUS RunTestsFromFile      (FILE *fp);
 
+/**
+ * @brief Clears file buffer for fscanf()
+ *
+ * Runs through file line, clearing buffer
+ *
+ * @param fp File pointer (file in csv format)
+ *
+ */
 void        FileClearBuffer       (FILE *fp);
 
 #endif

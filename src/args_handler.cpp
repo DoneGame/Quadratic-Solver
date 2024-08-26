@@ -106,6 +106,3 @@ int IsCsvFileName (char *arg) {
     char *dot = strrchr(arg, '.');
     return dot && !strcmp(dot, ".csv");
 }
-
-
-

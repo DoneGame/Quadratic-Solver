@@ -24,7 +24,13 @@ const double NonZero_tests_in[] =  {0, 1, 0.00001, 0.0000009, 0.00001, NAN, INFI
  */
 const int    NonZero_tests_out[] = {0, 1, 1      , 0        , 1      , 1  , 1       };
 
-struct solver_test solver_tests [] = {
+/**@var solver_tests
+ *
+ * Standard tests for SolveEquation() testing
+ *
+ * @see @ref RunSolverTests
+ */
+struct SOLVER_TEST solver_tests [] = {
 
 //   n    a       b       c      n_roots     x1         x2
 {    1,   0,      0,      0,     INF_ROOTS,  NAN,       NAN      },
@@ -47,7 +53,7 @@ struct solver_test solver_tests [] = {
 {    18, -10000,  600.58, 308.55,TWO_ROOTS, -0.148175,  0.208233 },
 {    19,  100000, 0.005, -0.005, TWO_ROOTS, -0.000223,  0.000223 },
 {    20,  10,    -0.05,   0.05,  NO_ROOTS,   NAN,       NAN      },
-{   -1,   NAN,    NAN,    NAN,   NO_ROOTS,   NAN,       NAN      }  //stoping test
+{   -1,   NAN,    NAN,    NAN,   NO_ROOTS,   NAN,       NAN      }  //stoping test (for correct processing)
 };
 
 #endif

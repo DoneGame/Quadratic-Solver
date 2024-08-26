@@ -36,8 +36,22 @@ void        HandleArgs        (int argc, char *argv[]);
  */
 ARGS_STATUS SolveFromArgs     (char *argv[]);
 
+/**
+ * @brief Prints info about incorrect file name
+ *
+ * @param file_name String with file name
+ *
+ * @return Correctness of the passed arguments
+ */
 ARGS_STATUS IncorrectFileName (char *file_name);
 
-int IsTxtFileName             (char *arg);
+/**
+ * @brief Checks if file name ends with .csv
+ *
+ * @param arg String with command line argument
+ *
+ * @return 0 or 1
+ */
+int IsCsvFileName             (char *arg);
 
 #endif

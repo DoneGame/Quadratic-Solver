@@ -17,13 +17,13 @@
 const int MAX_TESTS_IN_FILE = 101;
 
 
-int RunSolverTests (struct solver_test tests[]) {
+int RunSolverTests (struct SOLVER_TEST tests[]) {
     printf("# Testing SolveEquation()\n");
 
     int num_tests = 0;
     int failed = 0;
     int i = -1;
-    while ((tests[++i]).test_number != -1) {
+    while ((tests[++i]).test_number >= 0) {
         num_tests++;
         failed += (int) SolverTest(tests[i]);
     }
@@ -33,7 +33,7 @@ int RunSolverTests (struct solver_test tests[]) {
     return failed;
 }
 
-TEST_STATUS SolverTest (struct solver_test test) {
+TEST_STATUS SolverTest (struct SOLVER_TEST test) {
 
         struct COEFFICIENTS coefs = {0, 0, 0};
         coefs.a = test.a;
@@ -113,13 +113,13 @@ TEST_STATUS NonZeroTest (int test_number, double in, int out) {
 
 ARGS_STATUS RunTestsFromFile (FILE *fp) {
 
-    struct solver_test tests[MAX_TESTS_IN_FILE] = {};
+    struct SOLVER_TEST tests[MAX_TESTS_IN_FILE] = {};
     int line_num  = 0;
     int s         = '\0';
     while ((s = getc(fp)) != EOF) {
         ungetc(s, fp);
 
-        if (!isspace(s) and !isdigit(s)) // header
+        if (!isspace(s) and !isdigit(s)) // header of csv file
             FileClearBuffer (fp);
 
         if (line_num + 1 > MAX_TESTS_IN_FILE) {
@@ -134,7 +134,7 @@ ARGS_STATUS RunTestsFromFile (FILE *fp) {
         int test_n    = 0;
 
         assert(line_num < MAX_TESTS_IN_FILE);
-        struct solver_test *test = &tests[line_num];
+        struct SOLVER_TEST *test = &tests[line_num];
 
         int correct_args = fscanf (fp, "%d,       %lg,       %lg,       %lg,       %d,          %lg,           %lg",
                                         &test_n,  &test->a,  &test->b,  &test->c,  &num_roots,  &test->x1_exp, &test->x2_exp);
