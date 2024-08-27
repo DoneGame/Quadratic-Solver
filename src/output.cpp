@@ -5,13 +5,12 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "output.h"
 #include "solver.h"
 #include "solver_structs.h"
 #include "color.h"
-
-const static char *cat_filename = "include/x.txt";
 
 
 void EntryMessage (void) {
@@ -102,22 +101,13 @@ void PrintEps (void) {
     DefaultText();
 }
 
-void PrintCat (void) {
-    FILE *file_cat = fopen(cat_filename, "r");
+void PrintCat (FILE *file_cat) {
+    assert(file_cat);
 
-    if (file_cat != NULL) {
-        int c = '\0';
-        while ((c = getc(file_cat)) != EOF) {
-            putchar(c);
-        }
-
-        fclose(file_cat);
-    }
-    else {
-        RedText();
-        printf("# No file with cat!\n");
-        DefaultText();
+    int c = '\0';
+    while ((c = getc(file_cat)) != EOF) {
+        putchar(c);
     }
 
-    printf("\n");
+    fclose(file_cat);
 }

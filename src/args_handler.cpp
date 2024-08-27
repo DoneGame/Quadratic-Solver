@@ -68,7 +68,19 @@ void HandleArgs (const int argc, const char *argv[]) {
         else if (strcmp(arg, "--cat") == 0) {
             args_status = GOOD;
 
-            PrintCat();
+            const static char *cat_filename = "include/x.txt";
+            FILE *file_cat = fopen(cat_filename, "r");
+
+            if (file_cat != NULL) {
+                PrintCat(file_cat);
+            }
+            else {
+                RedText();
+                printf("# No file with cat!\n");
+                DefaultText();
+            }
+
+            printf("\n");
         }
     }
 

@@ -74,6 +74,6 @@ void PrintEps          (void);
  *
  * @see @ref HandleArgs
  */
-void PrintCat          (void);
+void PrintCat          (FILE *file_cat);
 
 #endif //OUTPUT_H
