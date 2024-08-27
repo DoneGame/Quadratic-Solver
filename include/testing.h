@@ -14,7 +14,7 @@
  *
  *  @warning All negative test numbers are treated as end of test list
  */
- struct Solver_Test {
+struct Solver_Test {
     int       test_number; ///< Test number - must be non-negative for real tests and negative for last (stopping) test
     double    a;           ///< First coef
     double    b;           ///< Second coef
@@ -42,7 +42,7 @@ typedef enum Test_Status {
  *
  * @return Number of failed tests
  */
-int         RunSolverTests        (struct Solver_Test tests[]);
+unsigned    RunSolverTests        (struct Solver_Test tests[]);
 
 /**
  * @brief Single Solver test
@@ -54,28 +54,6 @@ int         RunSolverTests        (struct Solver_Test tests[]);
  * @return Result of test (enum)
  */
 Test_Status SolverTest            (struct Solver_Test test);
-
-/**
- * @brief NonZero() testing
- *
- * Checks function with tests from tests.h
- *
- * @return Number of failed tests
- */
-int         RunNonZeroTests       (const double *tests_in, const int *tests_out);
-
-/**
- * @brief Single NonZero test
- *
- * Checks function with test
- *
- * @param test_number Number of test in sequence
- * @param in          Test input
- * @param out         Expected function output
- *
- * @return Result of test (enum)
- */
-Test_Status NonZeroTest           (int test_number, double in, int out);
 
 /**
  * @brief Runs Solver tests from given file

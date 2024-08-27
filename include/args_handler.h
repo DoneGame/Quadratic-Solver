@@ -48,7 +48,7 @@ Args_Status         TestingFromArgs   (int is_last, const char *next_arg);
  *
  * @return Result of check (0 or 1)
  */
-int                 IsNumberInStr     (const char *c);
+bool                IsNumberInStr     (const char *c);
 
 /**
  * @brief Prints info about incorrect file name
@@ -66,7 +66,7 @@ Args_Status         IncorrectFileName (const char *file_name);
  *
  * @return 0 or 1
  */
-int                 IsCsvFileName     (const char *arg);
+bool                IsCsvFileName     (const char *arg);
 
 /**
  * @brief Get coefficients from command line arguments

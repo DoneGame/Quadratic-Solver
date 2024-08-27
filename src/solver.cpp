@@ -88,9 +88,9 @@ struct Roots SolveQuadratic (struct Coefficients coefs) {
 
 }
 
-int NonZero (double fp_number) {
+bool NonZero (double fp_number) {
     if (! isfinite(fp_number)) {
-        return 1;
+        return true;
     }
 
     return fabs(fp_number) > PRECISION;

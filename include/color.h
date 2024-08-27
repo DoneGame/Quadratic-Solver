@@ -60,6 +60,6 @@ void DefaultBG      (void);
  *
  * @return 0 or 1
  */
-int NotRedirected   (void);
+bool NotRedirected  (void);
 
 #endif //COLOR_H

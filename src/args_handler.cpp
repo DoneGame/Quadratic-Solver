@@ -128,16 +128,16 @@ Args_Status TestingFromArgs (int is_last, const char *next_arg) {
     return args_status;
 }
 
-int IsNumberInStr (const char *c) {
+bool IsNumberInStr (const char *c) {
     while (*c < '0' || *c > '9') {
         c++;
 
         if (*c == '\0') {
-            return 0;
+            return false;
         }
     }
 
-    return 1; // TODO: true or false
+    return true; // TODO: true or false
 }
 
 Args_Status IncorrectFileName (const char *file_name) {
@@ -148,7 +148,7 @@ Args_Status IncorrectFileName (const char *file_name) {
     return BAD;
 }
 
-int IsCsvFileName (const char *arg) {
+bool IsCsvFileName (const char *arg) {
     char *dot = strrchr(arg, '.');
     return dot && !strcmp(dot, ".csv");
 }

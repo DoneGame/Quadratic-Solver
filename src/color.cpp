@@ -5,6 +5,7 @@
 
 #include <stdlib.h>
 #include <stdio.h>
+#include <stdbool.h>
 #include <unistd.h>
 
 #include "color.h"
@@ -38,6 +39,6 @@ void WhiteBG        (void) {ColorTextAndBG(WHITE_BG);}
 void DefaultBG      (void) {ColorTextAndBG(DEFAULT_BG);}
 
 
-int NotRedirected (void) {
+bool NotRedirected (void) {
     return isatty(fileno(stdout));
 }

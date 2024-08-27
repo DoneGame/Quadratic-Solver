@@ -20,7 +20,7 @@
 const int MAX_TESTS_IN_FILE = 100;
 
 
-int RunSolverTests (struct Solver_Test tests[]) {
+unsigned RunSolverTests (struct Solver_Test tests[]) {
     printf("# Testing SolveEquation()\n");
 
     unsigned failed   = 0;
