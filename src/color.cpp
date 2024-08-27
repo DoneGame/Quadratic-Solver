@@ -10,31 +10,44 @@
 #include "color.h"
 
 
+/// ANSI Escape sequences color codes
+typedef enum COLOR_CODES {
+    RED_TEXT     = 31,
+    YELLOW_TEXT  = 33,
+    GREEN_TEXT   = 32,
+    WHITE_TEXT   = 37,
+    DEFAULT_TEXT = 0,
+
+    WHITE_BG     = 47,
+    DEFAULT_BG   = 49
+} COLOR_CODES;
+
+
 void ColorOn (void) {
     if (NotRedirected())
         system(" ");
 }
 
-void ColorTextAnbBG (int color_number) {
+void ColorTextAndBG (int color_number) {
     if (NotRedirected())
         printf("\x1b[" "%d" "m", color_number);
 }
 
 
-void RedText        (void) {ColorTextAnbBG(31);}
+void RedText        (void) {ColorTextAndBG(RED_TEXT);}
 
-void YellowText     (void) {ColorTextAnbBG(33);}
+void YellowText     (void) {ColorTextAndBG(YELLOW_TEXT);}
 
-void GreenText      (void) {ColorTextAnbBG(32);}
+void GreenText      (void) {ColorTextAndBG(GREEN_TEXT);}
 
-void WhiteText      (void) {ColorTextAnbBG(37);}
+void WhiteText      (void) {ColorTextAndBG(WHITE_TEXT);}
 
-void DefaultText    (void) {ColorTextAnbBG(0);}
+void DefaultText    (void) {ColorTextAndBG(DEFAULT_TEXT);}
 
 
-void WhiteBG        (void) {ColorTextAnbBG(47);}
+void WhiteBG        (void) {ColorTextAndBG(WHITE_BG);}
 
-void DefaultBG      (void) {ColorTextAnbBG(49);}
+void DefaultBG      (void) {ColorTextAndBG(DEFAULT_BG);}
 
 
 int NotRedirected (void) {

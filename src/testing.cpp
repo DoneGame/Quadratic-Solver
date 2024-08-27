@@ -122,6 +122,7 @@ TEST_STATUS NonZeroTest (int test_number, double in, int out) {
 }
 
 ARGS_STATUS RunTestsFromFile (FILE *file_with_tests) {
+    assert(file_with_tests);
 
     struct SOLVER_TEST tests[MAX_TESTS_IN_FILE + 1] = {};
     unsigned line_num  = 0;
@@ -176,6 +177,8 @@ ARGS_STATUS RunTestsFromFile (FILE *file_with_tests) {
 }
 
 void FileClearBuffer (FILE *file) {
+    assert(file);
+
     int s = '\0';
     while ((s = getc(file)) != '\n' && s != EOF);
 }

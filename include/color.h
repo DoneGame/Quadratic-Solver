@@ -22,7 +22,7 @@ void ColorOn        (void);
  *
  * @param color_number Number from ANSI Escape Sequences
  */
-void ColorTextAnbBG (int color_number);
+void ColorTextAndBG (int color_number);
 
 void RedText        (void);
 void YellowText     (void);

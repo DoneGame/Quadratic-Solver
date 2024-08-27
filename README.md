@@ -64,5 +64,6 @@ coef  = coefficient
 coefs = coefficients
 sol   = solution
 info  = information
+bg    = background
 </pre>
  
