@@ -44,7 +44,7 @@ void ClearBuffer (void) {
     };
 }
 
-struct COEFFICIENTS GetCoefsFromStr(char **start) {
+struct COEFFICIENTS GetCoefsFromStr(const char **start) {
     struct COEFFICIENTS coefs = {.a = 0, .b = 0, .c = 0};
 
     sscanf (*start++, "%lf", &coefs.a);
@@ -52,12 +52,4 @@ struct COEFFICIENTS GetCoefsFromStr(char **start) {
     sscanf (*start++, "%lf", &coefs.c);
 
     return coefs;
-}
-
-int IsNumberInStr (char *c) {
-    while (*c < '0' || *c > '9') {
-        if (*(++c) == '\0') return 0;
-    }
-
-    return 1;
 }

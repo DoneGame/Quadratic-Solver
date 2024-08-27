@@ -19,12 +19,12 @@
 const int MAX_FILENAME_LEN = 255;
 
 
-void HandleArgs (int argc, char *argv[]) {
+void HandleArgs (const int argc, const char *argv[]) {
 
     ARGS_STATUS args_status = BAD;
 
     for (int i = 1; i < argc; i++) {
-        char *arg = argv[i];
+        const char *arg = argv[i];
 
         if (strcmp(arg, "--help") == 0 || strcmp(arg, "-h") == 0) {
             args_status = GOOD;
@@ -90,7 +90,7 @@ void HandleArgs (int argc, char *argv[]) {
 
 }
 
-ARGS_STATUS SolveFromArgs (char *argv[]) {
+ARGS_STATUS SolveFromArgs (const char *argv[]) {
     if (IsNumberInStr (argv[0]) && IsNumberInStr (argv[1]) && IsNumberInStr (argv[2])) {
 
         struct COEFFICIENTS coefs = GetCoefsFromStr (argv);
@@ -109,7 +109,15 @@ ARGS_STATUS SolveFromArgs (char *argv[]) {
     return BAD;
 }
 
-ARGS_STATUS IncorrectFileName (char *file_name) {
+int IsNumberInStr (const char *c) {
+    while (*c < '0' || *c > '9') {
+        if (*(++c) == '\0') return 0;
+    }
+
+    return 1;
+}
+
+ARGS_STATUS IncorrectFileName (const char *file_name) {
     RedText();
     printf ("# Incorrect file name: %s\n\n", file_name);
     DefaultText();
@@ -117,7 +125,7 @@ ARGS_STATUS IncorrectFileName (char *file_name) {
     return BAD;
 }
 
-int IsCsvFileName (char *arg) {
+int IsCsvFileName (const char *arg) {
     char *dot = strrchr(arg, '.');
     return dot && !strcmp(dot, ".csv");
 }

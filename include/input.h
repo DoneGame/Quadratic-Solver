@@ -27,7 +27,7 @@ struct COEFFICIENTS GetCoefs        (void);
  *
  * @return Struct with 3 coefficients of equation
  */
-struct COEFFICIENTS GetCoefsFromStr (char **start);
+struct COEFFICIENTS GetCoefsFromStr (const char **start);
 
  /**
  * @brief Clears cin buffer
@@ -35,16 +35,5 @@ struct COEFFICIENTS GetCoefsFromStr (char **start);
  * Clears buffer to end of line, aborts program if finds EOF
  */
 void                ClearBuffer     (void);
-
-/**
- * @brief Is number simbol in string
- *
- * Checks if string contains number
- *
- * @param c String
- *
- * @return Result of check (0 or 1)
- */
-int                 IsNumberInStr   (char *c);
 
 #endif //INPUT_H

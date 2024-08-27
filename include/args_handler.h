@@ -34,7 +34,18 @@ void        HandleArgs        (const int argc, const char *argv[]);
  *
  * @return Correctness of the passed arguments
  */
-ARGS_STATUS SolveFromArgs     (char *argv[]);
+ARGS_STATUS SolveFromArgs     (const char *argv[]);
+
+/**
+ * @brief Is number simbol in string
+ *
+ * Checks if string contains number
+ *
+ * @param c String
+ *
+ * @return Result of check (0 or 1)
+ */
+int         IsNumberInStr     (const char *c);
 
 /**
  * @brief Prints info about incorrect file name
@@ -43,7 +54,7 @@ ARGS_STATUS SolveFromArgs     (char *argv[]);
  *
  * @return Correctness of the passed arguments
  */
-ARGS_STATUS IncorrectFileName (char *file_name);
+ARGS_STATUS IncorrectFileName (const char *file_name);
 
 /**
  * @brief Checks if file name ends with .csv
@@ -52,6 +63,6 @@ ARGS_STATUS IncorrectFileName (char *file_name);
  *
  * @return 0 or 1
  */
-int IsCsvFileName             (char *arg);
+int IsCsvFileName             (const char *arg);
 
 #endif // ARGS_HANDLER_H
