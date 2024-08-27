@@ -112,7 +112,7 @@ Args_Status SolveFromArgs (const char *argv[]) {
 }
 
 Args_Status TestingFromArgs (bool is_last, const char *next_arg) {
-    Args_Status args_status = GOOD;
+    Args_Status args_status = BAD;
 
     if (is_last or next_arg[0] == '-') {
         args_status = GOOD;
