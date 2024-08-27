@@ -72,6 +72,8 @@ void PrintEps          (void);
  *
  * Prints poltorashka
  *
+ * @param file_cat File with ASCII cat
+ *
  * @see @ref HandleArgs
  */
 void PrintCat          (FILE *file_cat);
