@@ -43,7 +43,7 @@ void ClearBuffer (void) {
 
             return;
         }
-    };
+    }
 }
 
 void FileClearBuffer (FILE *file) {

@@ -16,8 +16,9 @@ void ColorOn (void) {
 }
 
 void ColorTextAndBG (Color_Codes color_number) {
-    if (NotRedirected())
+    if (NotRedirected()) {
         printf("\x1b[" "%d" "m", color_number);
+    }
 }
 
 

@@ -46,20 +46,24 @@ Test_Status SolverTest (struct Solver_Test test) {
 
         if (sol.num_roots == test.n_roots_exp) {
             switch (sol.num_roots) {
-                case NO_ROOTS:  if (!isnan(sol.x1) || !isnan(sol.x2))
+                case NO_ROOTS:  if (!isnan(sol.x1) || !isnan(sol.x2)) {
                                     status = FAIL;
+                                }
                                 break;
 
-                case ONE_ROOT:  if (NonZero(sol.x1 - test.x1_exp) || !isnan(sol.x2))
+                case ONE_ROOT:  if (NonZero(sol.x1 - test.x1_exp) || !isnan(sol.x2)) {
                                     status = FAIL;
+                                }
                                 break;
 
-                case TWO_ROOTS: if (NonZero(sol.x1 - test.x1_exp) || NonZero(sol.x2 - test.x2_exp))
+                case TWO_ROOTS: if (NonZero(sol.x1 - test.x1_exp) || NonZero(sol.x2 - test.x2_exp)) {
                                     status = FAIL;
+                                }
                                 break;
 
-                case INF_ROOTS: if (!isnan(sol.x1) || !isnan(sol.x2))
+                case INF_ROOTS: if (!isnan(sol.x1) || !isnan(sol.x2)) {
                                     status = FAIL;
+                                }
                                 break;
 
                 default:        RedText();
@@ -93,8 +97,9 @@ Args_Status RunTestsFromFile (FILE *file_with_tests) {
     while ((symbol = getc(file_with_tests)) != EOF) {
         ungetc(symbol, file_with_tests);
 
-        if (!isspace(symbol) && !isdigit(symbol) && symbol != '.') // header of csv file
+        if (!isspace(symbol) && !isdigit(symbol) && symbol != '.') { // header of csv file
             FileClearBuffer (file_with_tests);
+        }
 
         if (line_num + 1 > MAX_TESTS_IN_FILE) {
             YellowText();

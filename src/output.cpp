@@ -11,14 +11,21 @@
 #include "solver_structs.h"
 #include "color.h"
 
+const static char *cat_filename = "include/x.txt";
+
+
 void EntryMessage (void) {
     printf("# Second power equation solver\n");
 }
 
 void PrintResults (struct Roots solution) {
     // -0 bug solution
-    if (!NonZero(solution.x1)) solution.x1 = 0;
-    if (!NonZero(solution.x2)) solution.x2 = 0;
+    if (!NonZero(solution.x1)) {
+        solution.x1 = 0;
+    }
+    if (!NonZero(solution.x2)) {
+        solution.x2 = 0;
+    }
 
     switch (solution.num_roots) {
         case NO_ROOTS:  YellowText();
@@ -96,12 +103,13 @@ void PrintEps (void) {
 }
 
 void PrintCat (void) {
-    FILE *file_cat = fopen("include/x.txt", "r");
+    FILE *file_cat = fopen(cat_filename, "r");
 
     if (file_cat != NULL) {
         int c = '\0';
-        while ((c = getc(file_cat)) != EOF)
+        while ((c = getc(file_cat)) != EOF) {
             putchar(c);
+        }
 
         fclose(file_cat);
     }
