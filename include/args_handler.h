@@ -41,7 +41,7 @@ Args_Status         SolveFromArgs     (const char *argv[]);
  *
  * Uses the next argument as the file name unless it is a flag
  *
- * @param is_last  Is --test last argument?
+ * @param is_last  Was --test/-t the last argument?
  * @param next_arg Next argument (if exists)
  *
  * @return Correctness of the passed arguments
@@ -81,6 +81,8 @@ bool                IsCsvFileName     (const char *arg);
  * @brief Get coefficients from command line arguments
  *
  * Search for number in each of 3 consecutive command line argument
+ *
+ * @param start Pointer to the first of three arguments
  *
  * @see @ref SolveFromArgs
  *

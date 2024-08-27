@@ -72,7 +72,7 @@ struct Roots SolveLinear    (struct Coefficients coefs);
  *
  * @param fp_number Floating points number
  *
- * @return 0 or 1
+ * @return Result of check (true or false)
  */
 bool         NonZero        (double fp_number);
 

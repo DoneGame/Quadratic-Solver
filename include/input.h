@@ -31,7 +31,6 @@ void                ClearBuffer     (void);
  * Runs through file line, clearing buffer
  *
  * @param file File pointer (file in csv format)
- *
  */
 void                FileClearBuffer (FILE *file);
 
