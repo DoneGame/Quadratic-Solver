@@ -10,7 +10,7 @@
 #include "my_asserts.h"
 
 
-struct ROOTS SolveEquation (struct COEFFICIENTS coefs) {
+struct Roots SolveEquation (struct Coefficients coefs) {
 
     isfinite_assert(coefs.a);
     isfinite_assert(coefs.b);
@@ -20,15 +20,15 @@ struct ROOTS SolveEquation (struct COEFFICIENTS coefs) {
         return SolveQuadratic (coefs);
     }
 
-    struct COEFFICIENTS lin_coefs = {coefs.b, coefs.c, 0};
+    struct Coefficients lin_coefs = {coefs.b, coefs.c, 0};
 
     return SolveLinear (lin_coefs);
 
 }
 
-struct ROOTS SolveLinear (struct COEFFICIENTS coefs) {
+struct Roots SolveLinear (struct Coefficients coefs) {
 
-    struct ROOTS sol = {.num_roots = NO_ROOTS, .x1 = NAN, .x2 = NAN};
+    struct Roots sol = {.num_roots = NO_ROOTS, .x1 = NAN, .x2 = NAN};
 
     if (NonZero(coefs.a)) {
         sol.x1 = -coefs.b / coefs.a;
@@ -39,16 +39,20 @@ struct ROOTS SolveLinear (struct COEFFICIENTS coefs) {
         return sol;
     }
 
-    if (NonZero(coefs.b)) sol.num_roots = NO_ROOTS;
-    else sol.num_roots = INF_ROOTS;
+    if (NonZero(coefs.b)) {
+        sol.num_roots = NO_ROOTS;
+    }
+    else {
+        sol.num_roots = INF_ROOTS;
+    }
 
     return sol;
 
 }
 
-struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
+struct Roots SolveQuadratic (struct Coefficients coefs) {
 
-    struct ROOTS sol = {.num_roots = NO_ROOTS, .x1 = NAN, .x2 = NAN};
+    struct Roots sol = {.num_roots = NO_ROOTS, .x1 = NAN, .x2 = NAN};
 
     double descr = coefs.b * coefs.b - 4 * coefs.a * coefs.c;
 
@@ -57,7 +61,6 @@ struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
             sol.num_roots = NO_ROOTS;
             return sol;
         }
-
         else {
             double sqrt_descr = sqrt(descr);
 
@@ -86,7 +89,9 @@ struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs) {
 }
 
 int NonZero (double fp_number) {
-    if (!isfinite(fp_number)) return 1;
+    if (!isfinite(fp_number)) {
+        return 1;
+    }
 
     return fabs(fp_number) > PRECISION;
 }

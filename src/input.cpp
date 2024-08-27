@@ -5,19 +5,20 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 
 #include "input.h"
 #include "solver_structs.h"
 #include "color.h"
 
 
-struct COEFFICIENTS GetCoefs(void) {
-    struct COEFFICIENTS coefs = {.a = 0, .b = 0, .c = 0};
+struct Coefficients GetCoefs(void) {
+    struct Coefficients coefs = {.a = 0, .b = 0, .c = 0};
 
     printf ("# Solving a*x^2 + b*x + c = 0\n\n");
     printf ("# Enter a, b, c (separated by spaces): ");
 
-    while (scanf ("%lg %lg %lg", &coefs.a, &coefs.b, &coefs.c) != 3) {
+    while (scanf("%lg %lg %lg", &coefs.a, &coefs.b, &coefs.c) != 3) {
         ClearBuffer();
 
         YellowText();
@@ -26,7 +27,7 @@ struct COEFFICIENTS GetCoefs(void) {
         printf("Enter a, b, c: ");
     }
 
-    printf ("# Entered: a = %.6lg, b = %.6lg, c = %.6lg\n", coefs.a, coefs.b, coefs.c);
+    printf("# Entered: a = %.6lg, b = %.6lg, c = %.6lg\n", coefs.a, coefs.b, coefs.c);
     printf("\n");
 
     return coefs;
@@ -43,4 +44,12 @@ void ClearBuffer (void) {
             return;
         }
     };
+}
+
+void FileClearBuffer (FILE *file) {
+    assert(file);
+
+    int symbol = '\0';
+
+    while ((symbol = getc(file)) != '\n' && symbol != EOF);
 }

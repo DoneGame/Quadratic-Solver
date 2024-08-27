@@ -7,11 +7,11 @@
 #define NUM_ROOTS_H
 
 /// Number of roots of equation
-typedef enum NUM_ROOTS {
+typedef enum Num_Roots {
     INF_ROOTS = -1, ///< Infinite number of roots
     NO_ROOTS  =  0, ///< No roots
     ONE_ROOT  =  1, ///< One root
     TWO_ROOTS =  2, ///< Two roots
-} NUM_ROOTS;
+} Num_Roots;
 
 #endif //NUM_ROOTS_H

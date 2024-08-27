@@ -24,7 +24,7 @@ void EntryMessage      (void);
  * @param solution Struct with solution
  *
  */
-void PrintResults      (struct ROOTS solution);
+void PrintResults      (struct Roots solution);
 
 /**
  * @brief Testing result

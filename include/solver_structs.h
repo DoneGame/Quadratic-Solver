@@ -11,7 +11,7 @@
 /** @struct COEFFICIENTS
  *  @brief Coefficients of equation
  */
-struct COEFFICIENTS {
+struct Coefficients {
     double a; ///< First coef
     double b; ///< Second coef
     double c; ///< Third coef
@@ -20,8 +20,8 @@ struct COEFFICIENTS {
 /** @struct ROOTS
  *  @brief Solution of equation
  */
-struct ROOTS {
-    NUM_ROOTS num_roots; ///< Number of roots
+struct Roots {
+    Num_Roots num_roots; ///< Number of roots
     double    x1;        ///< Smaller or single root
     double    x2;        ///< Larger root
 };

@@ -21,10 +21,11 @@ const int MAX_FILENAME_LEN = 255;
 
 void HandleArgs (const int argc, const char *argv[]) {
 
-    ARGS_STATUS args_status = BAD;
+    Args_Status args_status = BAD;
 
-    for (int i = 1; i < argc; i++) {
-        const char *arg = argv[i];
+    for (int num_arg = 1; num_arg < argc; num_arg++) {
+
+        const char *arg = argv[num_arg];
 
         if (strcmp(arg, "--help") == 0 || strcmp(arg, "-h") == 0) {
             args_status = GOOD;
@@ -39,18 +40,20 @@ void HandleArgs (const int argc, const char *argv[]) {
         }
 
         else if (strcmp(arg, "--solve") == 0 || strcmp(arg, "-s") == 0) {
-            if (i < argc - 3)
-                args_status = SolveFromArgs(argv + i + 1);
-            else
+            if (num_arg < argc - 3) {
+                args_status = SolveFromArgs(argv + num_arg + 1);
+            }
+            else {
                 args_status = BAD;
+            }
         }
 
         else if (strcmp(arg, "--test") == 0 || strcmp(arg, "-t") == 0) {
-            int is_last = (i == argc - 1);
+            int is_last = (num_arg == argc - 1);
 
             const char *next_arg = "";
             if (!is_last) {
-                next_arg = argv[i + 1];
+                next_arg = argv[num_arg + 1];
             }
 
             args_status = TestingFromArgs (is_last, next_arg);
@@ -77,15 +80,15 @@ void HandleArgs (const int argc, const char *argv[]) {
 
 }
 
-ARGS_STATUS SolveFromArgs (const char *argv[]) {
+Args_Status SolveFromArgs (const char *argv[]) {
     if (IsNumberInStr (argv[0]) && IsNumberInStr (argv[1]) && IsNumberInStr (argv[2])) {
 
-        struct COEFFICIENTS coefs = GetCoefsFromStr (argv);
+        struct Coefficients coefs = GetCoefsFromStr (argv);
 
         printf ("# Solving a*x^2 + b*x + c = 0\n");
         printf ("# Entered: a = %.6lg, b = %.6lg, c = %.6lg\n", coefs.a, coefs.b, coefs.c);
 
-        struct ROOTS solution = SolveEquation (coefs);
+        struct Roots solution = SolveEquation (coefs);
 
         PrintResults (solution);
         printf ("\n");
@@ -96,13 +99,12 @@ ARGS_STATUS SolveFromArgs (const char *argv[]) {
     return BAD;
 }
 
-ARGS_STATUS TestingFromArgs (int is_last, const char *next_arg) {
-    ARGS_STATUS args_status = GOOD;
+Args_Status TestingFromArgs (int is_last, const char *next_arg) {
+    Args_Status args_status = GOOD;
 
     if (is_last or next_arg[0] == '-') {
         args_status = GOOD;
 
-        RunNonZeroTests(NonZero_tests_in, NonZero_tests_out);
         RunSolverTests(solver_tests);
     }
 
@@ -113,10 +115,12 @@ ARGS_STATUS TestingFromArgs (int is_last, const char *next_arg) {
     else {
         FILE *file_with_tests = fopen(next_arg, "r");
 
-        if (file_with_tests == NULL)
+        if (file_with_tests == NULL) {
             args_status = IncorrectFileName (next_arg);
-        else
+        }
+        else {
             args_status = RunTestsFromFile (file_with_tests);
+        }
 
         fclose(file_with_tests);
     }
@@ -127,13 +131,16 @@ ARGS_STATUS TestingFromArgs (int is_last, const char *next_arg) {
 int IsNumberInStr (const char *c) {
     while (*c < '0' || *c > '9') {
         c++;
-        if (*c == '\0') return 0;
+
+        if (*c == '\0') {
+            return 0;
+        }
     }
 
-    return 1;
+    return 1; // TODO: true or false
 }
 
-ARGS_STATUS IncorrectFileName (const char *file_name) {
+Args_Status IncorrectFileName (const char *file_name) {
     RedText();
     printf ("# Incorrect file name: %s\n\n", file_name);
     DefaultText();
@@ -146,8 +153,8 @@ int IsCsvFileName (const char *arg) {
     return dot && !strcmp(dot, ".csv");
 }
 
-struct COEFFICIENTS GetCoefsFromStr(const char **start) {
-    struct COEFFICIENTS coefs = {.a = 0, .b = 0, .c = 0};
+struct Coefficients GetCoefsFromStr(const char **start) {
+    struct Coefficients coefs = {.a = 0, .b = 0, .c = 0};
 
     sscanf (*start, "%lf", &coefs.a);
     start++;

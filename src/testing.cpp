@@ -13,38 +13,37 @@
 #include "testing.h"
 #include "solver_structs.h"
 #include "output.h"
+#include "input.h"
 #include "color.h"
 #include "args_handler.h"
 
 const int MAX_TESTS_IN_FILE = 100;
 
 
-int RunSolverTests (struct SOLVER_TEST tests[]) {
+int RunSolverTests (struct Solver_Test tests[]) {
     printf("# Testing SolveEquation()\n");
 
-    unsigned failed    = 0;
-    unsigned i         = 0;
-    while ((tests[i]).test_number >= 0) {
-        failed += (int) SolverTest(tests[i]);
+    unsigned failed   = 0;
+    unsigned num_test = 0;
 
-        i++;
-        assert(i <= MAX_TESTS_IN_FILE); // last line contains stopping test, max tests in struct = max tests in file + 1
+    for (; (tests[num_test]).test_number >= 0; num_test++) {
+        failed += (int) SolverTest(tests[num_test]);
+        assert(num_test < MAX_TESTS_IN_FILE); // last line contains stopping test, max tests in struct = max tests in file + 1
     }
 
-    unsigned num_tests = i;
-
-    PrintTestingRes("SolveEquation", num_tests, failed);
+    PrintTestingRes("SolveEquation", num_test, failed);
 
     return failed;
 }
 
-TEST_STATUS SolverTest (struct SOLVER_TEST test) {
+Test_Status SolverTest (struct Solver_Test test) {
 
-        struct COEFFICIENTS coefs = {test.a, test.b, test.c};
+        struct Coefficients coefs = {test.a, test.b, test.c};
 
-        struct ROOTS sol = SolveEquation (coefs);
+        struct Roots sol = SolveEquation (coefs);
 
-        TEST_STATUS status = OK;
+        Test_Status status = OK;
+
         if (sol.num_roots == test.n_roots_exp) {
             switch (sol.num_roots) {
                 case NO_ROOTS:  if (!isnan(sol.x1) || !isnan(sol.x2))
@@ -85,52 +84,16 @@ TEST_STATUS SolverTest (struct SOLVER_TEST test) {
         return status;
 }
 
-
-int RunNonZeroTests (const double tests_in[], const int tests_out[]) {
-    printf("# Testing NonZero()\n");
-
-    unsigned num_tests = 0;
-    unsigned failed    = 0;
-    for (unsigned i = 0; i <= MAX_TESTS_IN_FILE; i++) {
-        if (tests_in[i] == -1 && tests_out[i] < 0)  // stopping test
-            break;
-
-        num_tests++;
-        failed += (int) NonZeroTest(i + 1, tests_in[i], tests_out[i]);
-    }
-
-    PrintTestingRes("NonZero", num_tests, failed);
-
-    return failed;
-}
-
-TEST_STATUS NonZeroTest (int test_number, double in, int out) {
-    int result = NonZero(in);
-
-    if (result != out) {
-
-        RedText();
-        printf("# NonZero(): Test %d failed. Params: fp_number=%lg\n"
-               "Expected: out=%d, get: out=%d\n",
-               test_number, in, out, result);
-        DefaultText();
-
-        return FAIL;
-    }
-
-    return OK;
-}
-
-ARGS_STATUS RunTestsFromFile (FILE *file_with_tests) {
+Args_Status RunTestsFromFile (FILE *file_with_tests) {
     assert(file_with_tests);
 
-    struct SOLVER_TEST tests[MAX_TESTS_IN_FILE + 1] = {};
+    struct Solver_Test tests[MAX_TESTS_IN_FILE + 1] = {};
     unsigned line_num  = 0;
-    int s              = '\0';
-    while ((s = getc(file_with_tests)) != EOF) {
-        ungetc(s, file_with_tests);
+    int symbol         = '\0';
+    while ((symbol = getc(file_with_tests)) != EOF) {
+        ungetc(symbol, file_with_tests);
 
-        if (!isspace(s) and !isdigit(s) and s != '.') // header of csv file
+        if (!isspace(symbol) && !isdigit(symbol) && symbol != '.') // header of csv file
             FileClearBuffer (file_with_tests);
 
         if (line_num + 1 > MAX_TESTS_IN_FILE) {
@@ -145,12 +108,12 @@ ARGS_STATUS RunTestsFromFile (FILE *file_with_tests) {
         int test_n    = 0;
 
         assert(line_num < MAX_TESTS_IN_FILE);
-        struct SOLVER_TEST *test = &tests[line_num];
+        struct Solver_Test *test = &tests[line_num];
 
         int correct_args = fscanf (file_with_tests, "%d,       %lg,       %lg,       %lg,       %d,          %lg,           %lg",
                                                      &test_n,  &test->a,  &test->b,  &test->c,  &num_roots,  &test->x1_exp, &test->x2_exp);
 
-        test->n_roots_exp = (NUM_ROOTS) num_roots;
+        test->n_roots_exp = (Num_Roots) num_roots;
         test->test_number = test_n;
 
         if (correct_args != 7 || test_n < 0) {
@@ -174,11 +137,4 @@ ARGS_STATUS RunTestsFromFile (FILE *file_with_tests) {
     RunSolverTests (tests);
 
     return GOOD;
-}
-
-void FileClearBuffer (FILE *file) {
-    assert(file);
-
-    int s = '\0';
-    while ((s = getc(file)) != '\n' && s != EOF);
 }

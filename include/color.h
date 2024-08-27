@@ -6,6 +6,19 @@
 #ifndef COLOR_H
 #define COLOR_H
 
+/// ANSI Escape sequences color codes
+typedef enum Color_Codes {
+    RED_TEXT     = 31,
+    YELLOW_TEXT  = 33,
+    GREEN_TEXT   = 32,
+    WHITE_TEXT   = 37,
+    DEFAULT_TEXT = 0,
+
+    WHITE_BG     = 47,
+    DEFAULT_BG   = 49
+} Color_Codes;
+
+
 /**
  * @brief Turn on colors for text
  *
@@ -22,7 +35,7 @@ void ColorOn        (void);
  *
  * @param color_number Number from ANSI Escape Sequences
  */
-void ColorTextAndBG (int color_number);
+void ColorTextAndBG (Color_Codes color_number);
 
 void RedText        (void);
 void YellowText     (void);

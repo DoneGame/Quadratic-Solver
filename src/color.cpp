@@ -10,25 +10,12 @@
 #include "color.h"
 
 
-/// ANSI Escape sequences color codes
-typedef enum COLOR_CODES {
-    RED_TEXT     = 31,
-    YELLOW_TEXT  = 33,
-    GREEN_TEXT   = 32,
-    WHITE_TEXT   = 37,
-    DEFAULT_TEXT = 0,
-
-    WHITE_BG     = 47,
-    DEFAULT_BG   = 49
-} COLOR_CODES;
-
-
 void ColorOn (void) {
     if (NotRedirected())
         system(" ");
 }
 
-void ColorTextAndBG (int color_number) {
+void ColorTextAndBG (Color_Codes color_number) {
     if (NotRedirected())
         printf("\x1b[" "%d" "m", color_number);
 }

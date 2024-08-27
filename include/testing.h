@@ -14,21 +14,21 @@
  *
  *  @warning All negative test numbers are treated as end of test list
  */
- struct SOLVER_TEST {
+ struct Solver_Test {
     int       test_number; ///< Test number - must be non-negative for real tests and negative for last (stopping) test
     double    a;           ///< First coef
     double    b;           ///< Second coef
     double    c;           ///< Third coef
-    NUM_ROOTS n_roots_exp; ///< Number of roots (expected)
+    Num_Roots n_roots_exp; ///< Number of roots (expected)
     double    x1_exp;      ///< Smaller or single root (expected)
     double    x2_exp;      ///< Larger root (expected)
 };
 
 /// Test result
-typedef enum TEST_STATUS {
+typedef enum Test_Status {
     OK   = 0,
     FAIL = 1,
-} TEST_STATUS;
+} Test_Status;
 
 
 /**
@@ -42,7 +42,7 @@ typedef enum TEST_STATUS {
  *
  * @return Number of failed tests
  */
-int         RunSolverTests        (struct SOLVER_TEST tests[]);
+int         RunSolverTests        (struct Solver_Test tests[]);
 
 /**
  * @brief Single Solver test
@@ -53,7 +53,7 @@ int         RunSolverTests        (struct SOLVER_TEST tests[]);
  *
  * @return Result of test (enum)
  */
-TEST_STATUS SolverTest            (struct SOLVER_TEST test);
+Test_Status SolverTest            (struct Solver_Test test);
 
 /**
  * @brief NonZero() testing
@@ -75,7 +75,7 @@ int         RunNonZeroTests       (const double *tests_in, const int *tests_out)
  *
  * @return Result of test (enum)
  */
-TEST_STATUS NonZeroTest           (int test_number, double in, int out);
+Test_Status NonZeroTest           (int test_number, double in, int out);
 
 /**
  * @brief Runs Solver tests from given file
@@ -86,16 +86,6 @@ TEST_STATUS NonZeroTest           (int test_number, double in, int out);
  *
  * @return Correctness of passed argument
  */
-ARGS_STATUS RunTestsFromFile      (FILE *file_with_tests);
-
-/**
- * @brief Clears file buffer for fscanf()
- *
- * Runs through file line, clearing buffer
- *
- * @param file File pointer (file in csv format)
- *
- */
-void        FileClearBuffer       (FILE *file);
+Args_Status RunTestsFromFile      (FILE *file_with_tests);
 
 #endif //TESTING_H

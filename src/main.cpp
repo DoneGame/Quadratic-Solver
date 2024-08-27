@@ -39,9 +39,9 @@ int main (const int argc, const char *argv[]) {
 
         EntryMessage();
 
-        struct COEFFICIENTS coefficients = GetCoefs();
+        struct Coefficients coefficients = GetCoefs();
 
-        struct ROOTS solution = SolveEquation (coefficients);
+        struct Roots solution = SolveEquation (coefficients);
 
         PrintResults (solution);
 

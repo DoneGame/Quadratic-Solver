@@ -16,7 +16,7 @@
  *
  * @return Struct with 3 coefficients of equation
  */
-struct COEFFICIENTS GetCoefs        (void);
+struct Coefficients GetCoefs        (void);
 
  /**
  * @brief Clears cin buffer
@@ -24,5 +24,15 @@ struct COEFFICIENTS GetCoefs        (void);
  * Clears buffer to end of line, aborts program if finds EOF
  */
 void                ClearBuffer     (void);
+
+/**
+ * @brief Clears file buffer for fscanf()
+ *
+ * Runs through file line, clearing buffer
+ *
+ * @param file File pointer (file in csv format)
+ *
+ */
+void                FileClearBuffer (FILE *file);
 
 #endif //INPUT_H

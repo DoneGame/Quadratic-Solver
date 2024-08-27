@@ -25,10 +25,10 @@ const double PRECISION = 0.000001;
  *
  * @return Struct with solution
  *
- * @see @ref COEFFICIENTS
- * @see @ref ROOTS
+ * @see @ref Coefficients
+ * @see @ref Roots
  */
-struct ROOTS SolveEquation  (struct COEFFICIENTS coefs);
+struct Roots SolveEquation  (struct Coefficients coefs);
 
 /**
  * @brief Linear equation solver
@@ -44,7 +44,7 @@ struct ROOTS SolveEquation  (struct COEFFICIENTS coefs);
  *
  * @see @ref SolveEquation
  */
-struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs);
+struct Roots SolveQuadratic (struct Coefficients coefs);
 
 /**
  * @brief Quadratic equation solver
@@ -60,7 +60,7 @@ struct ROOTS SolveQuadratic (struct COEFFICIENTS coefs);
  *
  * @see @ref SolveEquation
  */
-struct ROOTS SolveLinear    (struct COEFFICIENTS coefs);
+struct Roots SolveLinear    (struct Coefficients coefs);
 
 /**
  * @brief Number is non-zero

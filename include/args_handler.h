@@ -7,10 +7,10 @@
 #define ARGS_HANDLER_H
 
 /// Checking for valid argument
-typedef enum ARGS_STATUS {
+typedef enum Args_Status {
     GOOD = 1, ///< Was at least one valid argument
     BAD  = 0, ///< No valid arguments
-} ARGS_STATUS;
+} Args_Status;
 
 /**
  * @brief Command line argument handler
@@ -22,7 +22,7 @@ typedef enum ARGS_STATUS {
  *
  * @note Throws error if none of the arguments were correct
  */
-void        HandleArgs        (const int argc, const char *argv[]);
+void                HandleArgs        (const int argc, const char *argv[]);
 
 /**
  * @brief --solve argument handler
@@ -34,10 +34,10 @@ void        HandleArgs        (const int argc, const char *argv[]);
  *
  * @return Correctness of the passed arguments
  */
-ARGS_STATUS SolveFromArgs     (const char *argv[]);
+Args_Status         SolveFromArgs     (const char *argv[]);
 
 
-ARGS_STATUS TestingFromArgs   (int is_last, const char *next_arg);
+Args_Status         TestingFromArgs   (int is_last, const char *next_arg);
 
 /**
  * @brief Is number simbol in string
@@ -48,7 +48,7 @@ ARGS_STATUS TestingFromArgs   (int is_last, const char *next_arg);
  *
  * @return Result of check (0 or 1)
  */
-int         IsNumberInStr     (const char *c);
+int                 IsNumberInStr     (const char *c);
 
 /**
  * @brief Prints info about incorrect file name
@@ -57,7 +57,7 @@ int         IsNumberInStr     (const char *c);
  *
  * @return Correctness of the passed arguments
  */
-ARGS_STATUS IncorrectFileName (const char *file_name);
+Args_Status         IncorrectFileName (const char *file_name);
 
 /**
  * @brief Checks if file name ends with .csv
@@ -66,7 +66,7 @@ ARGS_STATUS IncorrectFileName (const char *file_name);
  *
  * @return 0 or 1
  */
-int IsCsvFileName             (const char *arg);
+int                 IsCsvFileName     (const char *arg);
 
 /**
  * @brief Get coefficients from command line arguments
@@ -77,6 +77,6 @@ int IsCsvFileName             (const char *arg);
  *
  * @return Struct with 3 coefficients of equation
  */
-struct COEFFICIENTS GetCoefsFromStr (const char **start);
+struct Coefficients GetCoefsFromStr   (const char **start);
 
 #endif // ARGS_HANDLER_H
