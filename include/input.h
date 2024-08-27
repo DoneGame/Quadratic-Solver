@@ -21,7 +21,7 @@ struct Coefficients GetCoefs        (void);
  /**
  * @brief Clears cin buffer
  *
- * Clears buffer to end of line, aborts program if finds EOF
+ * Clears buffer to end of line
  */
 void                ClearBuffer     (void);
 

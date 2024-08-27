@@ -120,11 +120,9 @@ Args_Status TestingFromArgs (bool is_last, const char *next_arg) {
 
         RunSolverTests(solver_tests);
     }
-
     else if (!IsCsvFileName (next_arg)) {
         args_status = IncorrectFileName (next_arg);
     }
-
     else {
         FILE *file_with_tests = fopen(next_arg, "r");
 
@@ -150,7 +148,7 @@ bool IsNumberInStr (const char *c) {
         }
     }
 
-    return true; // TODO: true or false
+    return true;
 }
 
 Args_Status IncorrectFileName (const char *file_name) {
