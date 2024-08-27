@@ -4,6 +4,7 @@
  */
 
 #include <math.h>
+#include <stdbool.h>
 
 #include "solver.h"
 #include "solver_structs.h"
