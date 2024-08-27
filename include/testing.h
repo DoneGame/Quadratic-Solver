@@ -82,7 +82,7 @@ TEST_STATUS NonZeroTest           (int test_number, double in, int out);
  *
  * Get all tests from given cvs file and passes them to RunSolverTests()
  *
- * @param fp File pointer (file in csv format)
+ * @param file_with_tests File pointer (file in csv format)
  *
  * @return Correctness of passed argument
  */
@@ -93,7 +93,7 @@ ARGS_STATUS RunTestsFromFile      (FILE *file_with_tests);
  *
  * Runs through file line, clearing buffer
  *
- * @param fp File pointer (file in csv format)
+ * @param file File pointer (file in csv format)
  *
  */
 void        FileClearBuffer       (FILE *file);

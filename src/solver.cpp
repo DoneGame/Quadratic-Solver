@@ -20,9 +20,7 @@ struct ROOTS SolveEquation (struct COEFFICIENTS coefs) {
         return SolveQuadratic (coefs);
     }
 
-    struct COEFFICIENTS lin_coefs = {0, 0, 0};
-    lin_coefs.a = coefs.b;
-    lin_coefs.b = coefs.c;
+    struct COEFFICIENTS lin_coefs = {coefs.b, coefs.c, 0};
 
     return SolveLinear (lin_coefs);
 

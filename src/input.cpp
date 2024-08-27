@@ -39,17 +39,8 @@ void ClearBuffer (void) {
             YellowText();
             printf("\nEOF: Noting else to read!");
             DefaultText();
-            exit(1);
+
+            return;
         }
     };
-}
-
-struct COEFFICIENTS GetCoefsFromStr(const char **start) {
-    struct COEFFICIENTS coefs = {.a = 0, .b = 0, .c = 0};
-
-    sscanf (*start++, "%lf", &coefs.a);
-    sscanf (*start++, "%lf", &coefs.b);
-    sscanf (*start++, "%lf", &coefs.c);
-
-    return coefs;
 }

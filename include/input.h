@@ -18,17 +18,6 @@
  */
 struct COEFFICIENTS GetCoefs        (void);
 
-/**
- * @brief Get coefficients from command line arguments
- *
- * Search for number in each of 3 consecutive command line argument
- *
- * @see @ref SolveFromArgs
- *
- * @return Struct with 3 coefficients of equation
- */
-struct COEFFICIENTS GetCoefsFromStr (const char **start);
-
  /**
  * @brief Clears cin buffer
  *

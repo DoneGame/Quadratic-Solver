@@ -36,6 +36,9 @@ void        HandleArgs        (const int argc, const char *argv[]);
  */
 ARGS_STATUS SolveFromArgs     (const char *argv[]);
 
+
+ARGS_STATUS TestingFromArgs   (int is_last, const char *next_arg);
+
 /**
  * @brief Is number simbol in string
  *
@@ -64,5 +67,16 @@ ARGS_STATUS IncorrectFileName (const char *file_name);
  * @return 0 or 1
  */
 int IsCsvFileName             (const char *arg);
+
+/**
+ * @brief Get coefficients from command line arguments
+ *
+ * Search for number in each of 3 consecutive command line argument
+ *
+ * @see @ref SolveFromArgs
+ *
+ * @return Struct with 3 coefficients of equation
+ */
+struct COEFFICIENTS GetCoefsFromStr (const char **start);
 
 #endif // ARGS_HANDLER_H

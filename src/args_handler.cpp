@@ -46,27 +46,14 @@ void HandleArgs (const int argc, const char *argv[]) {
         }
 
         else if (strcmp(arg, "--test") == 0 || strcmp(arg, "-t") == 0) {
-            if (i == argc - 1 or argv[i + 1][0] == '-') {
-                args_status = GOOD;
+            int is_last = (i == argc - 1);
 
-                RunNonZeroTests(NonZero_tests_in, NonZero_tests_out);
-                RunSolverTests(solver_tests);
+            const char *next_arg = "";
+            if (!is_last) {
+                next_arg = argv[i + 1];
             }
 
-            else if (!IsCsvFileName (argv[i + 1])) {
-                args_status = IncorrectFileName (argv[i + 1]);
-            }
-
-            else {
-                FILE *file_with_tests = fopen(argv[i + 1], "r");
-
-                if (file_with_tests == NULL)
-                    args_status = IncorrectFileName (argv[i + 1]);
-                else
-                    args_status = RunTestsFromFile (file_with_tests);
-
-                fclose(file_with_tests);
-            }
+            args_status = TestingFromArgs (is_last, next_arg);
         }
 
         else if (strcmp(arg, "--epsilon") == 0 || strcmp(arg, "--eps") == 0) {
@@ -109,9 +96,38 @@ ARGS_STATUS SolveFromArgs (const char *argv[]) {
     return BAD;
 }
 
+ARGS_STATUS TestingFromArgs (int is_last, const char *next_arg) {
+    ARGS_STATUS args_status = GOOD;
+
+    if (is_last or next_arg[0] == '-') {
+        args_status = GOOD;
+
+        RunNonZeroTests(NonZero_tests_in, NonZero_tests_out);
+        RunSolverTests(solver_tests);
+    }
+
+    else if (!IsCsvFileName (next_arg)) {
+        args_status = IncorrectFileName (next_arg);
+    }
+
+    else {
+        FILE *file_with_tests = fopen(next_arg, "r");
+
+        if (file_with_tests == NULL)
+            args_status = IncorrectFileName (next_arg);
+        else
+            args_status = RunTestsFromFile (file_with_tests);
+
+        fclose(file_with_tests);
+    }
+
+    return args_status;
+}
+
 int IsNumberInStr (const char *c) {
     while (*c < '0' || *c > '9') {
-        if (*(++c) == '\0') return 0;
+        c++;
+        if (*c == '\0') return 0;
     }
 
     return 1;
@@ -128,4 +144,16 @@ ARGS_STATUS IncorrectFileName (const char *file_name) {
 int IsCsvFileName (const char *arg) {
     char *dot = strrchr(arg, '.');
     return dot && !strcmp(dot, ".csv");
+}
+
+struct COEFFICIENTS GetCoefsFromStr(const char **start) {
+    struct COEFFICIENTS coefs = {.a = 0, .b = 0, .c = 0};
+
+    sscanf (*start, "%lf", &coefs.a);
+    start++;
+    sscanf (*start, "%lf", &coefs.b);
+    start++;
+    sscanf (*start, "%lf", &coefs.c);
+
+    return coefs;
 }

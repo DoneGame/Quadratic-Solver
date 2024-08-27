@@ -40,26 +40,27 @@ int RunSolverTests (struct SOLVER_TEST tests[]) {
 
 TEST_STATUS SolverTest (struct SOLVER_TEST test) {
 
-        struct COEFFICIENTS coefs = {0, 0, 0};
-        coefs.a = test.a;
-        coefs.b = test.b;
-        coefs.c = test.c;
+        struct COEFFICIENTS coefs = {test.a, test.b, test.c};
 
         struct ROOTS sol = SolveEquation (coefs);
 
         TEST_STATUS status = OK;
         if (sol.num_roots == test.n_roots_exp) {
             switch (sol.num_roots) {
-                case NO_ROOTS:  if (!isnan(sol.x1) || !isnan(sol.x2)) status = FAIL;
+                case NO_ROOTS:  if (!isnan(sol.x1) || !isnan(sol.x2))
+                                    status = FAIL;
                                 break;
 
-                case ONE_ROOT:  if (NonZero(sol.x1 - test.x1_exp) || !isnan(sol.x2)) status = FAIL;
+                case ONE_ROOT:  if (NonZero(sol.x1 - test.x1_exp) || !isnan(sol.x2))
+                                    status = FAIL;
                                 break;
 
-                case TWO_ROOTS: if (NonZero(sol.x1 - test.x1_exp) || NonZero(sol.x2 - test.x2_exp)) status = FAIL;
+                case TWO_ROOTS: if (NonZero(sol.x1 - test.x1_exp) || NonZero(sol.x2 - test.x2_exp))
+                                    status = FAIL;
                                 break;
 
-                case INF_ROOTS: if (!isnan(sol.x1) || !isnan(sol.x2)) status = FAIL;
+                case INF_ROOTS: if (!isnan(sol.x1) || !isnan(sol.x2))
+                                    status = FAIL;
                                 break;
 
                 default:        RedText();
@@ -68,7 +69,9 @@ TEST_STATUS SolverTest (struct SOLVER_TEST test) {
                                 return FAIL;
             }
         }
-        else status = FAIL;
+        else {
+            status = FAIL;
+        }
 
         if (status == FAIL) {
             RedText();
@@ -107,7 +110,7 @@ TEST_STATUS NonZeroTest (int test_number, double in, int out) {
     if (result != out) {
 
         RedText();
-        printf("# NonZero(): Test %d failed. Params: fp=%lg\n"
+        printf("# NonZero(): Test %d failed. Params: fp_number=%lg\n"
                "Expected: out=%d, get: out=%d\n",
                test_number, in, out, result);
         DefaultText();
