@@ -17,6 +17,7 @@
 #include "color.h"
 
 const int MAX_FILENAME_LEN = 255;
+const static char *cat_filename = "include/x.txt";
 
 
 void HandleArgs (const int argc, const char *argv[]) {
@@ -68,7 +69,6 @@ void HandleArgs (const int argc, const char *argv[]) {
         else if (strcmp(arg, "--cat") == 0) {
             args_status = GOOD;
 
-            const static char *cat_filename = "include/x.txt";
             FILE *file_cat = fopen(cat_filename, "r");
 
             if (file_cat != NULL) {
