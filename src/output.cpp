@@ -67,13 +67,15 @@ void PrintTestingRes (const char *tested_func, int num_tests, int failed) {
 }
 
 void PrintHelp (void) {
-    printf("# usage: quad.exe [-s | --solve <a> <b> <c>] [-h | --help] [--test_file_help] [-t | --test (optional) <filename.csv>] [--epsilon | --eps]\n\n"
-           "  no agrs        Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
-           "  solve          Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
-           "  test           Testing internal functions.\n"
-           "                 It is possiblee to use tests for Solver from file: --test_file_help for more info\n"
-           "  test_file_help Prints help info about format of file with tests\n"
-           "  epsilon        Printing current value of constant for NonZero()\n"
+    printf("# usage: quad.exe [-s | --solve <a> <b> <c>] [-h | --help] [--test_file_help]\n"
+           "                  [-t | --test (optional) <filename.csv>] [--epsilon | --eps]\n"
+           "\n"
+           "  no agrs         Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
+           "  solve           Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
+           "  test            Testing internal functions.\n"
+           "                  It is possiblee to use tests for Solver from file: --test_file_help for more info\n"
+           "  test_file_help  Prints help info about format of file with tests\n"
+           "  epsilon         Printing current value of constant for NonZero()\n"
            "\n");
 }
 
