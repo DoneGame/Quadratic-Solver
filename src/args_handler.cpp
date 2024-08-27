@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <string.h>
 #include <stdbool.h>
+#include <assert.h>
 
 #include "args_handler.h"
 #include "num_roots.h"
@@ -22,10 +23,11 @@ const static char *cat_filename = "include/x.txt";
 
 
 void HandleArgs (const int argc, const char *argv[]) {
+    assert(argc > 1);
 
     Args_Status args_status = BAD;
 
-    for (int num_arg = 1; num_arg < argc; num_arg++) {
+    for (size_t num_arg = 1; num_arg < (size_t) argc; num_arg++) {
 
         const char *arg = argv[num_arg];
 
@@ -42,7 +44,7 @@ void HandleArgs (const int argc, const char *argv[]) {
         }
 
         else if (strcmp(arg, "--solve") == 0 || strcmp(arg, "-s") == 0) {
-            if (num_arg < argc - 3) {
+            if (num_arg < (size_t) argc - 3) {
                 args_status = SolveFromArgs(argv + num_arg + 1);
             }
             else {
@@ -51,7 +53,7 @@ void HandleArgs (const int argc, const char *argv[]) {
         }
 
         else if (strcmp(arg, "--test") == 0 || strcmp(arg, "-t") == 0) {
-            bool is_last = (num_arg == argc - 1);
+            bool is_last = (num_arg == (size_t) argc - 1);
 
             const char *next_arg = "";
             if (!is_last) {

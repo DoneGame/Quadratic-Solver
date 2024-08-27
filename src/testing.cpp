@@ -24,7 +24,7 @@ unsigned RunSolverTests (struct Solver_Test tests[]) {
     printf("# Testing SolveEquation()\n");
 
     unsigned failed   = 0;
-    unsigned num_test = 0;
+    size_t   num_test = 0;
 
     for (; (tests[num_test]).test_number >= 0; num_test++) {
         failed += (int) SolverTest(tests[num_test]);
@@ -92,8 +92,8 @@ Args_Status RunTestsFromFile (FILE *file_with_tests) {
     assert(file_with_tests);
 
     struct Solver_Test tests[MAX_TESTS_IN_FILE + 1] = {};
-    unsigned line_num  = 0;
-    int symbol         = '\0';
+    size_t line_num  = 0;
+    int    symbol    = '\0';
     while ((symbol = getc(file_with_tests)) != EOF) {
         ungetc(symbol, file_with_tests);
 
