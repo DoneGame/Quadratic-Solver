@@ -58,7 +58,7 @@ void DefaultBG      (void);
  *
  * Using to not send escape sequences outside command line
  *
- * @return 0 or 1
+ * @return Result of check (true or false)
  */
 bool NotRedirected  (void);
 

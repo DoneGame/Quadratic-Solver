@@ -36,8 +36,17 @@ void                HandleArgs        (const int argc, const char *argv[]);
  */
 Args_Status         SolveFromArgs     (const char *argv[]);
 
-
-Args_Status         TestingFromArgs   (int is_last, const char *next_arg);
+/**
+ * @brief --test argument handler
+ *
+ * Uses the next argument as the file name unless it is a flag
+ *
+ * @param is_last  Is --test last argument?
+ * @param next_arg Next argument (if exists)
+ *
+ * @return Correctness of the passed arguments
+ */
+Args_Status         TestingFromArgs   (bool is_last, const char *next_arg);
 
 /**
  * @brief Is number simbol in string
@@ -46,7 +55,7 @@ Args_Status         TestingFromArgs   (int is_last, const char *next_arg);
  *
  * @param c String
  *
- * @return Result of check (0 or 1)
+ * @return Result of check (true or false)
  */
 bool                IsNumberInStr     (const char *c);
 
@@ -64,7 +73,7 @@ Args_Status         IncorrectFileName (const char *file_name);
  *
  * @param arg String with command line argument
  *
- * @return 0 or 1
+ * @return Result of check (true or false)
  */
 bool                IsCsvFileName     (const char *arg);
 

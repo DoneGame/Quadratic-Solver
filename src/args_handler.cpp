@@ -50,7 +50,7 @@ void HandleArgs (const int argc, const char *argv[]) {
         }
 
         else if (strcmp(arg, "--test") == 0 || strcmp(arg, "-t") == 0) {
-            int is_last = (num_arg == argc - 1);
+            bool is_last = (num_arg == argc - 1);
 
             const char *next_arg = "";
             if (!is_last) {
@@ -111,7 +111,7 @@ Args_Status SolveFromArgs (const char *argv[]) {
     return BAD;
 }
 
-Args_Status TestingFromArgs (int is_last, const char *next_arg) {
+Args_Status TestingFromArgs (bool is_last, const char *next_arg) {
     Args_Status args_status = GOOD;
 
     if (is_last or next_arg[0] == '-') {
