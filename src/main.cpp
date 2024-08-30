@@ -33,9 +33,8 @@
 int main (const int argc, const char *argv[]) {
     ColorOn();
 
-    if (argc > 1) {
+    if (argc > 1)
         HandleArgs (argc, argv);
-    }
     else {
 
         EntryMessage();

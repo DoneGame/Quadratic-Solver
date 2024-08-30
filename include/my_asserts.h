@@ -19,7 +19,7 @@
 #if (!defined (NDEBUG) && !defined (DEACTIVATE_MY_ASSERTS))
     /** My implementation of assert() from assert.h*/
     #define my_assert(log_expr) {                                                             \
-        if (!(log_expr)) {                                                                    \
+        if (! (log_expr)) {                                                                    \
             ColorOn();                                                                        \
             RedText();                                                                        \
             printf("Assertion failed!\n");                                                    \
@@ -33,7 +33,7 @@
     /** United impementation of assert(isfinite(fp_number)),
         gives additional information about fp_number value*/
     #define isfinite_assert(fp_number) {                                                      \
-        if (!isfinite(fp_number)) {                                                           \
+        if (! isfinite(fp_number)) {                                                           \
             ColorOn();                                                                        \
             RedText();                                                                        \
             printf("Assertion failed!\n");                                                    \

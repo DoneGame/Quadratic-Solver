@@ -17,26 +17,25 @@ void ColorOn (void) {
 }
 
 void ColorTextAndBG (Color_Codes color_number) {
-    if (NotRedirected()) {
+    if (NotRedirected())
         printf("\x1b[" "%d" "m", color_number);
-    }
 }
 
 
-void RedText        (void) {ColorTextAndBG(RED_TEXT);}
+void RedText        (void) { ColorTextAndBG(RED_TEXT);     }
 
-void YellowText     (void) {ColorTextAndBG(YELLOW_TEXT);}
+void YellowText     (void) { ColorTextAndBG(YELLOW_TEXT);  }
 
-void GreenText      (void) {ColorTextAndBG(GREEN_TEXT);}
+void GreenText      (void) { ColorTextAndBG(GREEN_TEXT);   }
 
-void WhiteText      (void) {ColorTextAndBG(WHITE_TEXT);}
+void WhiteText      (void) { ColorTextAndBG(WHITE_TEXT);   }
 
-void DefaultText    (void) {ColorTextAndBG(DEFAULT_TEXT);}
+void DefaultText    (void) { ColorTextAndBG(DEFAULT_TEXT); }
 
 
-void WhiteBG        (void) {ColorTextAndBG(WHITE_BG);}
+void WhiteBG        (void) { ColorTextAndBG(WHITE_BG);     }
 
-void DefaultBG      (void) {ColorTextAndBG(DEFAULT_BG);}
+void DefaultBG      (void) { ColorTextAndBG(DEFAULT_BG);   }
 
 
 bool NotRedirected (void) {

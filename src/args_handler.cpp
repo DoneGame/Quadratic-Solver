@@ -25,58 +25,54 @@ const static char *cat_filename = "include/x.txt";
 void HandleArgs (const int argc, const char *argv[]) {
     assert(argc > 1);
 
-    Args_Status args_status = BAD;
+    Args_Status args_status = ARGS_BAD;
 
     for (size_t num_arg = 1; num_arg < (size_t) argc; num_arg++) {
 
         const char *arg = argv[num_arg];
 
         if (strcmp(arg, "--help") == 0 || strcmp(arg, "-h") == 0) {
-            args_status = GOOD;
+            args_status = ARGS_GOOD;
 
             PrintHelp();
         }
 
         else if (strcmp(arg, "--test_file_help") == 0) {
-            args_status = GOOD;
+            args_status = ARGS_GOOD;
 
             PrintTestFileHelp();
         }
 
         else if (strcmp(arg, "--solve") == 0 || strcmp(arg, "-s") == 0) {
-            if (num_arg < (size_t) argc - 3) {
+            if (num_arg < (size_t) argc - 3)
                 args_status = SolveFromArgs(argv + num_arg + 1);
-            }
-            else {
-                args_status = BAD;
-            }
+            else
+                args_status = ARGS_BAD;
         }
 
         else if (strcmp(arg, "--test") == 0 || strcmp(arg, "-t") == 0) {
             bool is_last = (num_arg == (size_t) argc - 1);
 
             const char *next_arg = "";
-            if (!is_last) {
+            if (!is_last)
                 next_arg = argv[num_arg + 1];
-            }
 
             args_status = TestingFromArgs (is_last, next_arg);
         }
 
         else if (strcmp(arg, "--epsilon") == 0 || strcmp(arg, "--eps") == 0) {
-            args_status = GOOD;
+            args_status = ARGS_GOOD;
 
             PrintEps();
         }
 
-        else if (strcmp(arg, "--cat") == 0) {
-            args_status = GOOD;
+        else if (strcmp(arg, "--cat") == 0) {      // --cat=@internal
+            args_status = ARGS_GOOD;
 
             FILE *file_cat = fopen(cat_filename, "r");
 
-            if (file_cat != NULL) {
+            if (file_cat != NULL)
                 PrintCat(file_cat);
-            }
             else {
                 RedText();
                 printf("# No file with cat!\n");
@@ -87,7 +83,7 @@ void HandleArgs (const int argc, const char *argv[]) {
         }
     }
 
-    if (args_status == BAD) {
+    if (args_status == ARGS_BAD) {
         RedText();
         printf ("# Incorrect arguments, try again\n");
         DefaultText();
@@ -108,32 +104,30 @@ Args_Status SolveFromArgs (const char *argv[]) {
         PrintResults (solution);
         printf ("\n");
 
-        return GOOD;
+        return ARGS_GOOD;
     }
 
-    return BAD;
+    return ARGS_BAD;
 }
 
 Args_Status TestingFromArgs (bool is_last, const char *next_arg) {
-    Args_Status args_status = BAD;
+    Args_Status args_status = ARGS_BAD;
 
     if (is_last or next_arg[0] == '-') {
-        args_status = GOOD;
+        args_status = ARGS_GOOD;
 
         RunSolverTests(solver_tests);
     }
-    else if (!IsCsvFileName (next_arg)) {
+    else if (! IsCsvFileName (next_arg)) {
         args_status = IncorrectFileName (next_arg);
     }
     else {
         FILE *file_with_tests = fopen(next_arg, "r");
 
-        if (file_with_tests == NULL) {
+        if (! file_with_tests)
             args_status = IncorrectFileName (next_arg);
-        }
-        else {
+        else
             args_status = RunTestsFromFile (file_with_tests);
-        }
 
         fclose(file_with_tests);
     }
@@ -145,9 +139,8 @@ bool IsNumberInStr (const char *c) {
     while (*c < '0' || *c > '9') {
         c++;
 
-        if (*c == '\0') {
+        if (*c == '\0')
             return false;
-        }
     }
 
     return true;
@@ -158,7 +151,7 @@ Args_Status IncorrectFileName (const char *file_name) {
     printf ("# Incorrect file name: %s\n\n", file_name);
     DefaultText();
 
-    return BAD;
+    return ARGS_BAD;
 }
 
 bool IsCsvFileName (const char *arg) {

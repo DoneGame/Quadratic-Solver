@@ -17,9 +17,8 @@ struct Roots SolveEquation (struct Coefficients coefs) {
     isfinite_assert(coefs.b);
     isfinite_assert(coefs.c);
 
-    if (NonZero(coefs.a)) {
+    if (NonZero(coefs.a))
         return SolveQuadratic (coefs);
-    }
 
     struct Coefficients lin_coefs = {coefs.b, coefs.c, 0};
 
@@ -40,12 +39,10 @@ struct Roots SolveLinear (struct Coefficients coefs) {
         return sol;
     }
 
-    if (NonZero(coefs.b)) {
+    if (NonZero(coefs.b))
         sol.num_roots = NO_ROOTS;
-    }
-    else {
+    else
         sol.num_roots = INF_ROOTS;
-    }
 
     return sol;
 
@@ -90,9 +87,8 @@ struct Roots SolveQuadratic (struct Coefficients coefs) {
 }
 
 bool NonZero (double fp_number) {
-    if (! isfinite(fp_number)) {
+    if (! isfinite(fp_number))
         return true;
-    }
 
     return fabs(fp_number) > PRECISION;
 }

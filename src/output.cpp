@@ -19,12 +19,10 @@ void EntryMessage (void) {
 
 void PrintResults (struct Roots solution) {
     // -0 bug solution
-    if (!NonZero(solution.x1)) {
+    if (!NonZero(solution.x1))
         solution.x1 = 0;
-    }
-    if (!NonZero(solution.x2)) {
+    if (!NonZero(solution.x2))
         solution.x2 = 0;
-    }
 
     switch (solution.num_roots) {
         case NO_ROOTS:  YellowText();
@@ -52,15 +50,12 @@ void PrintResults (struct Roots solution) {
 }
 
 void PrintTestingRes (const char *tested_func, int num_tests, int failed) {
-    if (! failed) {
+    if (! failed)
         GreenText();
-    }
-    else if (failed < num_tests / 2) {
+    else if (failed < num_tests / 2)
         YellowText();
-    }
-    else {
+    else
         RedText();
-    }
 
     printf("# %s(): Failed %d tests out of %d\n\n", tested_func, failed, num_tests);
     DefaultText();
@@ -107,9 +102,8 @@ void PrintCat (FILE *file_cat) {
     assert(file_cat);
 
     int c = '\0';
-    while ((c = getc(file_cat)) != EOF) {
+    while ((c = getc(file_cat)) != EOF)
         putchar(c);
-    }
 
     fclose(file_cat);
 }
