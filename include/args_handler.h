@@ -8,8 +8,8 @@
 
 /// Checking for valid argument
 typedef enum Args_Status {
-    GOOD = 1, ///< Was at least one valid argument
-    BAD  = 0, ///< No valid arguments
+    ARGS_GOOD = 1, ///< Was at least one valid argument
+    ARGS_BAD  = 0, ///< No valid arguments
 } Args_Status;
 
 /**

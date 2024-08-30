@@ -26,8 +26,8 @@ struct Solver_Test {
 
 /// Test result
 typedef enum Test_Status {
-    OK   = 0,
-    FAIL = 1,
+    TEST_OK   = 0,
+    TEST_FAIL = 1,
 } Test_Status;
 
 

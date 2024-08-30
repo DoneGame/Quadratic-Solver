@@ -12,7 +12,7 @@
 #include "color.h"
 
 
-struct Coefficients GetCoefs(void) {
+struct Coefficients GetCoefs (void) {
     struct Coefficients coefs = {.a = 0, .b = 0, .c = 0};
 
     printf ("# Solving a*x^2 + b*x + c = 0\n\n");
@@ -51,5 +51,5 @@ void FileClearBuffer (FILE *file) {
 
     int symbol = '\0';
 
-    while ((symbol = getc(file)) != '\n' && symbol != EOF);
+    while ((symbol = getc(file)) != '\n' && symbol != EOF) {};
 }

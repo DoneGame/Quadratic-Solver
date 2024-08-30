@@ -42,41 +42,37 @@ Test_Status SolverTest (struct Solver_Test test) {
 
         struct Roots sol = SolveEquation (coefs);
 
-        Test_Status status = OK;
+        Test_Status status = TEST_OK;
 
         if (sol.num_roots == test.n_roots_exp) {
             switch (sol.num_roots) {
-                case NO_ROOTS:  if (!isnan(sol.x1) || !isnan(sol.x2)) {
-                                    status = FAIL;
-                                }
+                case NO_ROOTS:  if (!isnan(sol.x1) || !isnan(sol.x2))
+                                    status = TEST_FAIL;
                                 break;
 
-                case ONE_ROOT:  if (NonZero(sol.x1 - test.x1_exp) || !isnan(sol.x2)) {
-                                    status = FAIL;
-                                }
+                case ONE_ROOT:  if (NonZero(sol.x1 - test.x1_exp) || !isnan(sol.x2))
+                                    status = TEST_FAIL;
                                 break;
 
-                case TWO_ROOTS: if (NonZero(sol.x1 - test.x1_exp) || NonZero(sol.x2 - test.x2_exp)) {
-                                    status = FAIL;
-                                }
+                case TWO_ROOTS: if (NonZero(sol.x1 - test.x1_exp) || NonZero(sol.x2 - test.x2_exp))
+                                    status = TEST_FAIL;
                                 break;
 
-                case INF_ROOTS: if (!isnan(sol.x1) || !isnan(sol.x2)) {
-                                    status = FAIL;
-                                }
+                case INF_ROOTS: if (!isnan(sol.x1) || !isnan(sol.x2))
+                                    status = TEST_FAIL;
                                 break;
 
                 default:        RedText();
                                 printf("PrintResults(): n_roots is incorrect\n");
                                 DefaultText();
-                                return FAIL;
+                                return TEST_FAIL;
             }
         }
         else {
-            status = FAIL;
+            status = TEST_FAIL;
         }
 
-        if (status == FAIL) {
+        if (status == TEST_FAIL) {
             RedText();
             printf ("# SolveEquation(): Test %d failed. Params: a=%lf, b=%lf, c=%lf\n"
                     "Expected: n_roots=%d, x1=%lf, x2=%lf, get: n_roots=%d, x1=%lf, x2=%lf\n",
@@ -97,9 +93,8 @@ Args_Status RunTestsFromFile (FILE *file_with_tests) {
     while ((symbol = getc(file_with_tests)) != EOF) {
         ungetc(symbol, file_with_tests);
 
-        if (!isspace(symbol) && !isdigit(symbol) && symbol != '.') { // header of csv file
+        if (! isspace(symbol) && ! isdigit(symbol) && symbol != '.') // header of csv file
             FileClearBuffer (file_with_tests);
-        }
 
         if (line_num + 1 > MAX_TESTS_IN_FILE) {
             YellowText();
@@ -126,7 +121,7 @@ Args_Status RunTestsFromFile (FILE *file_with_tests) {
             printf("# Incorrect file with tests!\n\n");
             DefaultText();
 
-            return GOOD;
+            return ARGS_GOOD;
         }
 
         FileClearBuffer (file_with_tests);
@@ -141,5 +136,5 @@ Args_Status RunTestsFromFile (FILE *file_with_tests) {
 
     RunSolverTests (tests);
 
-    return GOOD;
+    return ARGS_GOOD;
 }
