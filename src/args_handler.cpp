@@ -19,6 +19,24 @@
 #include "color.h"
 
 const int MAX_FILENAME_LEN = 255;
+
+//command line options
+const char help_opt_long []  = "--help"    ;
+const char help_opt_short[]  = "-h"        ;
+
+const char file_tests_opt[]  = "--help"    ;
+
+const char solve_opt_long [] = "--solve"   ;
+const char solve_opt_short[] = "-s"        ;
+
+const char test_opt_long []  = "--test"    ;
+const char test_opt_short[]  = "-t"        ;
+
+const char eps_opt_long []   = "--epsilon" ;
+const char eps_opt_short[]   = "--eps"     ;
+
+const char cat_opt[]         = "--cat"     ;
+
 const static char *cat_filename = "include/x.txt";
 
 
@@ -31,26 +49,26 @@ void HandleArgs (const int argc, const char *argv[]) {
 
         const char *arg = argv[num_arg];
 
-        if (strcmp(arg, "--help") == 0 || strcmp(arg, "-h") == 0) {
+        if (strcmp(arg, help_opt_long) == 0 || strcmp(arg, help_opt_short) == 0) {
             args_status = ARGS_GOOD;
 
             PrintHelp();
         }
 
-        else if (strcmp(arg, "--test_file_help") == 0) {
+        else if (strcmp(arg, file_tests_opt) == 0) {
             args_status = ARGS_GOOD;
 
-            PrintTestFileHelp();
+            PrintFileTestHelp();
         }
 
-        else if (strcmp(arg, "--solve") == 0 || strcmp(arg, "-s") == 0) {
+        else if (strcmp(arg, solve_opt_long) == 0 || strcmp(arg, solve_opt_short) == 0) {
             if (num_arg < (size_t) argc - 3)
                 args_status = SolveFromArgs(argv + num_arg + 1);
             else
                 args_status = ARGS_BAD;
         }
 
-        else if (strcmp(arg, "--test") == 0 || strcmp(arg, "-t") == 0) {
+        else if (strcmp(arg, test_opt_long) == 0 || strcmp(arg, test_opt_short) == 0) {
             bool is_last = (num_arg == (size_t) argc - 1);
 
             const char *next_arg = "";
@@ -60,13 +78,13 @@ void HandleArgs (const int argc, const char *argv[]) {
             args_status = TestingFromArgs (is_last, next_arg);
         }
 
-        else if (strcmp(arg, "--epsilon") == 0 || strcmp(arg, "--eps") == 0) {
+        else if (strcmp(arg, eps_opt_long) == 0 || strcmp(arg, eps_opt_short) == 0) {
             args_status = ARGS_GOOD;
 
             PrintEps();
         }
 
-        else if (strcmp(arg, "--cat") == 0) {      // --cat=@internal
+        else if (strcmp(arg, cat_opt) == 0) {      // --cat=@internal
             args_status = ARGS_GOOD;
 
             FILE *file_cat = fopen(cat_filename, "r");

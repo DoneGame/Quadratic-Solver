@@ -68,13 +68,13 @@ void PrintHelp (void) {
            "  no agrs         Solving quadratic equation. Coefficients must be in form \"<a> <b> <c>\"\n"
            "  solve           Solving quadratic equation. Coefficients must be in form \"-s <a> <b> <c>\"\n"
            "  test            Testing internal functions.\n"
-           "                  It is possiblee to use tests for Solver from file: --test_file_help for more info\n"
-           "  test_file_help  Prints help info about format of file with tests\n"
+           "                  It is possiblee to use tests for Solver from file: --file_test_help for more info\n"
+           "  file_test_help  Prints help info about format of file with tests\n"
            "  epsilon         Printing current value of constant for NonZero()\n"
            "\n");
 }
 
-void PrintTestFileHelp (void) {
+void PrintFileTestHelp (void) {
     printf("# usage: quad.exe --test (optional) <filename.csv>\n\n"
            "  File must have .csv format with ',' separtor and '\\n' as end of line. First row may be header, which must start\n"
            "  with a non-blank character, not a number and not a dot. Float numbers must have '.' decimal separator.\n"
