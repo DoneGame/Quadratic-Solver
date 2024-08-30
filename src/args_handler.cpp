@@ -21,21 +21,21 @@
 const int MAX_FILENAME_LEN = 255;
 
 //command line options
-const char help_opt_long []  = "--help"    ;
-const char help_opt_short[]  = "-h"        ;
+const char help_opt_long []  = "--help"            ;
+const char help_opt_short[]  = "-h"                ;
 
-const char file_tests_opt[]  = "--help"    ;
+const char file_tests_opt[]  = "--file_tests_help" ;
 
-const char solve_opt_long [] = "--solve"   ;
-const char solve_opt_short[] = "-s"        ;
+const char solve_opt_long [] = "--solve"           ;
+const char solve_opt_short[] = "-s"                ;
 
-const char test_opt_long []  = "--test"    ;
-const char test_opt_short[]  = "-t"        ;
+const char test_opt_long []  = "--test"            ;
+const char test_opt_short[]  = "-t"                ;
 
-const char eps_opt_long []   = "--epsilon" ;
-const char eps_opt_short[]   = "--eps"     ;
+const char eps_opt_long []   = "--epsilon"         ;
+const char eps_opt_short[]   = "--eps"             ;
 
-const char cat_opt[]         = "--cat"     ;
+const char cat_opt[]         = "--cat"             ;
 
 const static char *cat_filename = "include/x.txt";
 
@@ -58,7 +58,7 @@ void HandleArgs (const int argc, const char *argv[]) {
         else if (strcmp(arg, file_tests_opt) == 0) {
             args_status = ARGS_GOOD;
 
-            PrintFileTestHelp();
+            PrintFileTestsHelp();
         }
 
         else if (strcmp(arg, solve_opt_long) == 0 || strcmp(arg, solve_opt_short) == 0) {

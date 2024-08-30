@@ -4,6 +4,7 @@
  */
 
 #include <stdio.h>
+#include <math.h>
 
 #include "num_roots.h"
 #include "input.h"
@@ -40,6 +41,9 @@ int main (const int argc, const char *argv[]) {
         EntryMessage();
 
         struct Coefficients coefficients = GetCoefs();
+
+        if (isnan(coefficients.a) || isnan(coefficients.b) || isnan(coefficients.c))
+            return 1;
 
         struct Roots solution = SolveEquation (coefficients);
 

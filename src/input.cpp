@@ -6,6 +6,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
+#include <math.h>
 
 #include "input.h"
 #include "solver_structs.h"
@@ -20,6 +21,14 @@ struct Coefficients GetCoefs (void) {
 
     while (scanf("%lg %lg %lg", &coefs.a, &coefs.b, &coefs.c) != 3) {
         ClearBuffer();
+
+        if (getchar() == EOF) {
+            coefs.a = NAN;
+            coefs.b = NAN;
+            coefs.c = NAN;
+
+            return coefs;
+        }
 
         YellowText();
         printf("# Incorrect format. ");

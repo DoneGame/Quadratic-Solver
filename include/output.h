@@ -56,7 +56,7 @@ void PrintHelp         (void);
  *
  * @see @ref HandleArgs
  */
-void PrintFileTestHelp (void);
+void PrintFileTestsHelp (void);
 
 /**
  * @brief Prints PRECISION

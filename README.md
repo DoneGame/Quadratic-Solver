@@ -56,6 +56,18 @@ firefox doxygen/html/index.html
 
 Or just open `doxygen/html/index.html` in another browser
 
+## File redirection
+
+Calling quad.exe without arguments supports redirection:
+
+```bash
+quad.exe < input.txt
+```
+
+```bash
+quad.exe > output.txt
+```
+
 
 #### Abbreviations in tooltips and code:
 <pre>
