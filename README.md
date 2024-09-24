@@ -6,6 +6,7 @@
 
 ## Dependencies
 
+- `Windows`
 - `GCC`
 - `Make`
 - `Doxygen (optional)`
